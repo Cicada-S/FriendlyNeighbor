@@ -30,41 +30,24 @@
   margin-left: 20rpx;
   font-size: 28rpx;
 }
-.postItem .content .userName {
+.postItem .content .namePrice {
+  display: flex;
+  justify-content: space-between;
   color: var(--Color-MainB);
   font-size: 30rpx;
   font-weight: 550;
   margin-bottom: 18rpx;
 }
-.postItem .content .phonePrice {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  font-size: 28rpx;
-  margin-bottom: 20rpx;
-}
-.postItem .content .phonePrice .price {
+.postItem .content .namePrice .price {
   color: var(--Color-ViceA);
   font-size: 30rpx;
   padding-right: 20rpx;
-}
-.postItem .content .text {
-  letter-spacing: 3rpx;
-  margin-bottom: 20rpx;
+  font-weight: 400;
 }
 .postItem .content .location {
-  color: var(--Color-MainB);
-  font-size: 26rpx;
+  display: flex;
+  flex-direction: column;
   margin-bottom: 20rpx;
-}
-.postItem .content .departureTime {
-  color: var(--Color-MainA);
-  font-size: 26rpx;
-  margin-bottom: 20rpx;
-}
-.postItem .content .departureTime .icon {
-  letter-spacing: -8rpx;
-  padding-right: 8rpx;
 }
 .postItem .content .footer {
   display: flex;
@@ -72,6 +55,7 @@
   color: var(--Color-FontA);
   font-size: 26rpx;
   font-weight: 300;
+  margin-top: 20rpx;
 }
 .postItem .content .footer .releaseTime {
   font-size: 26rpx;

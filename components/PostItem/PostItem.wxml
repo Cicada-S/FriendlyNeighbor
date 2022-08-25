@@ -4,14 +4,15 @@
     <image class="avatar" src="{{postItem.avatar_url}}" />
   </view>
   <view class="content">
-    <view class="userName">{{postItem.name}}</view>
-    <view class="phonePrice">
-      <view class="phone">{{postItem.phone}}</view>
+    <view class="namePrice">
+      <view class="name">{{postItem.name}}</view>
       <view class="price">¥ {{postItem.price}}</view>
     </view>
-    <view class="text">{{postItem.remark}}</view>
-    <view class="location">{{postItem.departPlace}} -> {{postItem.destination}}</view>
-    <view class="departureTime">{{postItem.beginTime}} <text class="icon">==</text> {{postItem.endTime}}</view>
+    <view class="location">
+      <text>出发：{{postItem.departPlace}}</text>
+      <text>到达：{{postItem.destination}}</text>
+    </view>
+    <view class="departureTime">时间：{{postItem.beginTime}} ~ {{postItem.endTime}}</view>
     <view class="footer">
       <view class="releaseTime">{{postItem.createTime}}</view>
       <view class="partition">{{postItem.type==1?'找人':'找车'}}</view>
