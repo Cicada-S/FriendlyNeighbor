@@ -11,7 +11,7 @@
   </view>
 
   <!-- 帖子列表 -->
-  <view class="postList">
+  <PostList>
     <view class="postItem" wx:for="{{postList}}" wx:key="_id">
       <view class="picUrl">
         <image class="avatar" src="{{item.avatar_url}}" />
@@ -31,5 +31,5 @@
         </view>
       </view>
     </view>
-  </view>
+  </PostList>
 </view>
