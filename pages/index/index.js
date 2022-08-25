@@ -4,7 +4,41 @@ const user = db.collection('User')
 
 Page({
   data: {
-
+    search: '', // 搜索
+    postList: [
+      {
+        _id: '1',
+        communityId: '1',
+        _openid: 'fsdfadsadda',
+        name: 'Cicada',
+        avatar_url: '/static/images/index/user.jpg',
+        type: 1,
+        beginTime: '8.30 12:00',
+        endTime: '8.30 15:00',
+        departPlace: '汤臣一品',
+        destination: '广州商贸中心',
+        price: 20,
+        phone: '15088888888',
+        remark: '还有两个位置',
+        createTime: '2小时前'
+      },
+      {
+        _id: '2',
+        communityId: '1',
+        _openid: 'gasfadsfafe',
+        name: 'Ting',
+        avatar_url: '/static/images/index/user.jpg',
+        type: 0,
+        beginTime: '8.30 12:00',
+        endTime: '8.30 15:00',
+        departPlace: '汤臣一品',
+        destination: '广州商贸中心',
+        price: 20,
+        phone: '15088888888',
+        remark: '我带了一个22寸的行李箱',
+        createTime: '2小时前'
+      }
+    ], // 帖字列表
   },
 
   /**
