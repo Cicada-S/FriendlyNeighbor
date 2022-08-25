@@ -1,0 +1,22 @@
+{
+  "name": "friendlyneighbor",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luoyu-projects/FriendlyNeighbor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luoyu-projects/FriendlyNeighbor/issues"
+  },
+  "homepage": "https://github.com/luoyu-projects/FriendlyNeighbor#readme",
+  "dependencies": {
+    "@vant/weapp": "^1.10.4"
+  }
+}

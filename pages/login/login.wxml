@@ -1,7 +1,7 @@
 <!--pages/login/login.wxml-->
 <view class="container">
   <view class="titleContent">
-    <view class="title">哎邻</view>
+    <view class="title">艾邻</view>
     <view class="subtitle">小区网络互动平台</view>
   </view>
 

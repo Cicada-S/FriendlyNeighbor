@@ -10,7 +10,7 @@ Page({
   /**
    * 页面加载
    */
-   onLoad() {
+  onLoad() {
     // 判断用户是否登录过
     this.getUserInfo()
   },
