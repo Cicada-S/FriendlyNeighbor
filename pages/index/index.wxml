@@ -12,24 +12,8 @@
 
   <!-- 帖子列表 -->
   <PostList>
-    <view class="postItem" wx:for="{{postList}}" wx:key="_id">
-      <view class="picUrl">
-        <image class="avatar" src="{{item.avatar_url}}" />
-      </view>
-      <view class="content">
-        <view class="userName">{{item.name}}</view>
-        <view class="phonePrice">
-          <view class="phone">{{item.phone}}</view>
-          <view class="price">¥ {{item.price}}</view>
-        </view>
-        <view class="text">{{item.remark}}</view>
-        <view class="location">{{item.departPlace}} -> {{item.destination}}</view>
-        <view class="departureTime">{{item.beginTime}} <text class="icon">==</text> {{item.endTime}}</view>
-        <view class="footer">
-          <view class="releaseTime">{{item.createTime}}</view>
-          <view class="partition">{{item.type==1?'找人':'找车'}}</view>
-        </view>
-      </view>
-    </view>
+    <block wx:for="{{postList}}" wx:key="_id">
+      <PostItem postItem="{{item}}"></PostItem>
+    </block>
   </PostList>
 </view>
