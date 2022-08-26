@@ -1,0 +1,4 @@
+/* pages/publish/publish.wxss */
+.container {
+  padding: 20rpx 30rpx;
+}

@@ -1,0 +1,6 @@
+<!--pages/publish/publish.wxml-->
+<view class="container">
+  <BlockBox padding="20rpx" title="类型">
+    test
+  </BlockBox>
+</view>

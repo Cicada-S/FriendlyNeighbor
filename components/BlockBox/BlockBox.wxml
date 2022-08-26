@@ -1,4 +1,7 @@
 <!--components/BlockBox/BlockBox.wxml-->
-<view class="blockBox" style="padding:{{padding}}rpx">
-  <slot></slot>
+<view class="blockBox">
+  <view wx:if="{{title}}" class="title">{{title}}</view>
+  <view class="content" style="padding:{{padding}}">
+    <slot></slot>
+  </view>
 </view>

@@ -1,6 +1,6 @@
 <!--pages/me/me.wxml-->
 <view class="container">
-  <BlockBox padding="20">
+  <BlockBox padding="20rpx">
     <view class="userInfo">
       <image class="avatar" src="{{userInfo.avatar_url}}" />
       <view class="info">

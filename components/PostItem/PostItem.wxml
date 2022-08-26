@@ -1,5 +1,5 @@
 <!--components/PostItem/PostItem.wxml-->
-<BlockBox padding="20">
+<BlockBox padding="20rpx">
   <view class="postItem">
     <view class="picUrl">
       <image class="avatar" src="{{postItem.avatar_url}}" />
