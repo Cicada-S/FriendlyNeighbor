@@ -28,10 +28,12 @@ Page({
       success: res => {
         wx.setStorageSync('currentUser', res.userInfo)
         let user = {
+          communityId: 'b69f67c06308217312ba80a2010779b0',
+          communityName: '汤臣一品',
           avatar_url: res.userInfo.avatarUrl,
           nick_name: res.userInfo.nickName,
           gender: res.userInfo.gender,
-          autograph: '',
+          phone: '',
           create_date: new Date()
         }
         // 將用戶添加到数据库
