@@ -1,0 +1,11 @@
+/* components/BlockBox/BlockBox.wxss */
+.blockBox {
+  width: 100%;
+  min-height: 100rpx;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+  border-radius: 20rpx;
+  background: #ffffff;
+  box-shadow:  10px 10px 20px #d9d9d9,
+              -10px -10px 20px #ffffff;
+}
