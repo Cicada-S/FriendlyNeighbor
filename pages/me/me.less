@@ -1,1 +1,30 @@
 /* pages/me/me.wxss */
+.container {
+  padding: 20rpx;
+
+  .userInfo {
+    display: flex;
+
+    .avatar {
+      width: 120rpx;
+      height: 120rpx;
+      border-radius: 50%;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      padding-left: 20rpx;
+
+      .nickName {
+        font-size: 36rpx;
+        font-weight: 500;
+      }
+
+      .autograph {
+        font-size: 20rpx;
+      }
+    }
+  }
+}

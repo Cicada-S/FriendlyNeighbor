@@ -1,4 +1,26 @@
 <!--pages/me/me.wxml-->
 <view class="container">
-  个人中心
+  <BlockBox padding="20">
+    <view class="userInfo">
+      <image class="avatar" src="{{userInfo.avatar_url}}" />
+      <view class="info">
+        <text class="nickName">{{userInfo.nick_name}}</text>
+        <text class="autograph">{{userInfo.communityName}}</text>
+      </view>
+    </view>
+    <van-grid border="{{false}}">
+      <van-grid-item icon-color="#407FF5" icon="comment-o" text="帖子" />
+      <van-grid-item icon-color="#407FF5" icon="like-o" text="关注" />
+      <van-grid-item icon-color="#407FF5" icon="question-o" text="帮助" />
+      <van-grid-item icon-color="#407FF5" icon="setting-o" text="设置" />
+    </van-grid>
+  </BlockBox>
+
+  <BlockBox>
+    <van-cell-group>
+      <van-cell title="修改资料" is-link border="{{false}}" />
+      <van-cell title="关于我们" is-link border="{{false}}" />
+      <van-cell title="退出登录" is-link border="{{false}}" />
+    </van-cell-group>
+  </BlockBox>
 </view>
