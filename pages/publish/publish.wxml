@@ -1,6 +1,59 @@
 <!--pages/publish/publish.wxml-->
 <view class="container">
+  <!-- 类型 -->
   <BlockBox padding="20rpx" title="类型">
-    test
+    <van-radio-group value="{{ radio }}" bind:change="onRadioChange">
+      <van-radio name="1">找车</van-radio>
+      <van-radio name="2">找人</van-radio>
+    </van-radio-group>
+  </BlockBox>
+  
+  <!-- 手机号 -->
+  <BlockBox title="手机号">
+    <van-field
+      model:value="{{ phone }}"
+      placeholder="请输入手机号"
+      border="{{ false }}"
+      type="number"
+    />
+  </BlockBox>
+
+  <!-- 地址 -->
+  <BlockBox padding="10rpx 0 0" title="地址">
+    <view class="input">
+      <text class="label">出发</text>
+      <van-field
+        input-class="inputClass"
+        model:value="{{ departPlace }}"
+        placeholder="请输入出发地"
+        border="{{ false }}"
+      />
+    </view>
+    <view class="input">
+      <text class="label">到达</text>
+      <van-field
+        input-class="inputClass"
+        model:value="{{ destination }}"
+        placeholder="请输入到达地"
+        border="{{ false }}"
+      />
+    </view>
+  </BlockBox>
+
+  <!-- 时间 -->
+  <BlockBox padding="10rpx 0 0" title="时间">
+    <van-cell title="最早" is-link value="{{beginTime}}" />
+    <van-cell title="最迟" is-link value="{{endTime}}" />
+  </BlockBox>
+
+  <!-- 备注 -->
+  <BlockBox title="备注">
+    <van-field
+      model:value="{{ remark }}"
+      placeholder="备注信息"
+      border="{{ false }}"
+      type="textarea"
+      autosize
+    />
   </BlockBox>
 </view>

@@ -2,3 +2,22 @@
 .container {
   padding: 20rpx 30rpx;
 }
+.container .van-radio-group {
+  display: flex;
+  justify-content: flex-end;
+}
+.container .van-radio-group .van-radio {
+  margin-right: 20rpx;
+}
+.container .input {
+  display: flex;
+  align-items: center;
+  padding-left: 30rpx;
+}
+.container .input .label {
+  font-size: 28rpx;
+  padding-bottom: 5rpx;
+}
+.container .input .inputClass {
+  width: 520rpx;
+}
