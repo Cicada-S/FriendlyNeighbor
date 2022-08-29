@@ -1,5 +1,7 @@
 // pages/publish/publish.js
 const app = getApp()
+// 引入toDates将时间戳转换成时间
+import { toDates } from '../../utils/util'
 
 Page({
   data: {
@@ -55,7 +57,7 @@ Page({
     console.log(event)
     let newDate = event.detail
     this.setData({
-      [this.data.timeType]: newDate,
+      [this.data.timeType]: toDates(newDate),
       ['timeStamp' + this.data.timeType]: newDate,
       show: false
     })
