@@ -21,8 +21,6 @@ Page({
       beginTime: '',
       endTime: '',
     },
-    beginTime: '',
-    endTime: '',
     minDate: new Date().getTime(), // 可选的最小时间
     currentDate: new Date().getTime(), // 当前时间
   },
@@ -58,8 +56,48 @@ Page({
     let newDate = event.detail
     this.setData({
       [this.data.timeType]: toDates(newDate),
-      ['timeStamp' + this.data.timeType]: newDate,
+      ['timeStamp.' + this.data.timeType]: newDate,
       show: false
+    })
+  },
+
+  // 发布帖子
+  onRelease() {
+    wx.showLoading({
+      title: '发布中...'
+    })
+
+    let { 
+      radio, phone, price, 
+      departPlace, destination, 
+      timeStamp, remark
+    } = this.data
+
+    let data = {
+      communityId: wx.getStorageSync('currentUser').communityId,
+      type: radio,
+      beginTime: timeStamp.beginTime,
+      endTime: timeStamp.endTime,
+      departPlace,
+      destination,
+      price,
+      phone,
+      remark
+    }
+
+    wx.cloud.callFunction({
+      name: 'addPost',
+      data
+    }).then(() => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '发布成功！',
+        icon: 'success',
+        duration: 1000
+      })
+      setTimeout(() => {
+        wx.navigateBack({ delta: 1 })
+      }, 1000)
     })
   }
 })
