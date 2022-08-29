@@ -1,4 +1,7 @@
 // app.js
+// 引入checkUpdateVersion检测小程序是否为最新版本
+// import { checkUpdateVersion } from '../../utils/check'
+
 App({
   globalData: {
     stateheight: 0, // 手机状态栏高度
@@ -12,6 +15,9 @@ App({
       env: 'cloud1-9gd9p087be4105a2',
       traceUser: true
     })
+
+    // 版本自动更新代码
+    // checkUpdateVersion()
 
     this.getPhoneHeight()
     this.getSystemInfo()
