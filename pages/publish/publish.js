@@ -30,11 +30,28 @@ Page({
    */
   onLoad(options) {
     console.log('页面加载')
+    // 数据回显
+    this.dataEcho('people')
   },
 
   // 切换类型
   onRadioChange(event) {
     this.setData({ radio: event.detail })
+    let type = event.detail === '0' ? 'people' : 'vehicle'
+    // 数据回显
+    this.dataEcho(type)
+  },
+
+  // 数据回显
+  dataEcho(type) {
+    let { phone, price, departPlace, destination, remark } = wx.getStorageSync(type)
+    this.setData({
+      phone,
+      price,
+      departPlace,
+      destination,
+      remark
+    })
   },
 
   // 选择时间
@@ -90,7 +107,7 @@ Page({
     Object.values(empty).forEach((value, index) => {
       if(flag) return
       let text = ['手机号', '价格', '出发地', '到达地', '最早时间', '最迟时间']
-      if(!value.trim()) {
+      if(!String(value).trim()) {
         flag = true
         return wx.showToast({
           title: `${text[index]}不能为空！`,
@@ -104,6 +121,8 @@ Page({
       wx.showLoading({
         title: '发布中...'
       })
+      let type = data.type === '0' ? 'people' : 'vehicle'
+      wx.setStorageSync(type, data)
       // 添加帖子
       wx.cloud.callFunction({
         name: 'addPost',
