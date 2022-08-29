@@ -63,10 +63,6 @@ Page({
 
   // 发布帖子
   onRelease() {
-    wx.showLoading({
-      title: '发布中...'
-    })
-
     let { 
       radio, phone, price, 
       departPlace, destination, 
@@ -76,28 +72,53 @@ Page({
     let data = {
       communityId: wx.getStorageSync('currentUser').communityId,
       type: radio,
-      beginTime: timeStamp.beginTime,
-      endTime: timeStamp.endTime,
+      phone,
+      price,
       departPlace,
       destination,
-      price,
-      phone,
+      beginTime: timeStamp.beginTime,
+      endTime: timeStamp.endTime,
       remark
     }
 
-    wx.cloud.callFunction({
-      name: 'addPost',
-      data
-    }).then(() => {
-      wx.hideLoading()
-      wx.showToast({
-        title: '发布成功！',
-        icon: 'success',
-        duration: 1000
-      })
-      setTimeout(() => {
-        wx.navigateBack({ delta: 1 })
-      }, 1000)
+    const empty = { ...data }
+    delete empty.communityId
+    delete empty.type
+    delete empty.remark
+
+    let flag = false
+    Object.values(empty).forEach((value, index) => {
+      if(flag) return
+      let text = ['手机号', '价格', '出发地', '到达地', '最早时间', '最迟时间']
+      if(!value.trim()) {
+        flag = true
+        return wx.showToast({
+          title: `${text[index]}不能为空！`,
+          icon: 'none',
+          duration: 1000
+        })
+      }
     })
+
+    if(!flag) {
+      wx.showLoading({
+        title: '发布中...'
+      })
+      // 添加帖子
+      wx.cloud.callFunction({
+        name: 'addPost',
+        data
+      }).then(() => {
+        wx.hideLoading()
+        wx.showToast({
+          title: '发布成功！',
+          icon: 'success',
+          duration: 1000
+        })
+        setTimeout(() => {
+          wx.navigateBack({ delta: 1 })
+        }, 1000)
+      })
+    }
   }
 })
