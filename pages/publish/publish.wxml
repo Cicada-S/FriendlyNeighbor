@@ -63,9 +63,20 @@
 
   <!-- 时间 -->
   <BlockBox padding="10rpx 0 0" title="时间">
-    <van-cell title="最早" is-link value="{{beginTime}}" />
-    <van-cell title="最迟" is-link value="{{endTime}}" />
+    <van-cell title="最早" is-link bindtap="selectTime" id="beginTime" value="{{beginTime}}" />
+    <van-cell title="最迟" is-link bindtap="selectTime" id="endTime" value="{{endTime}}" />
   </BlockBox>
+
+  <!-- 时间选择器 -->
+  <van-action-sheet show="{{ show }}" bind:click-overlay="onCancel">
+    <van-datetime-picker
+      title="选择时间"
+      value="{{ currentDate }}"
+      min-date="{{ minDate }}"
+      bind:confirm="onConfirm"
+      bind:cancel="onCancel"
+    />
+  </van-action-sheet>
 
   <!-- 备注 -->
   <BlockBox title="备注">
