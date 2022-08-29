@@ -1,21 +1,42 @@
 <!--pages/publish/publish.wxml-->
 <view class="container">
   <!-- 类型 -->
-  <BlockBox padding="20rpx" title="类型">
-    <van-radio-group value="{{ radio }}" bind:change="onRadioChange">
-      <van-radio name="1">找车</van-radio>
-      <van-radio name="2">找人</van-radio>
-    </van-radio-group>
+  <BlockBox padding="20rpx">
+    <view class="type">
+      <view class="title">类型</view>
+      <van-radio-group value="{{ radio }}" bind:change="onRadioChange">
+        <van-radio name="0">找人</van-radio>
+        <van-radio name="1">找车</van-radio>
+      </van-radio-group>
+    </view>
   </BlockBox>
   
   <!-- 手机号 -->
-  <BlockBox title="手机号">
-    <van-field
-      model:value="{{ phone }}"
-      placeholder="请输入手机号"
-      border="{{ false }}"
-      type="number"
-    />
+  <BlockBox>
+    <view class="box">
+      <view class="title">手机号</view>
+      <van-field
+        input-class="inputClass"
+        model:value="{{ phone }}"
+        placeholder="请输入手机号"
+        border="{{ false }}"
+        type="number"
+      />
+    </view>
+  </BlockBox>
+
+  <!-- 价格 -->
+  <BlockBox>
+    <view class="box">
+      <view class="title">价格</view>
+      <van-field
+        input-class="inputClass"
+        model:value="{{ price }}"
+        placeholder="请输入价格"
+        border="{{ false }}"
+        type="number"
+      />
+    </view>
   </BlockBox>
 
   <!-- 地址 -->
@@ -56,4 +77,9 @@
       autosize
     />
   </BlockBox>
+
+  <!-- 发布按钮 -->
+  <view class="bottomBtn" style="margin-bottom:{{bottomLift}}px">
+    <text>发布帖子</text>
+  </view>
 </view>

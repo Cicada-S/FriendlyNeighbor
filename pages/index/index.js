@@ -60,5 +60,12 @@ Page({
         })
       }
     })
+  },
+
+  // 跳转到发布帖子
+  toPublish() {
+    wx.navigateTo({
+      url: '/pages/publish/publish'
+    })
   }
 })

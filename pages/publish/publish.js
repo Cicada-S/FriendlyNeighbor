@@ -1,8 +1,12 @@
 // pages/publish/publish.js
+const app = getApp()
+
 Page({
   data: {
-    radio: '1', // 类型
+    bottomLift: app.globalData.bottomLift,
+    radio: '0', // 类型
     phone: '', // 手机号
+    price: '', // 价格
     departPlace: '', // 出发地
     destination: '', // 到达地
     beginTime: '', // 最早出发时间
@@ -20,6 +24,5 @@ Page({
   // 切换类型
   onRadioChange(event) {
     this.setData({ radio: event.detail })
-  },
-
+  }
 })
