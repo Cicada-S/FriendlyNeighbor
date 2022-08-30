@@ -1,0 +1,16 @@
+/* pages/search/search.wxss */
+.container {
+  width: 100vw;
+}
+.container .type {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 20rpx 10rpx 30rpx;
+}
+.container .type .van-radio-group {
+  display: flex;
+  justify-content: flex-end;
+}
+.container .type .van-radio-group .van-radio {
+  margin-right: 20rpx;
+}
