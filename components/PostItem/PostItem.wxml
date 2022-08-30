@@ -16,7 +16,7 @@
       <view class="departureTime">时间：{{postItem.beginTime}} ~ {{postItem.endTime}}</view>
       <view class="footer">
         <view class="releaseTime">{{postItem.createTime}}</view>
-        <view class="partition">{{postItem.type==1?'找人':'找车'}}</view>
+        <view class="partition">{{postItem.type==0?'找人':'找车'}}</view>
       </view>
     </view>
   </view>
