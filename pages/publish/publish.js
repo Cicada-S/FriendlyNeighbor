@@ -86,8 +86,12 @@ Page({
       timeStamp, remark
     } = this.data
 
+    let userInfo = wx.getStorageSync('currentUser')
+
     let data = {
-      communityId: wx.getStorageSync('currentUser').communityId,
+      communityId: userInfo.communityId,
+      nick_name: userInfo.nick_name,
+      avatar_url: userInfo.avatar_url,
       type: radio,
       phone,
       price,
@@ -98,9 +102,7 @@ Page({
       remark
     }
 
-    const empty = { ...data }
-    delete empty.communityId
-    delete empty.type
+    const { communityId, nick_name, avatar_url, type, ...empty } = data
     delete empty.remark
 
     let flag = false
