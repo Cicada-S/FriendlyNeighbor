@@ -6,7 +6,7 @@
     </view>
     <view class="content">
       <view class="namePrice">
-        <view class="name">{{postItem.name}}</view>
+        <view class="name">{{postItem.nick_name}}</view>
         <view class="price">¥ {{postItem.price}}</view>
       </view>
       <view class="location">
