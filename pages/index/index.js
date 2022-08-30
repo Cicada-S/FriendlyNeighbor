@@ -47,6 +47,8 @@ Page({
   onLoad() {
     // 判断用户是否登录过
     this.getUserInfo()
+    // 获取帖子
+    this.getPostList()
   },
 
   // 判断用户是否登录过
@@ -60,6 +62,15 @@ Page({
         })
       }
     })
+  },
+
+  // 获取帖子
+  async getPostList() {
+    let { result } = await wx.cloud.callFunction({name: 'getPostList'})
+    this.setData({
+      postList: result.data
+    })
+
   },
 
   // 跳转到发布帖子
