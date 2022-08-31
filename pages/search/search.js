@@ -1,5 +1,4 @@
 // pages/search/search.js
-const app = getApp()
 // 引入toDates将时间戳转换成时间
 import { toDates } from '../../utils/util'
 
