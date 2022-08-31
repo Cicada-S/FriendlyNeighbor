@@ -1,21 +1,17 @@
 // pages/post/post.js
 let app = getApp()
 
+// 引入date
+import { toDates } from '../../utils/util'
+import { getdate } from '../../utils/pastTime'
+
+const db = wx.cloud.database()
+const HitchhikingInformation = db.collection('HitchhikingInformation')
+
 Page({
   data: {
     bottomLift: app.globalData.bottomLift,
-    postInfo: {
-      _id: '12313',
-      nick_name: 'Cicada',
-      avatar_url: '/static/images/post/user.jpg',
-      price: '12',
-      phone: '15088888888',
-      remark: '我带了一个26寸的行李箱',
-      beginTime: '08月30 12:00',
-      endTime: '08月30 13:00',
-      departPlace: '三水广场',
-      destination: '广州商贸中心'
-    },
+    postInfo: {},
     commentList: [
       {
         _id: '123131',
@@ -32,6 +28,17 @@ Page({
    * 页面加载
    */
   onLoad(options) {
-    console.log('页面加载', options)
+    this.getPostInfo(options.id)
+  },
+
+  // 获取帖子信息
+  async getPostInfo(id) {
+    let { data } = await HitchhikingInformation.doc(id).get()
+    // 处理最早时间和最迟时间
+    data.beginTime = toDates(data.beginTime, 'display')
+    data.endTime = toDates(data.endTime, 'display')
+    // 处理发布时间
+    data.createTime = getdate(data.createTime)
+    this.setData({ postInfo: data })
   }
 })
