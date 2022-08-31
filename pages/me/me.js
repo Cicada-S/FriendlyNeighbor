@@ -11,5 +11,12 @@ Page({
     // 获取本地的用户信息
     let userInfo = wx.getStorageSync('currentUser')
     this.setData({ userInfo })
+  },
+
+  // 查看帖子
+  myPost() {
+    wx.navigateTo({
+      url: '/pages/myPost/myPost'
+    })
   }
 })

@@ -9,7 +9,7 @@
       </view>
     </view>
     <van-grid border="{{false}}">
-      <van-grid-item icon-color="#407FF5" icon="comment-o" text="帖子" />
+      <van-grid-item icon-color="#407FF5" icon="comment-o" text="帖子" bindtap="myPost" />
       <van-grid-item icon-color="#407FF5" icon="like-o" text="关注" />
       <van-grid-item icon-color="#407FF5" icon="question-o" text="帮助" />
       <van-grid-item icon-color="#407FF5" icon="setting-o" text="设置" />
