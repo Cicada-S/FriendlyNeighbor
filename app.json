@@ -5,7 +5,8 @@
     "pages/login/login",
     "pages/publish/publish",
     "pages/search/search",
-    "pages/myPost/myPost"
+    "pages/myPost/myPost",
+    "pages/post/post"
   ],
   "window": {
     "backgroundTextStyle": "light",

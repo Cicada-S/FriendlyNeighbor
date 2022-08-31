@@ -13,7 +13,7 @@
   <!-- 帖子列表 -->
   <PostList>
     <block wx:for="{{postList}}" wx:key="_id">
-      <PostItem postItem="{{item}}"></PostItem>
+      <PostItem postItem="{{item}}" bindtap="toPost" id="{{item._id}}" />
     </block>
   </PostList>
 </view>

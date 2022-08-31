@@ -56,6 +56,13 @@ Page({
     this.setData({ postList: result.data })
   },
 
+  // 跳转到帖子详情
+  toPost(event) {
+    wx.navigateTo({
+      url: `/pages/post/post?id=${event.target.id}`
+    })
+  },
+
   // 跳转到发布帖子
   toPublish() {
     wx.navigateTo({

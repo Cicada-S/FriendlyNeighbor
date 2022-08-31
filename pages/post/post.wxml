@@ -1,0 +1,63 @@
+<!--pages/post/post.wxml-->
+<view class="container">
+  <!-- 帖子信息 -->
+  <view class="postInfo">
+    <view class="picUrl">
+      <image class="avatar" src="{{postInfo.avatar_url}}" />
+    </view>
+    <view class="content">
+      <view class="namePrice">
+        <view class="name">{{postInfo.nick_name}}</view>
+        <view class="price">¥ {{postInfo.price}}</view>
+      </view>
+      <view class="phoneRemark">
+        <view class="phone">{{postInfo.phone}}</view>
+        <view class="remark">{{postInfo.remark}}</view>
+      </view>
+      <view class="location">
+        <text>出发：{{postInfo.departPlace}}</text>
+        <text>到达：{{postInfo.destination}}</text>
+      </view>
+      <view class="departureTime">时间：{{postInfo.beginTime}} ~ {{postInfo.endTime}}</view>
+      <view class="footer">
+        <view class="releaseTime">2小时前</view>
+        <view class="partition">{{postInfo.type==0?'找人':'找车'}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 评论区 -->
+  <view class="commentArea">
+    <view class="title">共{{commentList.length}}条评论</view>
+    <!-- 评论列表 -->
+    <view class="commentList" style="padding-bottom: {{bottomLift+45}}px">
+      <view class="commentItem" wx:for="{{commentList}}" wx:key="_id">
+        <image class="userPic" src="{{item.avatar_url}}" />
+        <!-- 评论内容 -->
+        <view class="content">
+          <view class="userName">
+            <text>{{item.nick_name}}</text>
+            <text wx:if="{{!item.comment_identity}}" class="author">作者</text>
+          </view>
+          <view class="commentContent">
+            <text class="comment">{{item.comment_details}}</text>
+            <text class="commentTime">{{item.comment_date}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 评论框 -->
+  <view class="publishComment" style="padding-bottom: {{bottomLift}}px">
+    <input 
+      class="input"
+      type="text" 
+      confirm-type="send" 
+      confirm-hold="{{true}}" 
+      model:value="{{value}}"
+      placeholder="评论..." 
+    />
+    <view class="hair" bindtap="hairComment">发送</view>
+  </view>
+</view>
