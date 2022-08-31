@@ -2,6 +2,9 @@
 import { toDates } from '../../utils/util'
 import { getdate } from '../../utils/pastTime'
 
+const db = wx.cloud.database()
+const HitchhikingInformation = db.collection('HitchhikingInformation')
+
 Page({
   data: {
     postList: []
@@ -10,9 +13,7 @@ Page({
   /**
    * 页面加载
    */
-  onLoad(options) {
-    console.log(options)
-
+  onLoad() {
     // 获取帖子
     this.getPostList()
   },
@@ -30,5 +31,25 @@ Page({
     })
 
     this.setData({ postList: result.data })
+  },
+
+  // 删除帖子
+  noDelete(event) {
+    wx.showModal({
+      title: '提示',
+      content: '确定删除帖子吗？',
+      success: (res) => {
+        if (res.confirm) {
+          HitchhikingInformation.doc(event.detail.id).remove()
+          .then(() => {
+            // 更新data
+            let newPostList = this.data.postList.filter(item => {
+              if(item._id !== event.detail.id) return item
+            })
+            this.setData({ postList: newPostList })
+          })
+        }
+      }
+    })
   }
 })

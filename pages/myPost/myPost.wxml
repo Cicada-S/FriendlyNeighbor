@@ -2,7 +2,7 @@
 <view class="container">
   <PostList>
     <block wx:for="{{postList}}" wx:key="_id">
-      <PostItem postItem="{{item}}"></PostItem>
+      <PostItem postItem="{{item}}" operation="{{true}}" bind:noDelete="noDelete"></PostItem>
     </block>
   </PostList>
 </view>

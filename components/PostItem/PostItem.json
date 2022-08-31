@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "BlockBox": "/components/BlockBox/BlockBox"
+    "BlockBox": "/components/BlockBox/BlockBox",
+    "van-icon": "@vant/weapp/icon/index"
   }
 }

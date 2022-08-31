@@ -7,6 +7,10 @@ Component({
     postItem: {
       type: Object,
       value: {}
+    },
+    operation: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -21,6 +25,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    // 删除
+    noDelete(event) {
+      this.triggerEvent('noDelete', {
+        id: event.target.id
+      })
+    }
   }
 })

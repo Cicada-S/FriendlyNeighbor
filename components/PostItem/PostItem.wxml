@@ -17,6 +17,9 @@
       <view class="footer">
         <view class="releaseTime">{{postItem.createTime}}</view>
         <view class="partition">{{postItem.type==0?'找人':'找车'}}</view>
+        <view class="icon" wx:if="{{operation}}">
+          <van-icon custom-class="ellipsis" catchtap="noDelete" id="{{postItem._id}}" name="delete-o" />
+        </view>
       </view>
     </view>
   </view>
