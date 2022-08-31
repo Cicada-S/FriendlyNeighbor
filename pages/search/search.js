@@ -7,6 +7,7 @@ Page({
   data: {
     value: '', // 搜索
     show: false, // 筛选模态框的显示状态
+    focus: false, // 搜索框焦点
     radio: '0', // 类型
     // 小区选择器
     communityName: '', // 小区名字
@@ -23,6 +24,14 @@ Page({
     },
     minDate: new Date().getTime(), // 可选的最小时间
     currentDate: new Date().getTime(), // 当前时间
+  },
+
+  /**
+   * 页面加载
+   */
+  onLoad() {
+    // 搜索框获取焦点
+    this.setData({ focus: true })
   },
 
   // 搜索时触发

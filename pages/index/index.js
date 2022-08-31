@@ -34,6 +34,13 @@ Page({
     })
   },
 
+  // 搜索
+  search() {
+    wx.navigateTo({
+      url: '/pages/search/search'
+    })
+  },
+
   // 获取帖子
   async getPostList() {
     let { result } = await wx.cloud.callFunction({name: 'getPostList'})

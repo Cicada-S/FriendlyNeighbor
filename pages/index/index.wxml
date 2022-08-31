@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
   <!-- 搜索框 -->
-  <view class="search">
+  <view class="search" bindtap="search">
     <van-icon name="search" /><text class="text">搜索</text>
   </view>
 

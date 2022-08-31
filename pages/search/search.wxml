@@ -3,10 +3,11 @@
   <!-- 搜索框 -->
   <van-search
     model:value="{{ value }}" 
-    shape="round"
+    shape="round" 
     placeholder="搜索" 
-    use-action-slot
-    bind:search="onSearch"  
+    use-action-slot 
+    bind:search="onSearch" 
+    focus="{{ focus }}"
   >
     <view slot="action" bindtap="onScreen">筛选</view>
   </van-search>
