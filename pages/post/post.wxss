@@ -44,16 +44,18 @@
   padding-right: 20rpx;
   font-weight: 400;
 }
-.container .postInfo .content .phoneRemark {
-  padding-bottom: 10rpx;
-}
-.container .postInfo .content .phoneRemark .phone {
+.container .postInfo .content .remark {
   padding-bottom: 10rpx;
 }
 .container .postInfo .content .location {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20rpx;
+  margin-bottom: 10rpx;
+}
+.container .postInfo .content .community {
+  color: var(--Color-MainB);
+  font-size: 26rpx;
+  margin-top: 10rpx;
 }
 .container .postInfo .content .footer {
   display: flex;
@@ -61,7 +63,7 @@
   color: var(--Color-FontA);
   font-size: 26rpx;
   font-weight: 300;
-  margin-top: 20rpx;
+  margin-top: 10rpx;
 }
 .container .postInfo .content .footer .releaseTime {
   font-size: 26rpx;
