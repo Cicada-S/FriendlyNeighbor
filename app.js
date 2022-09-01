@@ -13,6 +13,7 @@ App({
   onLaunch() {
     wx.cloud.init({
       env: 'cloud1-9gd9p087be4105a2',
+      // env: 'prod-4gajjv6022f1fb50',
       traceUser: true
     })
 
@@ -35,8 +36,8 @@ App({
     // 计算自定义导航栏高度
     const customheight = navhegiht + stateheight
     // 赋值
-    this.globalData.stateheight = stateheight 
-    this.globalData.navhegiht = navhegiht 
+    this.globalData.stateheight = stateheight
+    this.globalData.navhegiht = navhegiht
     this.globalData.customheight = customheight
   },
 
