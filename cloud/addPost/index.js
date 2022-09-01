@@ -14,6 +14,8 @@ exports.main = async (event, context) => {
     createTime: new Date()
   }
 
+  console.log(data)
+
   db.collection('HitchhikingInformation').add({data})
   .then(res => {
     console.log(res)
