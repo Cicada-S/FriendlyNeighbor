@@ -7,6 +7,7 @@ Page({
   data: {
     bottomLift: app.globalData.bottomLift,
     radio: '0', // 类型
+    numberOfPeople: '', // 人数/座位
     phone: '', // 手机号
     price: '', // 价格
     departPlace: '', // 出发地
@@ -44,13 +45,14 @@ Page({
 
   // 数据回显
   dataEcho(type) {
-    let { phone, price, departPlace, destination, remark } = wx.getStorageSync(type)
+    let { phone, price, departPlace, destination, remark, numberOfPeople } = wx.getStorageSync(type)
     this.setData({
       phone,
       price,
       departPlace,
       destination,
-      remark
+      remark,
+      numberOfPeople
     })
   },
 
@@ -83,7 +85,7 @@ Page({
     let { 
       radio, phone, price, 
       departPlace, destination, 
-      timeStamp, remark
+      timeStamp, remark, numberOfPeople
     } = this.data
 
     let userInfo = wx.getStorageSync('currentUser')
@@ -92,23 +94,25 @@ Page({
       communityId: userInfo.communityId,
       nick_name: userInfo.nick_name,
       avatar_url: userInfo.avatar_url,
+      communityName: userInfo.communityName,
       type: radio,
+      numberOfPeople,
       phone,
       price,
       departPlace,
       destination,
-      beginTime: new Date(timeStamp.beginTime),
-      endTime: new Date(timeStamp.endTime),
+      beginTime: timeStamp.beginTime,
+      endTime: timeStamp.endTime,
       remark
     }
 
-    const { communityId, nick_name, avatar_url, type, ...empty } = data
+    const { communityId, nick_name, avatar_url, communityName, type, ...empty } = data
     delete empty.remark
 
     let flag = false
     Object.values(empty).forEach((value, index) => {
       if(flag) return
-      let text = ['手机号', '价格', '出发地', '到达地', '最早时间', '最迟时间']
+      let text = [radio==0?'座位':'人数', '手机号', '价格', '出发地', '到达地', '最早时间', '最迟时间']
       if(!String(value).trim()) {
         flag = true
         return wx.showToast({
@@ -120,6 +124,9 @@ Page({
     })
 
     if(!flag) {
+      data.beginTime = new Date(timeStamp.beginTime)
+      data.endTime = new Date(timeStamp.endTime)
+
       wx.showLoading({
         title: '发布中...'
       })

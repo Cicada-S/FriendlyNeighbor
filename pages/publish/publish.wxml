@@ -10,6 +10,20 @@
       </van-radio-group>
     </view>
   </BlockBox>
+
+  <!-- 人数 -->
+  <BlockBox>
+    <view class="box">
+      <view class="title">{{radio==0?'座位':'人数'}}</view>
+      <van-field
+        input-class="inputClass"
+        model:value="{{ numberOfPeople }}"
+        placeholder="请输入数量"
+        border="{{ false }}"
+        type="number"
+      />
+    </view>
+  </BlockBox>
   
   <!-- 手机号 -->
   <BlockBox>
