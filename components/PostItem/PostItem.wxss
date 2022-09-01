@@ -44,13 +44,18 @@
   flex-direction: column;
   margin-bottom: 20rpx;
 }
+.postItem .content .community {
+  color: var(--Color-MainB);
+  font-size: 26rpx;
+  margin-top: 10rpx;
+}
 .postItem .content .footer {
   display: flex;
   align-items: center;
   color: var(--Color-FontA);
   font-size: 26rpx;
   font-weight: 300;
-  margin-top: 20rpx;
+  margin-top: 10rpx;
 }
 .postItem .content .footer .releaseTime {
   font-size: 26rpx;

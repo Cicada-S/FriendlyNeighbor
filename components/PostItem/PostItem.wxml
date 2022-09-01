@@ -14,9 +14,16 @@
         <text>到达：{{postItem.destination}}</text>
       </view>
       <view class="departureTime">时间：{{postItem.beginTime}} ~ {{postItem.endTime}}</view>
+      <view class="community">
+        <text>{{postItem.communityName}}</text>
+      </view>
       <view class="footer">
         <view class="releaseTime">{{postItem.createTime}}</view>
-        <view class="partition">{{postItem.type==0?'找人':'找车'}}</view>
+        <view class="partition">
+          {{postItem.type==0?'找人':'找车'}}
+          ( {{postItem.type==0?'座位':'人数'}}
+          {{postItem.numberOfPeople}} )
+        </view>
         <view class="icon" wx:if="{{operation}}">
           <van-icon custom-class="ellipsis" catchtap="noDelete" id="{{postItem._id}}" name="delete-o" />
         </view>
