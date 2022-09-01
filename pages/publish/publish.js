@@ -97,8 +97,8 @@ Page({
       price,
       departPlace,
       destination,
-      beginTime: timeStamp.beginTime,
-      endTime: timeStamp.endTime,
+      beginTime: new Date(timeStamp.beginTime),
+      endTime: new Date(timeStamp.endTime),
       remark
     }
 
