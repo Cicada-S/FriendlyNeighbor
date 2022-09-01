@@ -5,12 +5,13 @@
 .container .type {
   display: flex;
   justify-content: space-between;
-  padding: 20rpx 20rpx 10rpx 30rpx;
+  padding: 20rpx 20rpx 10rpx 36rpx;
+  font-size: 28rpx;
 }
-.container .type .van-radio-group {
-  display: flex;
-  justify-content: flex-end;
+.container .buttonBtn {
+  color: var(--Color-White);
+  background-color: var(--Color-MainA);
 }
-.container .type .van-radio-group .van-radio {
-  margin-right: 20rpx;
+.container .buttonBtn::after {
+  border: none;
 }

@@ -5,15 +5,17 @@
   .type {
     display: flex;
     justify-content: space-between;
-    padding: 20rpx 20rpx 10rpx 30rpx;
+    padding: 20rpx 20rpx 10rpx 36rpx;
+    font-size: 28rpx;
+  }
 
-    .van-radio-group {
-      display: flex;
-      justify-content: flex-end;
-  
-      .van-radio {
-        margin-right: 20rpx;
-      }
-    }
+  .buttonBtn {
+    color: var(--Color-White);
+    background-color: var(--Color-MainA);
+  }
+
+  // 去除按钮边框
+  .buttonBtn::after {
+    border: none;
   }
 }

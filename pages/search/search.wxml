@@ -1,57 +1,25 @@
 <!--pages/search/search.wxml-->
 <view class="container">
-  <!-- 搜索框 -->
-  <van-search
-    model:value="{{ value }}" 
-    shape="round" 
-    placeholder="搜索" 
-    use-action-slot 
-    bind:search="onSearch" 
-    focus="{{ focus }}"
-  >
-    <view slot="action" bindtap="onScreen">筛选</view>
-  </van-search>
+  <!-- 类型 -->
+  <view class="type">
+    <view class="title">类型</view>
+    <van-radio-group value="{{ radio }}" direction="horizontal" bind:change="onRadioChange">
+      <van-radio name="0" icon-size="18px">找人</van-radio>
+      <van-radio name="1" icon-size="18px">找车</van-radio>
+    </van-radio-group>
+  </view>
 
-  <!-- 筛选 -->
-  <van-popup
-    show="{{ show }}"
-    round
-    position="top"
-    custom-style="height: 25%;"
-    bind:close="onClose"
-  >
-    <!-- 类型 -->
-    <view class="type">
-      <view class="title">类型</view>
-      <van-radio-group value="{{ radio }}" bind:change="onRadioChange">
-        <van-radio name="0">找人</van-radio>
-        <van-radio name="1">找车</van-radio>
-      </van-radio-group>
-    </view>
+  <!-- 时间 -->
+  <van-cell-group border="{{ false }}">
+    <van-cell title="最早时间" border="{{ false }}" is-link bindtap="selectTime" id="beginTime" value="{{beginTime}}" />
+    <van-cell title="最迟时间" border="{{ false }}" is-link bindtap="selectTime" id="endTime" value="{{endTime}}" />
+  </van-cell-group>
 
-    <!-- 小区 -->
-    <van-cell-group border="{{ false }}">
-      <van-cell title="小区" border="{{ false }}" is-link bindtap="community" value="{{communityName}}" />
-    </van-cell-group>
-    <!-- 时间 -->
-    <van-cell-group border="{{ false }}">
-      <van-cell title="最早时间" border="{{ false }}" is-link bindtap="selectTime" id="beginTime" value="{{beginTime}}" />
-      <van-cell title="最迟时间" border="{{ false }}" is-link bindtap="selectTime" id="endTime" value="{{endTime}}" />
-    </van-cell-group>
-  </van-popup>
-
-  <!-- 小区选择器 -->
-  <van-action-sheet show="{{ showCommunity }}" bind:click-overlay="onCommunityCancel">
-    <van-picker 
-      columns="{{ columns }}" 
-      show-toolbar 
-      bind:confirm="onCommunityConfirm" 
-      bind:cancel="onCommunityCancel"
-    />
-  </van-action-sheet>
+  <!-- 按钮 -->
+  <button class="buttonBtn">确定</button>
 
   <!-- 时间选择器 -->
-  <van-action-sheet show="{{ showTime }}" bind:click-overlay="onTimeCancel">
+  <van-action-sheet show="{{ show }}" bind:click-overlay="onTimeCancel">
     <van-datetime-picker
       title="选择时间"
       value="{{ currentDate }}"
