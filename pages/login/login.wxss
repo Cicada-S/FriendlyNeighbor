@@ -44,3 +44,6 @@
   border-radius: 50rpx;
   background-color: var(--Color-White);
 }
+.container .authorize {
+  line-height: 70rpx;
+}
