@@ -1,6 +1,6 @@
 // app.js
 // 引入checkUpdateVersion检测小程序是否为最新版本
-// import { checkUpdateVersion } from '../../utils/check'
+import { checkUpdateVersion } from 'utils/checkUpdateVersion'
 
 App({
   globalData: {
@@ -11,14 +11,15 @@ App({
   },
 
   onLaunch() {
+
+    //判断是否有更新版本
+    checkUpdateVersion()
+
     wx.cloud.init({
       env: 'cloud1-9gd9p087be4105a2',
       // env: 'prod-4gajjv6022f1fb50',
       traceUser: true
     })
-
-    // 版本自动更新代码
-    // checkUpdateVersion()
 
     this.getPhoneHeight()
     this.getSystemInfo()
