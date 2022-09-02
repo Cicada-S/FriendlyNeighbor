@@ -72,6 +72,15 @@
   color: var(--Color-FontB);
   padding: 0 20rpx;
 }
+.container .postInfo .content .footer .operation {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  color: var(--Color-MainA);
+}
+.container .postInfo .content .footer .operation .dial {
+  margin-left: 20rpx;
+}
 .container .postInfo .content .icon {
   flex: 1;
   text-align: right;

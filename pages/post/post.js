@@ -40,5 +40,24 @@ Page({
     // 处理发布时间
     data.createTime = getdate(data.createTime)
     this.setData({ postInfo: data })
+  },
+
+  // 复制手机号
+  copyPhone() {
+    wx.setClipboardData({ data: this.data.postInfo.phone })
+    .then(() => {
+      wx.showToast({
+        title: '复制成功',
+        icon: 'none',
+        duration: 2000
+      })
+    })
+  },
+
+  // 拨打电话
+  dialPhone() {
+    wx.makePhoneCall({
+      phoneNumber: this.data.postInfo.phone
+    })
   }
 })
