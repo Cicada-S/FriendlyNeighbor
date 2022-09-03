@@ -88,7 +88,9 @@
       confirm-hold="{{true}}" 
       model:value="{{value}}"
       focus="{{focus}}"
+      bindblur="onBlur"
       placeholder="{{placeholder}}" 
+      bindconfirm="hairComment"
     />
     <view class="hair" bindtap="hairComment">发送</view>
   </view>

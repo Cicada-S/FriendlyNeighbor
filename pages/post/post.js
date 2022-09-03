@@ -84,6 +84,16 @@ Page({
     })
   },
 
+  // 评论框失去焦点时触发
+  onBlur() {
+    if(!this.data.value) {
+      this.setData({
+        commentType: false,
+        placeholder: '评论...'
+      })
+    }
+  },
+
   // 评论
   hairComment() {
     if(this.data.commentType) {
@@ -93,7 +103,12 @@ Page({
     }
 
     // 计算评论数量
-    this.setData({ commentSum: ++this.data.commentSum })
+    this.setData({
+      commentSum: ++this.data.commentSum,
+      focus: false,
+      commentType: false,
+      placeholder: '评论...'
+    })
   },
 
   // 父级评论
