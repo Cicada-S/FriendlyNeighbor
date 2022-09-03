@@ -37,7 +37,7 @@
   </view>
 
   <view class="commentArea">
-    <view class="title">共{{1}}条评论</view>
+    <view class="title">共{{commentSum}}条评论</view>
     <!-- 评论列表 -->
     <view class="commentList" style="padding-bottom: {{bottomLift+45}}px">
       <!-- 父评论 -->

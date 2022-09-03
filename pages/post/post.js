@@ -13,6 +13,7 @@ Page({
     bottomLift: app.globalData.bottomLift,
     postInfo: {}, // 帖子信息
     value: '', // 评论
+    commentSum: 0, // 评论数量
     focus: false, // 评论框焦点
     commentType: false, // false 为父评
     placeholder: '评论...', // 评论框占位符
@@ -20,32 +21,7 @@ Page({
     toNickName: '', // 被评论者昵称
     replyType: 0, // 0: 子评 1: 回复
     fatherCommentId: '', // 父评id
-    commentList: [
-      {
-        _id: '123131',
-        _openid: '13213412',
-        postType: 0,
-        postId: '12314',
-        nickName: 'Cicada',
-        avatarUrl: '/static/images/post/user.jpg',
-        content: '我带了一个26寸的行李箱',
-        createTime: '1小时前',
-        child_comment: [
-          {
-            _id: '1231',
-            fatherCommentId: '123131',
-            _openid: '13213412',
-            nickName: 'Cicada',
-            avatarUrl: '/static/images/post/user.jpg',
-            toUid: '4214423',
-            toNickName: 'Ting',
-            replyType: 0,
-            content: '斯人若彩虹',
-            createTime: '50分钟前'
-          }
-        ]
-      }
-    ]
+    commentList: [] // 评论列表
   },
 
   /**
@@ -76,14 +52,17 @@ Page({
       data: { id }
     })
 
-    // 将发布时间改成文字
+    let { commentSum } = this.data
+    // 将发布时间改成文字  计算评论数量
     result.data.forEach(item => {
+      ++commentSum
       item.createTime = getdate(item.createTime)
       item.child_comment.forEach(child => {
+        ++commentSum
         child.createTime = getdate(child.createTime)
       })
     })
-    this.setData({ commentList: result.data })
+    this.setData({ commentList: result.data, commentSum })
   },
 
   // 复制手机号
@@ -107,13 +86,14 @@ Page({
 
   // 评论
   hairComment() {
-    console.log(this.data.value)
-
     if(this.data.commentType) {
       this.sonComment() // 子级评论
-    }else {
+    } else {
       this.fatherComment() // 父级评论
     }
+
+    // 计算评论数量
+    this.setData({ commentSum: ++this.data.commentSum })
   },
 
   // 父级评论
