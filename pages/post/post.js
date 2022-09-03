@@ -15,11 +15,27 @@ Page({
     commentList: [
       {
         _id: '123131',
+        _openid: '13213412',
+        postType: 0,
+        postId: '12314',
         nick_name: 'Cicada',
         avatar_url: '/static/images/post/user.jpg',
-        comment_details: '我带了一个26寸的行李箱',
-        comment_date: '1小时前',
-        comment_identity: 0
+        content: '我带了一个26寸的行李箱',
+        createTime: '1小时前',
+        child_comment: [
+          {
+            _id: '1231',
+            fatherCommentId: '123131',
+            _openid: '13213412',
+            nick_name: 'Cicada',
+            avatar_url: '/static/images/post/user.jpg',
+            to_uid: '4214423',
+            to_nick_name: 'Ting',
+            reply_type: 0,
+            content: '斯人若彩虹',
+            createTime: '50分钟前'
+          }
+        ]
       }
     ]
   },
@@ -59,5 +75,17 @@ Page({
     wx.makePhoneCall({
       phoneNumber: this.data.postInfo.phone
     })
+  },
+
+  // 父级评论
+  replyComment(event) {
+    let { id, dataset } = event.currentTarget
+    console.log(id, dataset)
+  },
+
+  // 子级评论
+  answerComment(event) {
+    let { id, dataset } = event.currentTarget
+    console.log(id, dataset)
   }
 })
