@@ -5,6 +5,8 @@ import { toDates } from '../../utils/util'
 Page({
   data: {
     radio: '0', // 类型
+    departPlace: '', // 出发地址
+    destination: '', // 到达地址
     // 时间选择器
     show: false, // 时间选择器的显示状态
     beginTime: '', // 最早出发时间

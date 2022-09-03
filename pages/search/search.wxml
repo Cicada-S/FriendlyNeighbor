@@ -9,6 +9,27 @@
     </van-radio-group>
   </view>
 
+  <!-- 地址 -->
+  <van-cell-group border="{{ false }}">
+    <van-field
+      label="出发地址"
+      model:value="{{ departPlace }}"
+      placeholder="请输入出发地址"
+      border="{{ false }}"
+      input-align="right"
+      label-class="labelClass"
+    />
+    <van-field
+      label="到达地址"
+      model:value="{{ destination }}"
+      placeholder="请输入到达地址"
+      border="{{ false }}"
+      input-align="right"
+      label-class="labelClass"
+    />
+  </van-cell-group>
+
+
   <!-- 时间 -->
   <van-cell-group border="{{ false }}">
     <van-cell title="最早时间" border="{{ false }}" is-link bindtap="selectTime" id="beginTime" value="{{beginTime}}" />
@@ -16,7 +37,10 @@
   </van-cell-group>
 
   <!-- 按钮 -->
-  <button class="buttonBtn">确定</button>
+  <view class="operation">
+    <button class="buttonBtn default">取消</button>
+    <button class="buttonBtn">确定</button>
+  </view>
 
   <!-- 时间选择器 -->
   <van-action-sheet show="{{ show }}" bind:click-overlay="onTimeCancel">

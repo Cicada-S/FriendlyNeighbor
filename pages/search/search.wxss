@@ -8,10 +8,23 @@
   padding: 20rpx 20rpx 10rpx 36rpx;
   font-size: 28rpx;
 }
-.container .buttonBtn {
+.container .labelClass {
+  color: #302f2f;
+}
+.container .operation {
+  display: flex;
+  margin-top: 30rpx;
+}
+.container .operation .buttonBtn {
+  width: 300rpx;
   color: var(--Color-White);
   background-color: var(--Color-MainA);
 }
-.container .buttonBtn::after {
+.container .operation .default {
+  color: var(--Color-MainA);
+  border: 1rpx solid var(--Color-MainA);
+  background-color: var(--Color-White);
+}
+.container .operation .buttonBtn::after {
   border: none;
 }

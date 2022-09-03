@@ -9,13 +9,29 @@
     font-size: 28rpx;
   }
 
-  .buttonBtn {
-    color: var(--Color-White);
-    background-color: var(--Color-MainA);
+  .labelClass {
+    color: #302f2f;
   }
 
-  // 去除按钮边框
-  .buttonBtn::after {
-    border: none;
+  .operation {
+    display: flex;
+    margin-top: 30rpx;
+
+    .buttonBtn {
+      width: 300rpx;
+      color: var(--Color-White);
+      background-color: var(--Color-MainA);
+    }
+
+    .default {
+      color: var(--Color-MainA);
+      border: 1rpx solid var(--Color-MainA);
+      background-color: var(--Color-White);
+    }
+
+    // 去除按钮边框
+    .buttonBtn::after {
+      border: none;
+    }
   }
 }
