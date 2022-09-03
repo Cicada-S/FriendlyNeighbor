@@ -52,7 +52,10 @@ Page({
    * 页面加载
    */
   onLoad(options) {
+    // 获取帖子信息
     this.getPostInfo(options.id)
+    // 获取评论
+    this.getComment(options.id)
   },
 
   // 获取帖子信息
@@ -64,6 +67,23 @@ Page({
     // 处理发布时间
     data.createTime = getdate(data.createTime)
     this.setData({ postInfo: data })
+  },
+
+  // 获取评论
+  async getComment(id) {
+    let { result } = await wx.cloud.callFunction({
+      name: 'getComment',
+      data: { id }
+    })
+
+    // 将发布时间改成文字
+    result.data.forEach(item => {
+      item.createTime = getdate(item.createTime)
+      item.child_comment.forEach(child => {
+        child.createTime = getdate(child.createTime)
+      })
+    })
+    this.setData({ commentList: result.data })
   },
 
   // 复制手机号
