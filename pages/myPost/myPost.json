@@ -4,5 +4,5 @@
     "PostItem": "/components/PostItem/PostItem",
     "van-swipe-cell": "@vant/weapp/swipe-cell/index"
   },
-  "navigationBarTitleText": "帖子"
+  "navigationBarTitleText": "行程信息"
 }

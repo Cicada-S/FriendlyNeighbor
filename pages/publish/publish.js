@@ -80,11 +80,11 @@ Page({
     })
   },
 
-  // 发布帖子
+  // 发布行程信息
   onRelease() {
-    let { 
-      radio, phone, price, 
-      departPlace, destination, 
+    let {
+      radio, phone, price,
+      departPlace, destination,
       timeStamp, remark, numberOfPeople
     } = this.data
 
@@ -132,7 +132,7 @@ Page({
       })
       let type = data.type === '0' ? 'people' : 'vehicle'
       wx.setStorageSync(type, data)
-      // 添加帖子
+      // 添加行程信息
       wx.cloud.callFunction({
         name: 'addPost',
         data

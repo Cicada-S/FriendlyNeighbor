@@ -10,7 +10,7 @@
     <van-icon name="add-o" />
   </view>
 
-  <!-- 帖子列表 -->
+  <!-- 行程信息列表 -->
   <PostList>
     <block wx:for="{{postList}}" wx:key="_id">
       <PostItem postItem="{{item}}" bindtap="toPost" id="{{item._id}}" />

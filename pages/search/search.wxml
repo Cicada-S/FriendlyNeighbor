@@ -4,8 +4,8 @@
   <view class="type">
     <view class="title">类型</view>
     <van-radio-group value="{{ radio }}" direction="horizontal" bind:change="onRadioChange">
-      <van-radio name="0" icon-size="18px">找人</van-radio>
-      <van-radio name="1" icon-size="18px">找车</van-radio>
+      <van-radio name="0" icon-size="18px">车找人</van-radio>
+      <van-radio name="1" icon-size="18px">人找车</van-radio>
     </van-radio-group>
   </view>
 

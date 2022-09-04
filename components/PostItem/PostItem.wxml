@@ -20,7 +20,7 @@
       <view class="footer">
         <view class="releaseTime">{{postItem.createTime}}</view>
         <view class="partition">
-          {{postItem.type==0?'找人':'找车'}}
+          {{postItem.type==0?'车找人':'人找车'}}
           ( {{postItem.type==0?'座位':'人数'}}
           {{postItem.numberOfPeople}} )
         </view>

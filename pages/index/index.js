@@ -20,7 +20,7 @@ Page({
   onLoad() {
     // 判断用户是否登录过
     this.getUserInfo()
-    // 获取帖子
+    // 获取行程信息
     this.getPostList()
   },
 
@@ -44,7 +44,7 @@ Page({
     })
   },
 
-  // 获取帖子
+  // 获取行程信息
   getPostList() {
 
         //查询条件
@@ -85,20 +85,20 @@ Page({
 
   },
 
-  // 跳转到帖子详情
+  // 跳转到行程信息详情
   toPost(event) {
     wx.navigateTo({
       url: `/pages/post/post?id=${event.target.id}`
     })
   },
 
-  // 跳转到发布帖子
+  // 跳转到发布行程信息
   toPublish() {
     wx.navigateTo({
       url: '/pages/publish/publish'
     })
   },
-  
+
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
