@@ -3,5 +3,6 @@
     "PostList": "/components/PostList/PostList",
     "PostItem": "/components/PostItem/PostItem",
     "van-icon": "@vant/weapp/icon/index"
-  }
+  },
+  "enablePullDownRefresh":true
 }

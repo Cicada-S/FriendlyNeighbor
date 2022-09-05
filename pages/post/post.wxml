@@ -1,6 +1,6 @@
 <!--pages/post/post.wxml-->
 <view class="container">
-  <!-- 帖子信息 -->
+  <!-- 行程信息信息 -->
   <view class="postInfo">
     <view class="picUrl">
       <image class="avatar" src="{{postInfo.avatar_url}}" />
@@ -15,7 +15,8 @@
       </view>
       <view class="location">
         <text>出发：{{postInfo.departPlace}}</text>
-        <text>到达：{{postInfo.destination}}</text>
+        <text>
+          到达：{{postInfo.destination}}</text>
       </view>
       <view class="departureTime">时间：{{postInfo.beginTime}} ~ {{postInfo.endTime}}</view>
       <view class="community">
@@ -24,7 +25,7 @@
       <view class="footer">
         <view class="releaseTime">2小时前</view>
         <view class="partition">
-          {{postInfo.type==0?'找人':'找车'}}
+          {{postInfo.type==0?'车找人':'人找车'}}
           ( {{postInfo.type==0?'座位':'人数'}}
           {{postInfo.numberOfPeople}} )
         </view>
@@ -81,15 +82,15 @@
 
   <!-- 评论框 -->
   <view class="publishComment" style="padding-bottom: {{bottomLift}}px">
-    <input 
+    <input
       class="input"
-      type="text" 
-      confirm-type="send" 
-      confirm-hold="{{true}}" 
+      type="text"
+      confirm-type="send"
+      confirm-hold="{{true}}"
       model:value="{{value}}"
       focus="{{focus}}"
       bindblur="onBlur"
-      placeholder="{{placeholder}}" 
+      placeholder="{{placeholder}}"
       bindconfirm="hairComment"
     />
     <view class="hair" bindtap="hairComment">发送</view>

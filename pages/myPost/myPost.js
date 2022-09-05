@@ -14,14 +14,14 @@ Page({
    * 页面加载
    */
   onLoad() {
-    // 获取帖子
+    // 获取行程信息
     this.getPostList()
   },
 
-  // 获取帖子
+  // 获取行程信息
   async getPostList() {
-    let result = await HitchhikingInformation.where({ 
-      _openid: wx.getStorageSync('currentUser')._openid 
+    let result = await HitchhikingInformation.where({
+      _openid: wx.getStorageSync('currentUser')._openid
     }).get()
 
     result.data.forEach(item => {
@@ -35,18 +35,18 @@ Page({
     this.setData({ postList: result.data })
   },
 
-  // 跳转到帖子详情
+  // 跳转到行程信息详情
   toPost(event) {
     wx.navigateTo({
       url: `/pages/post/post?id=${event.target.id}`
     })
   },
 
-  // 删除帖子
+  // 删除行程信息
   noDelete(event) {
     wx.showModal({
       title: '提示',
-      content: '确定删除帖子吗？',
+      content: '确定删除行程信息吗？',
       success: (res) => {
         if (res.confirm) {
           HitchhikingInformation.doc(event.detail.id).remove()

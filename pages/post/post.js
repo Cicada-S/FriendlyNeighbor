@@ -11,7 +11,7 @@ const HitchhikingInformation = db.collection('HitchhikingInformation')
 Page({
   data: {
     bottomLift: app.globalData.bottomLift,
-    postInfo: {}, // 帖子信息
+    postInfo: {}, // 行程信息信息
     value: '', // 评论
     commentSum: 0, // 评论数量
     focus: false, // 评论框焦点
@@ -28,13 +28,13 @@ Page({
    * 页面加载
    */
   onLoad(options) {
-    // 获取帖子信息
+    // 获取行程信息信息
     this.getPostInfo(options.id)
     // 获取评论
     this.getComment(options.id)
   },
 
-  // 获取帖子信息
+  // 获取行程信息信息
   async getPostInfo(id) {
     let { data } = await HitchhikingInformation.doc(id).get()
     // 处理最早时间和最迟时间
@@ -176,7 +176,7 @@ Page({
   replyComment(event) {
     let { id, dataset } = event.currentTarget
 
-    this.setData({ 
+    this.setData({
       focus: true,
       placeholder: `回复 @${dataset.name}`,
       commentType: true,

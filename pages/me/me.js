@@ -13,7 +13,7 @@ Page({
     this.setData({ userInfo })
   },
 
-  // 查看帖子
+  // 查看行程信息
   myPost() {
     wx.navigateTo({
       url: '/pages/myPost/myPost'

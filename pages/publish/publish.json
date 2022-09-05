@@ -8,5 +8,5 @@
     "van-action-sheet": "@vant/weapp/action-sheet/index",
     "van-datetime-picker": "@vant/weapp/datetime-picker/index"
   },
-  "navigationBarTitleText": "发布帖子"
+  "navigationBarTitleText": "发布行程信息"
 }
