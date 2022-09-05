@@ -63,6 +63,14 @@ Page({
     })
     wx.removeStorageSync('searchTerm')
     wx.navigateBack({ delta: 1 })
+
+    // 清除index的行程数据
+    let pages = getCurrentPages() // 获取当前页面栈
+    let prevPage = pages[pages.length - 2] // 获取到上一层页面栈
+    // 将数据设置到上一层的 data 中
+    prevPage.setData({postList: []})
+    // 返回上一层
+    wx.navigateBack({delta: 1})
   },
 
   // 确定 的回调函数

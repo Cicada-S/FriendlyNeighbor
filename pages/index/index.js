@@ -112,11 +112,11 @@ Page({
     // 时间
     let { beginTime, endTime } = searchTerm.timeStamp
     if(beginTime && endTime) {
-      return whereConditiion.beginTime = _.gte(beginTime).and(_.lte(endTime))
+      return whereConditiion.beginTime = _.gte(new Date(beginTime)).and(_.lte(new Date(endTime)))
     } else if(beginTime) { // 只查询开始时间
-      return whereConditiion.endTime = _.gte(beginTime)
+      return whereConditiion.endTime = _.gte(new Date(beginTime))
     } else if(endTime) { // 只查询结束时间
-      return whereConditiion.beginTime = _.lte(endTime)
+      return whereConditiion.beginTime = _.lte(new Date(endTime))
     }
 
     // 清空行程信息
