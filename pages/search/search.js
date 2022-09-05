@@ -61,7 +61,7 @@ Page({
       'timeStamp.beginTime': '',
       'timeStamp.endTime': '',
     })
-
+    wx.removeStorageSync('searchTerm')
     wx.navigateBack({ delta: 1 })
   },
 

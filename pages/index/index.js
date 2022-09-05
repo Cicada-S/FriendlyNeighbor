@@ -3,15 +3,15 @@ import { toDates } from '../../utils/util'
 import { getdate } from '../../utils/pastTime'
 
 const db = wx.cloud.database()
+const _ = db.command
 const user = db.collection('User')
 
 Page({
   data: {
-    search: '', // 搜索
     postList: [], // 帖字列表
-    pageIndex: 1,
-    pageSize: 4,
-    reachBottom: false,
+    pageIndex: 1, // 当前分页
+    pageSize: 4, // 每次获取数据条数
+    reachBottom: false, // 是否到底部
   },
 
   /**
@@ -20,6 +20,12 @@ Page({
   onLoad() {
     // 判断用户是否登录过
     this.getUserInfo()
+  },
+
+  /**
+   * 页面显示
+   */
+  onShow() {
     // 获取行程信息
     this.getPostList()
   },
@@ -46,30 +52,28 @@ Page({
 
   // 获取行程信息
   getPostList() {
-
-        //查询条件
+    // 查询条件
     let whereConditiion = {}
-    // if (this.data.searchValue) {
-    //   whereConditiion.name = db.RegExp({
-    //     regexp: this.data.searchValue,
-    //     options: 'i',
-    //   })
-    // }
+    // 判断本地是否有 searchTerm
+    if(wx.getStorageSync('searchTerm')) whereConditiion = this.whereConditiion()
 
-    //skip(20 * (pageIndex - 1)).limit(20)
-    const skin = this.data.pageSize * (this.data.pageIndex - 1);
-    console.log('this.data.pageIndex = ' + this.data.pageIndex)
-    db.collection('HitchhikingInformation').where(whereConditiion).skip(skin).limit(this.data.pageSize).orderBy('createTime', 'desc')
+    // skip(20 * (pageIndex - 1)).limit(20)
+    const skin = this.data.pageSize * (this.data.pageIndex - 1)
+    db.collection('HitchhikingInformation').where(whereConditiion)
+    .skip(skin) // 从指定系列后的结果开始返回
+    .limit(this.data.pageSize) // 每次查询数量
+    .orderBy('createTime', 'desc') // 排序
     .get().then(res => {
-      //下一页没有数据了
+      // 下一页没有数据了
       if(res.data.length == 0){
         this.setData({
           reachBottom: true,
-          pageIndex: this.data.pageIndex -1
+          pageIndex: this.data.pageIndex - 1
         })
         return
       }
 
+      // 处理时间
       res.data.forEach(item => {
         // 处理最早时间和最迟时间
         item.beginTime = toDates(item.beginTime, 'display')
@@ -79,10 +83,46 @@ Page({
       })
 
       let oldList = this.data.postList
-      let newList = oldList.concat(res.data)
+      let newList = oldList.concat(res.data) // 合并数据
       this.setData({ postList: newList })
     })
+  },
 
+  // 获取形成信息的筛选条件
+  whereConditiion() {
+    // 查询条件
+    let whereConditiion = {}
+    let searchTerm = wx.getStorageSync('searchTerm')
+    // 类型
+    whereConditiion.type = searchTerm.radio
+    // 出发地址
+    if(searchTerm.departPlace) {
+      whereConditiion.departPlace = db.RegExp({
+        regexp: searchTerm.departPlace,
+        options: 'i'
+      })
+    } 
+    // 到达地址 
+    if(searchTerm.destination) {
+      whereConditiion.destination = db.RegExp({
+        regexp: searchTerm.destination,
+        options: 'i'
+      })
+    }
+    // 时间
+    let { beginTime, endTime } = searchTerm.timeStamp
+    if(beginTime && endTime) {
+      return whereConditiion.beginTime = _.gte(beginTime).and(_.lte(endTime))
+    } else if(beginTime) { // 只查询开始时间
+      return whereConditiion.endTime = _.gte(beginTime)
+    } else if(endTime) { // 只查询结束时间
+      return whereConditiion.beginTime = _.lte(endTime)
+    }
+
+    // 清空行程信息
+    this.setData({ postList: [] })
+
+    return whereConditiion
   },
 
   // 跳转到行程信息详情
@@ -131,5 +171,12 @@ Page({
       duration: 500
     })
     this.getPostList()
+  },
+
+  /**
+   * 监听页面卸载
+   */
+  onUnload() {
+    wx.removeStorageSync('searchTerm')
   }
 })

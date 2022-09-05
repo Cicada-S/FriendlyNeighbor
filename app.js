@@ -16,8 +16,8 @@ App({
     checkUpdateVersion()
 
     wx.cloud.init({
-      env: 'cloud1-9gd9p087be4105a2',
-      // env: 'prod-4gajjv6022f1fb50',
+      // env: 'cloud1-9gd9p087be4105a2',
+      env: 'prod-4gajjv6022f1fb50',
       traceUser: true
     })
 
