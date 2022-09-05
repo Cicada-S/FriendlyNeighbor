@@ -20,13 +20,6 @@ Page({
     currentDate: new Date().getTime(), // 当前时间
   },
 
-  /**
-   * 页面加载
-   */
-  onLoad() {
-
-  },
-
   // 切换类型
   onRadioChange(event) {
     this.setData({ radio: event.detail })
@@ -55,5 +48,36 @@ Page({
   // 时间选择器 点击取消和遮罩层 的回调函数
   onTimeCancel() {
     this.setData({ show: false })
+  },
+
+  // 取消 的回调函数
+  cancel() {
+    this.setData({
+      radio: '0',
+      departPlace: '',
+      destination: '',
+      beginTime: '',
+      endTime: '',
+      'timeStamp.beginTime': '',
+      'timeStamp.endTime': '',
+    })
+
+    wx.navigateBack({ delta: 1 })
+  },
+
+  // 确定 的回调函数
+  search() {
+    let { radio, departPlace, destination, beginTime, endTime, timeStamp } = this.data
+    let searchTerm = {
+      radio,
+      departPlace,
+      destination,
+      beginTime,
+      endTime,
+      timeStamp
+    }
+
+    wx.setStorageSync('searchTerm', searchTerm)
+    wx.navigateBack({ delta: 1 })
   }
 })
