@@ -200,5 +200,15 @@ Page({
       replyType: 1,
       fatherCommentId: id
     })
+  },
+
+  /**
+   * 用户点击右上角转发
+   */
+  onShareAppMessage() {
+    let { type, departPlace, destination } = this.data.postInfo
+    let travel = type === '1' ? '人找车' : '车找人'
+    let title = `${travel}，出发：${departPlace} -> 到达：${destination}`
+    return { title }
   }
 })
