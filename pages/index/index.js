@@ -52,6 +52,7 @@ Page({
 
   // 获取行程信息
   getPostList() {
+    console.log('getPostList')
     // 查询条件
     let whereConditiion = {}
     // 判断本地是否有 searchTerm
@@ -65,12 +66,11 @@ Page({
     .orderBy('createTime', 'desc') // 排序
     .get().then(res => {
       // 下一页没有数据了
-      if(res.data.length == 0){
+      if(res.data.length === 0) {
         this.setData({
           reachBottom: true,
           pageIndex: this.data.pageIndex - 1
         })
-        return
       }
 
       // 处理时间
@@ -85,6 +85,9 @@ Page({
       let oldList = this.data.postList
       let newList = oldList.concat(res.data) // 合并数据
       this.setData({ postList: newList })
+    })
+    .catch(err => {
+      console.log('err',err)
     })
   },
 
@@ -111,6 +114,9 @@ Page({
     }
     // 时间
     let { beginTime, endTime } = searchTerm.timeStamp
+    console.log('beginTime', beginTime)
+    console.log('endTime', endTime)
+    // date 数据类型为 Object  时间戳数据类型为 Number
     if(beginTime && endTime) {
       return whereConditiion.beginTime = _.gte(new Date(beginTime)).and(_.lte(new Date(endTime)))
     } else if(beginTime) { // 只查询开始时间
