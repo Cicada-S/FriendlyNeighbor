@@ -20,6 +20,9 @@ Page({
   onLoad() {
     // 判断用户是否登录过
     this.getUserInfo()
+
+    // 获取行程信息
+    this.getPostList()
   },
 
   /**
@@ -27,7 +30,7 @@ Page({
    */
   onShow() {
     // 获取行程信息
-    this.getPostList()
+    // this.getPostList()
   },
 
   // 判断用户是否登录过

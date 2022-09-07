@@ -65,12 +65,17 @@ Page({
     wx.navigateBack({ delta: 1 })
 
     // 清除index的行程数据
-    let pages = getCurrentPages() // 获取当前页面栈
+    /* let pages = getCurrentPages() // 获取当前页面栈
     let prevPage = pages[pages.length - 2] // 获取到上一层页面栈
     // 将数据设置到上一层的 data 中
-    prevPage.setData({postList: []})
+    prevPage.setData({postList: []}) */
     // 返回上一层
-    wx.navigateBack({delta: 1})
+    // wx.navigateBack({delta: 1})
+
+    // 
+    wx.switchTab({
+      url: 'pages/index/index'
+    })
   },
 
   // 确定 的回调函数
@@ -86,6 +91,10 @@ Page({
     }
 
     wx.setStorageSync('searchTerm', searchTerm)
-    wx.navigateBack({ delta: 1 })
+    // wx.navigateBack({ delta: 1 })
+    console.log('111',111)
+    wx.reLaunch({
+      url: 'pages/index/index'
+    })
   }
 })
