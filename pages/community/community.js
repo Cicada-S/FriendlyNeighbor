@@ -1,27 +1,30 @@
 // pages/community/community.js
 const app = getApp()
 
+const db = wx.cloud.database()
+const Community = db.collection('Community')
+
 Page({
   data: {
     bottomLift: app.globalData.bottomLift,
-    communityList: [
-      {
-        _id: '231231',
-        name: '汤臣一品',
-        qrCodePath: '',
-        province: '广东省',
-        city: '广州市',
-        county: '花都区',
-      },
-      {
-        _id: '212312',
-        name: '汤臣二品',
-        qrCodePath: '',
-        province: '广东省',
-        city: '广州市',
-        county: '花都区',
-      }
-    ]
+    communityList: [] // 小区列表
+  },
+
+  /**
+   * 页面加载
+   */
+  onLoad() {
+    // 获取小区
+    this.getCommunity()
+  },
+
+  // 获取小区
+  getCommunity() {
+    Community.get().then(res => {
+      this.setData({
+        communityList: res.data
+      })
+    })
   },
 
   // 跳转到添加小区
