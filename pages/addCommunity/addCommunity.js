@@ -35,10 +35,26 @@ Page({
 
   // 添加小区
   addCommunity() {
+    wx.showLoading({
+      title: '添加中...'
+    })
     let { name, city } = this.data
     // 判断小区名和地区是否为空
     if(this.isEmpty(name, city)) {
-      console.log('调用云函数')
+      wx.cloud.callFunction({
+        name: 'addQrCode',
+        data: { name, city }
+      }).then(() => {
+        wx.hideLoading()
+        wx.showToast({
+          title: '添加成功!',
+          icon: 'success',
+          duration: 1000
+        })
+        setTimeout(() => {
+          wx.navigateBack({ delta: 1 })
+        }, 1000)
+      })
     }
   },
 
