@@ -76,7 +76,38 @@
   flex: 1;
   display: flex;
   justify-content: flex-end;
-  color: var(--Color-MainA);
+  color: var(--Color-White);
+  font-size: 32rpx;
+}
+.container .postInfo .content .footer .operation .button {
+  height: 50rpx;
+  line-height: 50rpx;
+  padding: 0 20rpx;
+  border-radius: 20rpx;
+  background-color: var(--Color-MainA);
+}
+.container .postInfo .content .footer .operation .copy {
+  position: relative;
+  width: 72rpx;
+}
+.container .postInfo .content .footer .operation .copy::after,
+.container .postInfo .content .footer .operation .copy::before {
+  content: '';
+  position: absolute;
+  width: 22rpx;
+  height: 22rpx;
+  border-radius: 5rpx;
+  background-color: var(--Color-White);
+}
+.container .postInfo .content .footer .operation .copy::after {
+  top: 30%;
+  left: 30%;
+  border-top: 2rpx solid var(--Color-MainA);
+  border-right: 2rpx solid var(--Color-MainA);
+}
+.container .postInfo .content .footer .operation .copy::before {
+  top: 20%;
+  left: 40%;
 }
 .container .postInfo .content .footer .operation .dial {
   margin-left: 20rpx;

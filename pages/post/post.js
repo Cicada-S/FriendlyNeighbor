@@ -70,9 +70,9 @@ Page({
     wx.setClipboardData({ data: this.data.postInfo.phone })
     .then(() => {
       wx.showToast({
-        title: '复制成功',
+        title: '复制手机号成功',
         icon: 'none',
-        duration: 2000
+        duration: 1500
       })
     })
   },

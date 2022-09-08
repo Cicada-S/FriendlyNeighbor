@@ -29,8 +29,10 @@
           {{postInfo.numberOfPeople}} )
         </view>
         <view class="operation">
-          <view class="copy" bindtap="copyPhone">复制手机号</view>
-          <view class="dial" bindtap="dialPhone">拨打电话</view>
+          <view class="copy button" bindtap="copyPhone"></view>
+          <view class="dial button" bindtap="dialPhone">
+            <van-icon name="phone" />
+          </view>
         </view>
       </view>
     </view>
