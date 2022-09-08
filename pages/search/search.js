@@ -62,19 +62,9 @@ Page({
       'timeStamp.endTime': '',
     })
     wx.removeStorageSync('searchTerm')
-    wx.navigateBack({ delta: 1 })
-
-    // 清除index的行程数据
-    /* let pages = getCurrentPages() // 获取当前页面栈
-    let prevPage = pages[pages.length - 2] // 获取到上一层页面栈
-    // 将数据设置到上一层的 data 中
-    prevPage.setData({postList: []}) */
-    // 返回上一层
-    // wx.navigateBack({delta: 1})
-
-    // 
-    wx.switchTab({
-      url: 'pages/index/index'
+    // 关闭所有页面 跳转到首页 url的值必须以 / 开头
+    wx.reLaunch({
+      url: '/pages/index/index'
     })
   },
 
@@ -89,12 +79,11 @@ Page({
       endTime,
       timeStamp
     }
-
+    
     wx.setStorageSync('searchTerm', searchTerm)
-    // wx.navigateBack({ delta: 1 })
-    console.log('111',111)
+    // 关闭所有页面 跳转到首页 url的值必须以 / 开头
     wx.reLaunch({
-      url: 'pages/index/index'
+      url: '/pages/index/index'
     })
   }
 })
