@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "BlockBox": "/components/BlockBox/BlockBox",
+    "van-field": "@vant/weapp/field/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-area": "@vant/weapp/area/index"
+  },
+  "navigationBarTitleText": "添加小区"
+}

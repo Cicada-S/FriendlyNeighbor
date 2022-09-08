@@ -26,6 +26,8 @@ Page({
 
   // 跳转到添加小区
   toAddCommunity() {
-    console.log('toAddCommunity')
+    wx.navigateTo({
+      url: '/pages/addCommunity/addCommunity'
+    })
   }
 })
