@@ -5,7 +5,7 @@
       <image class="image" src="{{item.qrCodePath}}" />
       <view class="content">
         <view class="name">{{item.name}}</view>
-        <view class="city">{{item.province}}{{item.city}}{{item.county}}</view>
+        <view class="city">{{item.province}}-{{item.city}}-{{item.county}}</view>
       </view>
     </view>
   </BlockBox>

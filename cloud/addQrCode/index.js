@@ -14,9 +14,9 @@ exports.main = async (event, context) => {
         _openid: cloud.getWXContext().OPENID,
         name: event.name,
         qrCodePath: '',
-        province: event[0],
-        city: event[1],
-        county: event[2],
+        province: event.city[0],
+        city: event.city[1],
+        county: event.city[2],
         status: 0,
         createTime: new Date()
       }
