@@ -18,6 +18,12 @@
 
   <BlockBox>
     <van-cell-group border="{{false}}">
+      <van-cell title="管理小区" is-link border="{{false}}" bindtap="toCommunity" />
+    </van-cell-group>
+  </BlockBox>
+
+  <BlockBox>
+    <van-cell-group border="{{false}}">
       <van-cell title="修改资料" is-link border="{{false}}" />
       <van-cell title="关于我们" is-link border="{{false}}" />
       <van-cell title="退出登录" is-link border="{{false}}" />

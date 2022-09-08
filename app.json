@@ -6,7 +6,8 @@
     "pages/publish/publish",
     "pages/search/search",
     "pages/myPost/myPost",
-    "pages/post/post"
+    "pages/post/post",
+    "pages/community/community"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -18,5 +18,12 @@ Page({
     wx.navigateTo({
       url: '/pages/myPost/myPost'
     })
+  },
+
+  // 跳转到管理小区
+  toCommunity() {
+    wx.navigateTo({
+      url: '/pages/community/community'
+    })
   }
 })

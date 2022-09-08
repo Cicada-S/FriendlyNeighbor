@@ -1,0 +1,45 @@
+/* pages/community/community.wxss */
+.container {
+  width: 100vw;
+  padding: 20rpx 30rpx 0;
+
+  .communityItem {
+    display: flex;
+    padding: 20rpx;
+    
+    .image {
+      width: 80rpx;
+      height: 80rpx;
+      border-radius: 50%;
+      background-color: var(--Color-MainA);
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-left: 20rpx;
+
+      .city {
+        color: var(--Color-FontA);
+        font-size: 28rpx;
+      }
+    }
+  }
+
+  .bottomBtn {
+    width: 690rpx;
+    height: 80rpx;
+    position: fixed;
+    bottom: 10rpx;
+    margin-top: 10rpx;
+    color: #FFFFFF;
+    font-size: 30rpx;
+    text-align: center;
+    line-height: 80rpx;
+    letter-spacing: 10rpx;
+    border-radius: 10rpx;
+    background-color: #407EF5;
+    box-shadow: 2rpx 4rpx 12rpx 2rpx rgba(64, 126, 245, .8);
+  }
+}

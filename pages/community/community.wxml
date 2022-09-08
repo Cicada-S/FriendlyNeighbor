@@ -1,0 +1,17 @@
+<!--pages/community/community.wxml-->
+<view class="container">
+  <BlockBox wx:for="{{communityList}}" wx:key="_id">
+    <view class="communityItem">
+      <image class="image" src="{{item.qrCodePath}}" />
+      <view class="content">
+        <view class="name">{{item.name}}</view>
+        <view class="city">{{item.province}}{{item.city}}{{item.county}}</view>
+      </view>
+    </view>
+  </BlockBox>
+
+  <!-- 底部按钮 -->
+  <view class="bottomBtn" style="margin-bottom:{{bottomLift}}px" bindtap="toAddCommunity">
+    <text>添加小区</text>
+  </view>
+</view>
