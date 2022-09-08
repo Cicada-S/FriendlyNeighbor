@@ -11,9 +11,9 @@ Page({
   },
 
   /**
-   * 页面加载
+   * 页面显示
    */
-  onLoad() {
+  onShow() {
     // 获取小区
     this.getCommunity()
   },
