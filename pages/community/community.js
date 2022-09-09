@@ -20,8 +20,13 @@ Page({
   },
 
   // 获取小区
-  getCommunity() {
-    Community.get().then(res => {
+  getCommunity(value) {
+    // 对name字段模糊查询
+    let data = {}
+    if(value) data.name =  db.RegExp({ regexp: value, options: 'i'})
+ 
+    // 获取小区
+    Community.where(data).get().then(res => {
       this.setData({
         communityList: res.data
       })
@@ -29,12 +34,12 @@ Page({
   },
 
   // 确定搜索时触发
-  onSearch(event) {
-    wx.showToast({
-      title: `搜索内容${event.detail}`,
-      icon: 'none',
-      duration: 1500
+  async onSearch(event) {
+    wx.showLoading({
+      title: '查找中...',
     })
+    await this.getCommunity(event.detail)
+    wx.hideLoading()
   },
 
   // 跳转到添加小区
