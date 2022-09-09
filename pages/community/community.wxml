@@ -1,14 +1,22 @@
 <!--pages/community/community.wxml-->
 <view class="container">
   <!-- 搜索框 -->
-  <van-search
-    custom-class="search"
-    model:value="{{ search }}"
-    shape="round"
-    placeholder="Search..."
-    bind:search="onSearch"
-  />
+  <view class="search">
+    <text wx:if="{{area}}" bindtap="selectCity" class="city">{{area}}</text>
+    <view wx:else bindtap="selectCity">
+      <van-icon custom-class="icon" name="location" />
+      <text>地区</text>
+    </view>
+    <van-search
+      custom-class="searchCustom"
+      model:value="{{ search }}"
+      shape="round"
+      placeholder="Search..."
+      bind:search="onSearch"
+    />
+  </view>
 
+  <!-- 小区列表 -->
   <view class="communityList">
     <BlockBox wx:for="{{communityList}}" wx:key="_id">
       <view class="communityItem">
@@ -20,6 +28,19 @@
       </view>
     </BlockBox>
   </view>
+
+  <!-- 选择器 -->
+  <van-action-sheet
+    show="{{ show }}"
+    actions="{{ actions }}"
+    bind:click-overlay="onCancel"
+  >
+    <van-area
+      area-list="{{ areaList }}"
+      bind:cancel="onCancel"
+      bind:confirm="onConfirm"
+    />
+  </van-action-sheet>
 
   <!-- 底部按钮 -->
   <BottomBtn text="添加小区" bind:onClick="onClick" />

@@ -5,6 +5,19 @@
 .container .search {
   position: fixed;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--Color-White);
+  padding-left: 30rpx;
+}
+.container .search .icon {
+  font-size: 36rpx;
+  color: var(--Color-MainA);
+}
+.container .search .searchCustom {
+  width: 580rpx;
+  padding: 20rpx 30rpx 20rpx 0;
 }
 .container .communityList {
   padding: 110rpx 30rpx 0;

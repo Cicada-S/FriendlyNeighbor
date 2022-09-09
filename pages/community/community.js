@@ -1,6 +1,9 @@
 // pages/community/community.js
 const app = getApp()
 
+// 引入省市区数据
+import { areaList } from '@vant/area-data'
+
 const db = wx.cloud.database()
 const Community = db.collection('Community')
 
@@ -8,6 +11,10 @@ Page({
   data: {
     bottomLift: app.globalData.bottomLift,
     search: '', // 搜索
+    city: '', // 地区
+    area: '', // 区
+    show: false, // 选择器的显示状态
+    areaList, // 全国城市的信息
     communityList: [] // 小区列表
   },
 
@@ -31,6 +38,29 @@ Page({
         communityList: res.data
       })
     })
+  },
+
+  // 选择地区
+  selectCity() {
+    this.setData({ show: true })
+  },
+
+  // 取消 点击遮罩层 关闭选择器
+  onCancel() {
+    this.setData({ show: false })
+  },
+
+  // 点击确定时触发
+  onConfirm(event) {
+    let city = []
+    event.detail.values.forEach(item => city.push(item.name))
+    let area = ''
+    if(city[2].length > 4) {
+      area = '...' + city[2].substring(city[2].length - 3, city[2].length)
+    } else {
+      area = city[2]
+    }
+    this.setData({ show: false, city, area })
   },
 
   // 确定搜索时触发
