@@ -80,7 +80,9 @@
   font-size: 32rpx;
 }
 .container .postInfo .content .footer .operation .button {
+  width: 80rpx;
   height: 50rpx;
+  text-align: center;
   line-height: 50rpx;
   padding: 0 20rpx;
   border-radius: 20rpx;
@@ -88,7 +90,6 @@
 }
 .container .postInfo .content .footer .operation .copy {
   position: relative;
-  width: 72rpx;
 }
 .container .postInfo .content .footer .operation .copy::after,
 .container .postInfo .content .footer .operation .copy::before {
@@ -110,7 +111,7 @@
   left: 40%;
 }
 .container .postInfo .content .footer .operation .dial {
-  margin-left: 20rpx;
+  margin-left: 30rpx;
 }
 .container .postInfo .content .icon {
   flex: 1;

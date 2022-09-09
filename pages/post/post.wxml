@@ -22,7 +22,7 @@
         <text>{{postInfo.communityName}}</text>
       </view>
       <view class="footer">
-        <view class="releaseTime">2小时前</view>
+        <view class="releaseTime">{{postInfo.createTime}}</view>
         <view class="partition">
           {{postInfo.type==0?'车找人':'人找车'}}
           ( {{postInfo.type==0?'座位':'人数'}}
