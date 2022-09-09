@@ -11,7 +11,7 @@ Page({
   data: {
     bottomLift: app.globalData.bottomLift,
     search: '', // 搜索
-    city: '', // 地区
+    address: [], // 地区
     area: '', // 区
     show: false, // 选择器的显示状态
     areaList, // 全国城市的信息
@@ -27,11 +27,18 @@ Page({
   },
 
   // 获取小区
-  getCommunity(value) {
-    // 对name字段模糊查询
+  getCommunity() {
+    let { search, address } = this.data
     let data = {}
-    if(value) data.name =  db.RegExp({ regexp: value, options: 'i'})
- 
+    // 对name字段模糊查询
+    if(search) data.name = db.RegExp({ regexp: search, options: 'i'})
+    // 对地区查询
+    if(address) {
+      data.province = address[0]
+      data.city = address[1]
+      data.county = address[2]
+    }
+
     // 获取小区
     Community.where(data).get().then(res => {
       this.setData({
@@ -45,30 +52,42 @@ Page({
     this.setData({ show: true })
   },
 
-  // 取消 点击遮罩层 关闭选择器
-  onCancel() {
+  // 点击遮罩层 关闭选择器
+  onOverlay() {
     this.setData({ show: false })
+  },
+
+  // 点击取消时 清除选择的地区
+  onCancel() {
+    this.setData({
+      address: [],
+      area: '',
+      show: false
+    })
+    // 获取小区
+    this.getCommunity()
   },
 
   // 点击确定时触发
   onConfirm(event) {
-    let city = []
-    event.detail.values.forEach(item => city.push(item.name))
+    let address = []
+    event.detail.values.forEach(item => address.push(item.name))
     let area = ''
-    if(city[2].length > 4) {
-      area = '...' + city[2].substring(city[2].length - 3, city[2].length)
+    if(address[2].length > 4) {
+      area = '...' + address[2].substring(address[2].length - 3, address[2].length)
     } else {
-      area = city[2]
+      area = address[2]
     }
-    this.setData({ show: false, city, area })
+    this.setData({ show: false, address, area })
+
+    // 获取小区
+    this.getCommunity()
   },
 
   // 确定搜索时触发
-  async onSearch(event) {
-    wx.showLoading({
-      title: '查找中...',
-    })
-    await this.getCommunity(event.detail)
+  async onSearch() {
+    wx.showLoading({ title: '查找中...' })
+    await this.getCommunity()
     wx.hideLoading()
   },
 

@@ -33,7 +33,7 @@
   <van-action-sheet
     show="{{ show }}"
     actions="{{ actions }}"
-    bind:click-overlay="onCancel"
+    bind:click-overlay="onOverlay"
   >
     <van-area
       area-list="{{ areaList }}"
