@@ -22,9 +22,5 @@
   </view>
 
   <!-- 底部按钮 -->
-  <view class="overlau" style="padding-bottom:{{bottomLift}}px">
-    <view class="bottomBtn" bindtap="toAddCommunity">
-      <text>添加小区</text>
-    </view>
-  </view>
+  <BottomBtn text="添加小区" bind:onClick="onClick" />
 </view>

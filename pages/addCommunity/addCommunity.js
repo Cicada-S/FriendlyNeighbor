@@ -34,7 +34,7 @@ Page({
   },
 
   // 添加小区
-  addCommunity() {
+  onClick() {
     wx.showLoading({
       title: '添加中...'
     })

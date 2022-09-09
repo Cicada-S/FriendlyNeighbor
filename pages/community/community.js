@@ -38,7 +38,7 @@ Page({
   },
 
   // 跳转到添加小区
-  toAddCommunity() {
+  onClick() {
     wx.navigateTo({
       url: '/pages/addCommunity/addCommunity'
     })

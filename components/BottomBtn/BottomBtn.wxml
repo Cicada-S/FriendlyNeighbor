@@ -1,0 +1,6 @@
+<!--components/BottomBtn/BottomBtn.wxml-->
+<view class="bottomBtn" style="padding-bottom:{{bottomLift}}px">
+  <view class="button" bindtap="onClick">
+    <text>{{ text }}</text>
+  </view>
+</view>

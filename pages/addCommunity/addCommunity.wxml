@@ -1,21 +1,23 @@
 <!--pages/addCommunity/addCommunity.wxml-->
 <view class="container">
-  <BlockBox>
-    <view class="box">
-      <view class="title">小区名</view>
-      <van-field
-        input-class="inputClass"
-        model:value="{{ name }}"
-        placeholder="请输入小区名"
-        border="{{ false }}"
-        input-align="right"
-      />
-    </view>
-  </BlockBox>
-
-  <BlockBox>
-    <van-cell title="地区" is-link bindtap="selectCity" value="{{ city }}" />
-  </BlockBox>
+  <view class="content">
+    <BlockBox>
+      <view class="box">
+        <view class="title">小区名</view>
+        <van-field
+          input-class="inputClass"
+          model:value="{{ name }}"
+          placeholder="请输入小区名"
+          border="{{ false }}"
+          input-align="right"
+        />
+      </view>
+    </BlockBox>
+  
+    <BlockBox>
+      <van-cell title="地区" is-link bindtap="selectCity" value="{{ city }}" />
+    </BlockBox>
+  </view>
 
   <van-action-sheet
     show="{{ show }}"
@@ -30,7 +32,5 @@
   </van-action-sheet>
 
   <!-- 底部按钮 -->
-  <view class="bottomBtn" style="margin-bottom:{{bottomLift}}px" bindtap="addCommunity">
-    <text>添加小区</text>
-  </view>
+  <BottomBtn text="添加小区" bind:onClick="onClick" />
 </view>
