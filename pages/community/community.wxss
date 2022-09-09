@@ -1,34 +1,45 @@
 /* pages/community/community.wxss */
 .container {
   width: 100vw;
-  padding: 20rpx 30rpx 0;
 }
-.container .communityItem {
+.container .search {
+  position: fixed;
+  width: 100%;
+}
+.container .communityList {
+  padding: 110rpx 30rpx 0;
+}
+.container .communityList .communityItem {
   display: flex;
   padding: 20rpx;
 }
-.container .communityItem .image {
+.container .communityList .communityItem .image {
   width: 80rpx;
   height: 80rpx;
   border-radius: 50%;
 }
-.container .communityItem .content {
+.container .communityList .communityItem .content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-left: 20rpx;
 }
-.container .communityItem .content .city {
+.container .communityList .communityItem .content .city {
   color: var(--Color-FontA);
   font-size: 28rpx;
 }
-.container .bottomBtn {
+.container .overlau {
+  box-sizing: content-box;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10rpx 30rpx;
+  background-color: var(--Color-White);
+}
+.container .overlau .bottomBtn {
   width: 690rpx;
   height: 80rpx;
-  position: fixed;
-  bottom: 10rpx;
-  margin-top: 10rpx;
-  color: #FFFFFF;
+  color: var(--Color-White);
   font-size: 30rpx;
   text-align: center;
   line-height: 80rpx;

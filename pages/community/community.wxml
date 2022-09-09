@@ -1,17 +1,30 @@
 <!--pages/community/community.wxml-->
 <view class="container">
-  <BlockBox wx:for="{{communityList}}" wx:key="_id">
-    <view class="communityItem">
-      <image class="image" src="{{item.qrCodePath}}" />
-      <view class="content">
-        <view class="name">{{item.name}}</view>
-        <view class="city">{{item.province}}-{{item.city}}-{{item.county}}</view>
+  <!-- 搜索框 -->
+  <van-search
+    custom-class="search"
+    model:value="{{ search }}"
+    shape="round"
+    placeholder="Search..."
+    bind:search="onSearch"
+  />
+
+  <view class="communityList">
+    <BlockBox wx:for="{{communityList}}" wx:key="_id">
+      <view class="communityItem">
+        <image class="image" src="{{item.qrCodePath}}" />
+        <view class="content">
+          <view class="name">{{item.name}}</view>
+          <view class="city">{{item.province}}-{{item.city}}-{{item.county}}</view>
+        </view>
       </view>
-    </view>
-  </BlockBox>
+    </BlockBox>
+  </view>
 
   <!-- 底部按钮 -->
-  <view class="bottomBtn" style="margin-bottom:{{bottomLift}}px" bindtap="toAddCommunity">
-    <text>添加小区</text>
+  <view class="overlau" style="padding-bottom:{{bottomLift}}px">
+    <view class="bottomBtn" bindtap="toAddCommunity">
+      <text>添加小区</text>
+    </view>
   </view>
 </view>

@@ -7,6 +7,7 @@ const Community = db.collection('Community')
 Page({
   data: {
     bottomLift: app.globalData.bottomLift,
+    search: '', // 搜索
     communityList: [] // 小区列表
   },
 
@@ -24,6 +25,15 @@ Page({
       this.setData({
         communityList: res.data
       })
+    })
+  },
+
+  // 确定搜索时触发
+  onSearch(event) {
+    wx.showToast({
+      title: `搜索内容${event.detail}`,
+      icon: 'none',
+      duration: 1500
     })
   },
 
