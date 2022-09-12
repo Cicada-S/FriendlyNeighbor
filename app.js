@@ -21,6 +21,9 @@ App({
       traceUser: true
     })
 
+    //删除首页搜索缓存
+    wx.removeStorageSync('searchTerm')
+
     this.getPhoneHeight()
     this.getSystemInfo()
   },

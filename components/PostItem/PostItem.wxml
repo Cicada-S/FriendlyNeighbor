@@ -14,9 +14,9 @@
         <text>到达：{{postItem.destination}}</text>
       </view>
       <view class="departureTime">时间：{{postItem.beginTime}} ~ {{postItem.endTime}}</view>
-      <view class="community">
+      <!-- <view class="community">
         <text>{{postItem.communityName}}</text>
-      </view>
+      </view> -->
       <view class="footer">
         <view class="releaseTime">{{postItem.createTime}}</view>
         <view class="partition">

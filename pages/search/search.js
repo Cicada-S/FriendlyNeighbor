@@ -4,7 +4,7 @@ import { toDates } from '../../utils/util'
 
 Page({
   data: {
-    radio: '0', // 类型
+    radio: null , // 类型
     departPlace: '', // 出发地址
     destination: '', // 到达地址
     // 时间选择器
@@ -16,8 +16,23 @@ Page({
       beginTime: '',
       endTime: '',
     },
+    // minDate: new Date().getTime(), // 可选的最小时间
     minDate: new Date(2022, 1, 1).getTime(), // 可选的最小时间
     currentDate: new Date().getTime(), // 当前时间
+  },
+
+  onLoad(){
+    let searchTerm = wx.getStorageSync('searchTerm')
+    if(searchTerm) {
+      this.setData({
+        radio: searchTerm.radio,
+        departPlace: searchTerm.departPlace,
+        destination: searchTerm.destination,
+        beginTime: searchTerm.beginTime,
+        endTime: searchTerm.endTime,
+        timeStamp: searchTerm.timeStamp
+      })
+    }
   },
 
   // 切换类型
@@ -27,7 +42,7 @@ Page({
 
   /**
    * 选择时间
-   */ 
+   */
   selectTime(event) {
     this.setData({
       timeType: event.currentTarget.id,
@@ -79,7 +94,7 @@ Page({
       endTime,
       timeStamp
     }
-    
+
     wx.setStorageSync('searchTerm', searchTerm)
     // 关闭所有页面 跳转到首页 url的值必须以 / 开头
     wx.reLaunch({

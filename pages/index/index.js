@@ -10,14 +10,21 @@ Page({
   data: {
     postList: [], // 帖字列表
     pageIndex: 1, // 当前分页
-    pageSize: 4, // 每次获取数据条数
+    pageSize: 12, // 每次获取数据条数
     reachBottom: false, // 是否到底部
   },
 
   /**
    * 页面加载
    */
-  onLoad() {
+  onShow() {
+
+    this.setData({
+      pageIndex: 1,
+      postList: [],
+      reachBottom: false
+    })
+
     // 判断用户是否登录过
     this.getUserInfo()
     // 获取行程信息
@@ -51,7 +58,9 @@ Page({
     // 查询条件
     let whereConditiion = {}
     // 判断本地是否有 searchTerm
-    if(wx.getStorageSync('searchTerm')) whereConditiion = this.whereConditiion()
+    if(wx.getStorageSync('searchTerm')) whereConditiion = this.getConditiion()
+
+  //  whereConditiion.endTime = _.gte(new Date(2022,8,10,17,19,30))
 
     // skip(20 * (pageIndex - 1)).limit(20)
     const skin = this.data.pageSize * (this.data.pageIndex - 1)
@@ -87,20 +96,24 @@ Page({
   },
 
   // 获取形成信息的筛选条件
-  whereConditiion() {
+  getConditiion() {
     // 查询条件
     let whereConditiion = {}
     let searchTerm = wx.getStorageSync('searchTerm')
+
     // 类型
-    whereConditiion.type = searchTerm.radio
+    if(searchTerm.radio){
+      whereConditiion.type = searchTerm.radio
+    }
+
     // 出发地址
     if(searchTerm.departPlace) {
       whereConditiion.departPlace = db.RegExp({
         regexp: searchTerm.departPlace,
         options: 'i'
       })
-    } 
-    // 到达地址 
+    }
+    // 到达地址
     if(searchTerm.destination) {
       whereConditiion.destination = db.RegExp({
         regexp: searchTerm.destination,
@@ -108,21 +121,17 @@ Page({
       })
     }
     // 时间
-    let { beginTime, endTime } = searchTerm.timeStamp
-    console.log('beginTime', beginTime)
-    console.log('endTime', endTime)
-    // date 数据类型为 Object  时间戳数据类型为 Number
-    if(beginTime && endTime) {
-      return whereConditiion.beginTime = _.gte(new Date(beginTime)).and(_.lte(new Date(endTime)))
-    } else if(beginTime) { // 只查询开始时间
-      return whereConditiion.endTime = _.gte(new Date(beginTime))
-    } else if(endTime) { // 只查询结束时间
-      return whereConditiion.beginTime = _.lte(new Date(endTime))
+    if(searchTerm.timeStamp){
+      let { beginTime, endTime } = searchTerm.timeStamp
+      // date 数据类型为 Object  时间戳数据类型为 Number
+
+      if(beginTime) { // 只查询开始时间
+        whereConditiion.endTime = _.gte(new Date(beginTime))
+      }
+      if(endTime) { // 只查询结束时间
+        whereConditiion.beginTime = _.lte(new Date(endTime))
+      }
     }
-
-    // 清空行程信息
-    this.setData({ postList: [] })
-
     return whereConditiion
   },
 
@@ -172,12 +181,5 @@ Page({
       duration: 500
     })
     this.getPostList()
-  },
-
-  /**
-   * 监听页面卸载
-   */
-  onUnload() {
-    wx.removeStorageSync('searchTerm')
   }
 })

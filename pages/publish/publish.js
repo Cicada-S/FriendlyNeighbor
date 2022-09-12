@@ -124,8 +124,8 @@ Page({
     })
 
     if(!flag) {
-      data.beginTime = new Date(timeStamp.beginTime)
-      data.endTime = new Date(timeStamp.endTime)
+      data.beginTime = timeStamp.beginTime
+      data.endTime = timeStamp.endTime
 
       wx.showLoading({
         title: '发布中...'
