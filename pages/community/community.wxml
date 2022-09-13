@@ -25,6 +25,8 @@
           <view class="name">{{item.name}}</view>
           <view class="city">{{item.province}}-{{item.city}}-{{item.county}}</view>
         </view>
+        <!-- 申请加入 -->
+        <view wx:if="{{isChoice}}" class="joinBtn" bindtap="onJoin" id="{{item._id}}">申请</view>
       </view>
     </BlockBox>
   </view>
@@ -43,5 +45,5 @@
   </van-action-sheet>
 
   <!-- 底部按钮 -->
-  <BottomBtn text="添加小区" bind:onClick="onClick" />
+  <BottomBtn wx:if="{{!isChoice}}" text="添加小区" bind:onClick="onClick" />
 </view>

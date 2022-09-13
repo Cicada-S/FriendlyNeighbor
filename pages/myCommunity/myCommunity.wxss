@@ -1,0 +1,5 @@
+/* pages/myCommunity/myCommunity.wxss */
+.container {
+  width: 100vw;
+  padding: 20rpx 30rpx 0;
+}

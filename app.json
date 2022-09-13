@@ -9,7 +9,8 @@
     "pages/post/post",
     "pages/community/community",
     "pages/addCommunity/addCommunity",
-    "pages/communityInfo/communityInfo"
+    "pages/communityInfo/communityInfo",
+    "pages/myCommunity/myCommunity"
   ],
   "window": {
     "backgroundTextStyle": "light",

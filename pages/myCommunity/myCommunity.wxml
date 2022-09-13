@@ -1,0 +1,4 @@
+<!--pages/myCommunity/myCommunity.wxml-->
+<view class="container">
+  <button bindtap="joinCommunity">加入小区</button>  
+</view>

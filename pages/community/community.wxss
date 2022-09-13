@@ -24,6 +24,7 @@
 }
 .container .communityList .communityItem {
   display: flex;
+  align-items: center;
   padding: 20rpx;
 }
 .container .communityList .communityItem .image {
@@ -41,4 +42,13 @@
 .container .communityList .communityItem .content .city {
   color: var(--Color-FontA);
   font-size: 28rpx;
+}
+.container .communityList .communityItem .joinBtn {
+  width: 100rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  color: var(--Color-White);
+  border-radius: 10rpx;
+  background-color: var(--Color-MainA);
 }

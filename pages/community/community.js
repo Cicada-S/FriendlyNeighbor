@@ -10,12 +10,21 @@ const Community = db.collection('Community')
 Page({
   data: {
     bottomLift: app.globalData.bottomLift,
+    isChoice: false, // 是否为选择小区状态
     search: '', // 搜索
     address: [], // 地区
     area: '', // 区
     show: false, // 选择器的显示状态
     areaList, // 全国城市的信息
     communityList: [] // 小区列表
+  },
+
+  /**
+   * 页面加载
+   */
+  onLoad(options) {
+    console.log('options.type',options.type)
+    if(options.type) this.setData({ isChoice: true })
   },
 
   /**
@@ -110,6 +119,20 @@ Page({
   onClick() {
     wx.navigateTo({
       url: '/pages/addCommunity/addCommunity'
+    })
+  },
+
+  // 申请加入小区
+  onJoin(event) {
+    console.log(event.target.id)
+    wx.showModal({
+      title: '提示',
+      content: '确定申请加入该小区吗？',
+      success (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        }
+      }
     })
   }
 })
