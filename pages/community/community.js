@@ -99,6 +99,13 @@ Page({
     })
   },
 
+  // 跳转到小区详情
+  toCommunityInfo(event) {
+    wx.navigateTo({
+      url: `/pages/communityInfo/communityInfo?id=${event.currentTarget.id}`
+    })
+  },
+
   // 跳转到添加小区
   onClick() {
     wx.navigateTo({

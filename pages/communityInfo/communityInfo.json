@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "BlockBox": "/components/BlockBox/BlockBox",
+    "van-search": "@vant/weapp/search/index"
+  },
+  "navigationBarTitleText": "社区详情"
+}

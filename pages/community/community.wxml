@@ -21,7 +21,7 @@
     <BlockBox wx:for="{{communityList}}" wx:key="_id">
       <view class="communityItem">
         <image class="image" src="{{item.qrCodePath}}" bindtap="onPreview" id="{{item.qrCodePath}}" />
-        <view class="content">
+        <view class="content" bindtap="toCommunityInfo" id="{{item._id}}">
           <view class="name">{{item.name}}</view>
           <view class="city">{{item.province}}-{{item.city}}-{{item.county}}</view>
         </view>

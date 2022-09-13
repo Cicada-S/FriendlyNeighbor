@@ -1,0 +1,41 @@
+/* pages/communityInfo/communityInfo.wxss */
+.container {
+  width: 100vw;
+}
+.container .search {
+  position: fixed;
+  width: 100%;
+}
+.container .memberList {
+  padding: 120rpx 30rpx 0;
+}
+.container .memberList .memberItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+}
+.container .memberList .memberItem .avatar {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  background-color: var(--Color-MainA);
+}
+.container .memberList .memberItem .name {
+  flex: 1;
+  margin-left: 20rpx;
+}
+.container .memberList .memberItem .btn {
+  width: 100rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  color: var(--Color-White);
+  border-radius: 10rpx;
+}
+.container .memberList .memberItem .adopt {
+  background-color: var(--Color-MainA);
+}
+.container .memberList .memberItem .delete {
+  background-color: var(--Color-ViceA);
+}

@@ -1,0 +1,22 @@
+<!--pages/communityInfo/communityInfo.wxml-->
+<view class="container">
+  <van-search
+    custom-class="search"
+    model:value="{{ search }}"
+    shape="round"
+    placeholder="Search..."
+    bind:search="onSearch"
+  />
+
+  <!-- 成员 -->
+  <view class="memberList">
+    <BlockBox padding="20rpx 20rpx 0">
+      <view class="memberItem" wx:for="{{memberList}}" wx:key="_id">
+        <image class="avatar" src="{{item.avatarUrl}}" />
+        <view class="name">{{item.nickName}}</view>
+        <view wx:if="{{item.status}}" class="adopt btn" bindtap="onAdopt" id="{{item._id}}">通过</view>
+        <view wx:else class="delete btn" bindtap="onDetele" id="{{item._id}}">删除</view>
+      </view>
+    </BlockBox>
+  </view>
+</view>

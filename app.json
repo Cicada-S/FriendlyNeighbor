@@ -8,7 +8,8 @@
     "pages/myPost/myPost",
     "pages/post/post",
     "pages/community/community",
-    "pages/addCommunity/addCommunity"
+    "pages/addCommunity/addCommunity",
+    "pages/communityInfo/communityInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",
