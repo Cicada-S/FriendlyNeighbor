@@ -91,6 +91,14 @@ Page({
     wx.hideLoading()
   },
 
+  // 点击二维码放大预览的处理函数
+  onPreview(event) {
+    wx.previewImage({
+      current: event.target.id,
+      urls: [event.target.id]
+    })
+  },
+
   // 跳转到添加小区
   onClick() {
     wx.navigateTo({
