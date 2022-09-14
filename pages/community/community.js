@@ -6,6 +6,7 @@ import { areaList } from '@vant/area-data'
 
 const db = wx.cloud.database()
 const Community = db.collection('Community')
+const UserCommunity = db.collection('UserCommunity')
 
 Page({
   data: {
@@ -124,13 +125,25 @@ Page({
 
   // 申请加入小区
   onJoin(event) {
-    console.log(event.target.id)
+    let { dataset, id } = event.currentTarget
+    let userInfo = wx.getStorageSync('currentUser')
+
     wx.showModal({
       title: '提示',
       content: '确定申请加入该小区吗？',
-      success (res) {
+      async success (res) {
         if (res.confirm) {
-          console.log('用户点击确定')
+          // 创建申请表
+          await UserCommunity.add({data: {
+            nickName: userInfo.nick_name,
+            avatarUrl: userInfo.avatar_url,
+            communityId: id,
+            communityName: dataset.name,
+            reasonsForApplying: '',
+            status: 1,
+            createTime: new Date()
+          }})
+          wx.navigateBack({ delta: 1 })
         }
       }
     })
