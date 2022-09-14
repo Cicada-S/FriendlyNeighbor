@@ -144,9 +144,17 @@ Page({
 
   // 跳转到发布行程信息
   toPublish() {
-    wx.navigateTo({
-      url: '/pages/publish/publish'
-    })
+    if(wx.getStorageSync('myCommunity')) {
+      wx.navigateTo({
+        url: '/pages/publish/publish'
+      })
+    } else {
+      wx.showToast({
+        title: '您还未加入小区！',
+        icon: 'error',
+        duration: 2000
+      })
+    }
   },
 
   /**

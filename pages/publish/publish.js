@@ -89,12 +89,13 @@ Page({
     } = this.data
 
     let userInfo = wx.getStorageSync('currentUser')
+    let myCommunity = wx.getStorageSync('myCommunity')
 
     let data = {
-      communityId: userInfo.communityId,
+      communityId: myCommunity._id,
       nick_name: userInfo.nick_name,
       avatar_url: userInfo.avatar_url,
-      communityName: userInfo.communityName,
+      communityName: myCommunity.name,
       type: radio,
       numberOfPeople,
       phone,
