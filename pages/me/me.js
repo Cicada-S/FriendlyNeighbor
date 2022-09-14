@@ -1,7 +1,11 @@
 // pages/me/me.js
+const db = wx.cloud.database()
+const UserCommunity = db.collection('UserCommunity')
+
 Page({
   data: {
-    userInfo: {}
+    userInfo: {}, // 用户信息
+    community: {} // 用户小区
   },
 
   /**
@@ -11,6 +15,15 @@ Page({
     // 获取本地的用户信息
     let userInfo = wx.getStorageSync('currentUser')
     this.setData({ userInfo })
+    this.getUserCommunity(userInfo._openid)
+  },
+
+  // 获取所在的小区
+  async getUserCommunity(_openid) {
+    let { data } = await UserCommunity.where({_openid}).get() 
+    data.forEach(item => {
+      if(!item.status) this.setData({community: item})
+    })
   },
 
   // 查看行程信息
@@ -29,7 +42,7 @@ Page({
 
   // 跳转到我的小区
   toMyCommunity() {
-    if(this.data.userInfo.communityName) {
+    if(this.data.community) {
       wx.navigateTo({
         url: '/pages/myCommunity/myCommunity'
       })

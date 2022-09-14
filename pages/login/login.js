@@ -6,6 +6,7 @@ Page({
   data: {
     icon: '/static/images/login/icon.png',
     isLogin: true,
+    userInfo: {},
     user: {},
     coordinate: [
       {x: -20, y: 80},
@@ -29,8 +30,8 @@ Page({
       // 允许授权
       success: res => {
         let user = {
-          communityId: 'b69f67c06308217312ba80a2010779b0',
-          communityName: '汤臣一品',
+          // communityId: 'b69f67c06308217312ba80a2010779b0',
+          // communityName: '汤臣一品',
           avatar_url: res.userInfo.avatarUrl,
           nick_name: res.userInfo.nickName,
           gender: res.userInfo.gender,

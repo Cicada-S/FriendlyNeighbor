@@ -5,7 +5,7 @@
       <image class="avatar" src="{{userInfo.avatar_url}}" />
       <view class="info">
         <text class="nickName">{{userInfo.nick_name}}</text>
-        <text class="autograph">{{userInfo.communityName}}</text>
+        <text class="autograph">{{community.communityName?community.communityName:'快去加入小区吧~'}}</text>
       </view>
     </view>
     <van-grid border="{{false}}">
@@ -25,7 +25,7 @@
   <BlockBox>
     <van-cell-group border="{{false}}">
       <van-cell
-        title="我的小区{{!userInfo.communityName?'（请选择你的小区）':''}}"
+        title="我的小区{{!community?'（请选择你的小区）':''}}"
         is-link
         border="{{false}}"
         bindtap="toMyCommunity"
