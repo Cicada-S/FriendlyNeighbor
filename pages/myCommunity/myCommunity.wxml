@@ -1,4 +1,11 @@
 <!--pages/myCommunity/myCommunity.wxml-->
 <view class="container">
-  <button bindtap="joinCommunity">加入小区</button>  
+  <BlockBox padding="20rpx">
+    <view class="communityInfo">
+      <image class="qrCode" src="{{communityInfo.qrCodePath}}" />
+      <view class="name">{{communityInfo.name}}</view>
+      <view class="city">{{communityInfo.province}}-{{communityInfo.city}}-{{communityInfo.county}}</view>
+      <button class="change" bindtap="changeCommunity">更换小区</button>  
+    </view>
+  </BlockBox>
 </view>

@@ -25,7 +25,7 @@
   <BlockBox>
     <van-cell-group border="{{false}}">
       <van-cell
-        title="我的小区{{!userInfo.communityName?'（请选择你的社区）':''}}"
+        title="我的小区{{!userInfo.communityName?'（请选择你的小区）':''}}"
         is-link
         border="{{false}}"
         bindtap="toMyCommunity"
