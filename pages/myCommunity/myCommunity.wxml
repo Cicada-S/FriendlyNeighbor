@@ -5,7 +5,24 @@
       <image class="qrCode" src="{{communityInfo.qrCodePath}}" />
       <view class="name">{{communityInfo.name}}</view>
       <view class="city">{{communityInfo.province}}-{{communityInfo.city}}-{{communityInfo.county}}</view>
-      <button class="change" bindtap="changeCommunity">更换小区</button>  
+      <button wx:if="{{!application.communityName}}" class="change" bindtap="changeCommunity">更换小区</button>
+      <view wx:else class="apply">
+        <view class="communityName">{{application.communityName}}</view>
+        <view class="status">申请中</view>
+        <view class="cancel">取消</view>
+      </view>
+    </view>
+  </BlockBox>
+
+  <!-- 管理员显示 -->
+  <BlockBox wx:if="{{true}}" padding="20rpx">
+    <view class="title">成员</view>
+    <view class="memberList">
+      <view class="memberItem">
+        <iamge class="avatar" src="" />
+        <view class="name">Cicada</view>
+        <view class="kick">踢出</view>
+      </view>
     </view>
   </BlockBox>
 </view>

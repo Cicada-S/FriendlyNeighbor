@@ -11,7 +11,6 @@
 .container .communityInfo .qrCode {
   width: 200rpx;
   height: 200rpx;
-  background-color: var(--Color-MainA);
 }
 .container .communityInfo .name {
   font-size: 36rpx;
@@ -24,4 +23,32 @@
   letter-spacing: 10rpx;
   margin-top: 30rpx;
   background-color: var(--Color-MainA);
+}
+.container .apply {
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20rpx;
+  margin-top: 30rpx;
+  border-radius: 10rpx;
+}
+.container .apply .communityName {
+  font-size: 36rpx;
+}
+.container .apply .status {
+  flex: 1;
+  color: var(--Color-FontA);
+  font-size: 28rpx;
+  padding-left: 20rpx;
+}
+.container .apply .cancel {
+  width: 120rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: var(--Color-ViceA);
+  border-radius: 10rpx;
+  border: 2rpx solid var(--Color-ViceA);
 }
