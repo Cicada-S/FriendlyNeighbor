@@ -5,14 +5,8 @@ const Community = db.collection('Community')
 
 Page({
   data: {
-    communityInfo: {
-      qrCodePath: '',
-      name: '三水一品',
-      province: '广东省',
-      city: '佛山市',
-      county: '三水区'
-    },
-    application: {}
+    communityInfo: {}, // 所在的小区
+    application: {} // 申请的小区
   },
 
   /**
@@ -22,7 +16,11 @@ Page({
     console.log('options', options)
   },
 
+  /**
+   * 页面显示
+   */
   onShow() {
+    // 获取申请表
     this.getUserCommunity()
   },
   
@@ -51,5 +49,35 @@ Page({
     wx.navigateTo({
       url: '/pages/community/community?type=join'
     })
+  },
+
+  // 取消申请
+  onCancel(event) {
+    wx.showModal({
+      title: '提示',
+      content: '是否取消加入该小区的申请！',
+      success: (res) => {
+        if (res.confirm) {
+          // 删除申请数据表 并更新data
+          UserCommunity.doc(event.target.id).remove()
+          this.setData({ application: {} })
+        }
+      }
+    })
+  },
+
+  // 驳回申请
+  onReject(event) {
+    console.log('event', event)
+  },
+
+  // 通过申请
+  onAdopt(event) {
+    console.log('event', event)
+  },
+
+  // 踢除成员
+  onKick(event) {
+    console.log('event', event)
   }
 })

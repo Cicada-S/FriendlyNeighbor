@@ -7,6 +7,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 30rpx;
 
     .qrCode {
       width: 200rpx;
@@ -24,7 +25,6 @@
     width: 100%;
     color: var(--Color-White);
     letter-spacing: 10rpx;
-    margin-top: 30rpx;
     background-color: var(--Color-MainA);
   }
 
@@ -35,7 +35,6 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 20rpx;
-    margin-top: 30rpx;
     border-radius: 10rpx;
 
     .communityName {
@@ -61,6 +60,38 @@
   }
 
   .memberItem {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20rpx 0;
     
+    .avatar {
+      width: 60rpx;
+      height: 60rpx;
+      border-radius: 50%;
+      background-color: var(--Color-MainA);
+    }
+
+    .name {
+      flex: 1;
+      padding-left: 20rpx;
+    }
+
+    .btn {
+      width: 120rpx;
+      height: 60rpx;
+      line-height: 60rpx;
+      text-align: center;
+      color: var(--Color-ViceA);
+      border-radius: 10rpx;
+      border: 2rpx solid var(--Color-ViceA);
+    }
+    
+    .adopt {
+      margin-left: 20rpx;
+      color: var(--Color-MainA);
+      border: 2rpx solid var(--Color-MainA);
+    }
   }
 }
