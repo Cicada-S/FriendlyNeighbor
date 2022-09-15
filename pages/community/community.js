@@ -51,9 +51,16 @@ Page({
 
     // 获取小区
     Community.where(data).get().then(res => {
-      this.setData({
-        communityList: res.data
-      })
+      // 如果为选择小区 则不渲染所在的小区
+      let data = res.data
+      if(this.data.isChoice) {
+        let communityId = wx.getStorageSync('myCommunity').communityId
+        data = res.data.filter(item => {
+          if(item._id !== communityId) return item
+        })
+      }
+
+      this.setData({ communityList: data })
     })
   },
 
@@ -111,6 +118,8 @@ Page({
 
   // 跳转到小区详情
   toCommunityInfo(event) {
+    // 判断为选择小区 则不跳转
+    if(this.data.isChoice) return
     wx.navigateTo({
       url: `/pages/communityInfo/communityInfo?id=${event.currentTarget.id}`
     })
