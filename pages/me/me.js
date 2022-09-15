@@ -22,7 +22,11 @@ Page({
   async getUserCommunity(_openid) {
     let { data } = await UserCommunity.where({_openid}).get() 
     data.forEach(item => {
-      if(!item.status) this.setData({community: item})
+      // 判断是否已经加入小区
+      if(!item.status) {
+        this.setData({community: item})
+        wx.setStorageSync('myCommunity', item)
+      }
     })
   },
 

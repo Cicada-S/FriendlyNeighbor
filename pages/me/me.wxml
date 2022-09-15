@@ -5,7 +5,7 @@
       <image class="avatar" src="{{userInfo.avatar_url}}" />
       <view class="info">
         <text class="nickName">{{userInfo.nick_name}}</text>
-        <text class="autograph">{{community.communityName?community.communityName:'快去加入小区吧~'}}</text>
+        <text class="autograph">{{community._id?community.communityName:'快去加入小区吧~'}}</text>
       </view>
     </view>
     <van-grid border="{{false}}">
