@@ -10,6 +10,11 @@
   .memberList {
     padding: 120rpx 30rpx 0;
 
+    .title {
+      font-weight: 550;
+      margin-bottom: 20rpx;
+    } 
+
     .memberItem {
       display: flex;
       align-items: center;
@@ -17,32 +22,34 @@
       margin-bottom: 30rpx;
       
       .avatar {
-        width: 50rpx;
-        height: 50rpx;
+        width: 60rpx;
+        height: 60rpx;
         border-radius: 50%;
-        background-color: var(--Color-MainA);
+        margin-right: 20rpx;
       }
 
       .name {
         flex: 1;
-        margin-left: 20rpx;
       }
 
       .btn {
-        width: 100rpx;
-        height: 50rpx;
-        line-height: 50rpx;
+        width: 120rpx;
+        height: 60rpx;
+        line-height: 60rpx;
         text-align: center;
-        color: var(--Color-White);
         border-radius: 10rpx;
       }
 
       .adopt {
-        background-color: var(--Color-MainA);
+        color: var(--Color-MainA);
+        border: 2rpx solid var(--Color-MainA);
+        margin-left: 20rpx;
       }
 
+      .reject,
       .delete {
-        background-color: var(--Color-ViceA);
+        color: var(--Color-ViceA);
+        border: 2rpx solid var(--Color-ViceA);
       }
     }
   }

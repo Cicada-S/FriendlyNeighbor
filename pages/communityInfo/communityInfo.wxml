@@ -10,12 +10,26 @@
 
   <!-- 成员 -->
   <view class="memberList">
-    <BlockBox padding="20rpx 20rpx 0">
+    <!-- 管理员 -->
+    <BlockBox padding="20rpx 20rpx 0" wx:if="{{adminList.length}}">
+      <view class="title">管理员</view>
+      <view class="memberItem" wx:for="{{adminList}}" wx:key="_id">
+        <view class="name">{{item.managerNickName}}</view>
+        <block wx:if="{{item.status}}">
+          <view class="reject btn" bindtap="onReject" id="{{item._id}}">驳回</view>
+          <view class="adopt btn" bindtap="onAdopt" id="{{item._id}}">通过</view>
+        </block>
+        <view wx:else class="delete btn" bindtap="onDetele" id="{{item._id}}">免职</view>
+      </view>
+    </BlockBox>
+
+    <!-- 成员 -->
+    <BlockBox padding="20rpx 20rpx 0" wx:if="{{memberList.length}}">
+      <view class="title">普通成员</view>
       <view class="memberItem" wx:for="{{memberList}}" wx:key="_id">
         <image class="avatar" src="{{item.avatarUrl}}" />
         <view class="name">{{item.nickName}}</view>
-        <view wx:if="{{item.status}}" class="adopt btn" bindtap="onAdopt" id="{{item._id}}">通过</view>
-        <view wx:else class="delete btn" bindtap="onDetele" id="{{item._id}}">删除</view>
+        <view class="delete btn" bindtap="onKick" id="{{item._id}}">踢除</view>
       </view>
     </BlockBox>
   </view>

@@ -9,6 +9,10 @@
 .container .memberList {
   padding: 120rpx 30rpx 0;
 }
+.container .memberList .title {
+  font-weight: 550;
+  margin-bottom: 20rpx;
+}
 .container .memberList .memberItem {
   display: flex;
   align-items: center;
@@ -16,26 +20,28 @@
   margin-bottom: 30rpx;
 }
 .container .memberList .memberItem .avatar {
-  width: 50rpx;
-  height: 50rpx;
+  width: 60rpx;
+  height: 60rpx;
   border-radius: 50%;
-  background-color: var(--Color-MainA);
+  margin-right: 20rpx;
 }
 .container .memberList .memberItem .name {
   flex: 1;
-  margin-left: 20rpx;
 }
 .container .memberList .memberItem .btn {
-  width: 100rpx;
-  height: 50rpx;
-  line-height: 50rpx;
+  width: 120rpx;
+  height: 60rpx;
+  line-height: 60rpx;
   text-align: center;
-  color: var(--Color-White);
   border-radius: 10rpx;
 }
 .container .memberList .memberItem .adopt {
-  background-color: var(--Color-MainA);
+  color: var(--Color-MainA);
+  border: 2rpx solid var(--Color-MainA);
+  margin-left: 20rpx;
 }
+.container .memberList .memberItem .reject,
 .container .memberList .memberItem .delete {
-  background-color: var(--Color-ViceA);
+  color: var(--Color-ViceA);
+  border: 2rpx solid var(--Color-ViceA);
 }
