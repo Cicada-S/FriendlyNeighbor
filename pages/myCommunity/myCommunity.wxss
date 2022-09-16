@@ -35,12 +35,12 @@
 }
 .container .apply .communityName {
   font-size: 36rpx;
+  margin-right: 20rpx;
 }
 .container .apply .status {
   flex: 1;
   color: var(--Color-FontA);
   font-size: 28rpx;
-  padding-left: 20rpx;
 }
 .container .apply .cancel {
   width: 120rpx;
@@ -50,6 +50,13 @@
   color: var(--Color-ViceA);
   border-radius: 10rpx;
   border: 2rpx solid var(--Color-ViceA);
+}
+.container .applyAdmin {
+  width: 100%;
+  color: var(--Color-White);
+  letter-spacing: 10rpx;
+  background-color: var(--Color-MainA);
+  margin-top: 30rpx;
 }
 .container .memberItem {
   width: 100%;
