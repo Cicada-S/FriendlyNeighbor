@@ -23,13 +23,14 @@ Page({
     let member = await UserCommunity.where({communityId: id, status: 0}).get()
     let admin = await CommunityManager.where({communityId: id}).get()
 
-    let newMember = [] 
+    // 将管理员的普通用户去除
+    let newMember = admin.data.length ? [] : member.data
     member.data.forEach(mItem => {
       admin.data.forEach(aItem => {
         if(mItem._openid !== aItem._openid) newMember.push(mItem)
       })
     })
-
+   
     this.setData({
       memberList: newMember,
       adminList: admin.data
