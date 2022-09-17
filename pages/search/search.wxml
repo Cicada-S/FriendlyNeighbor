@@ -33,7 +33,7 @@
   <!-- 时间 -->
   <van-cell-group border="{{ false }}">
     <van-cell title="最早时间" border="{{ false }}" is-link bindtap="selectTime" id="beginTime" value="{{beginTime}}" />
-    <van-cell title="最迟时间" border="{{ false }}" is-link bindtap="selectTime" id="endTime" value="{{endTime}}" />
+    <van-cell title="最晚时间" border="{{ false }}" is-link bindtap="selectTime" id="endTime" value="{{endTime}}" />
   </van-cell-group>
 
   <!-- 按钮 -->

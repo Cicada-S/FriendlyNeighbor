@@ -7,13 +7,13 @@ Page({
   data: {
     bottomLift: app.globalData.bottomLift,
     radio: '0', // 类型
-    numberOfPeople: '', // 人数/座位
+    numberOfPeople: 1, // 人数/座位
     phone: '', // 手机号
-    price: '', // 价格
+    price: 0, // 价格
     departPlace: '', // 出发地
     destination: '', // 到达地
     beginTime: '', // 最早出发时间
-    endTime: '', // 最迟出发时间
+    endTime: '', // 最晚出发时间
     remark: '', // 备注
     // 时间选择器
     timeType: '', // 时间类型 开始 结束
@@ -32,7 +32,10 @@ Page({
   onLoad(options) {
     console.log('页面加载')
     // 数据回显
-    this.dataEcho('people')
+    if(wx.getStorageSync('defaultType')){
+      this.dataEcho(wx.getStorageSync('defaultType'))
+    }
+
   },
 
   // 切换类型
@@ -45,15 +48,16 @@ Page({
 
   // 数据回显
   dataEcho(type) {
-    let { phone, price, departPlace, destination, remark, numberOfPeople } = wx.getStorageSync(type)
-    this.setData({
-      phone,
-      price,
-      departPlace,
-      destination,
-      remark,
-      numberOfPeople
-    })
+    if(wx.getStorageSync(type)){
+      let { phone, price, departPlace, destination, numberOfPeople } = wx.getStorageSync(type)
+      this.setData({
+        phone,
+        price,
+        departPlace,
+        destination,
+        numberOfPeople
+      })
+    }
   },
 
   // 选择时间
@@ -89,13 +93,12 @@ Page({
     } = this.data
 
     let userInfo = wx.getStorageSync('currentUser')
-    let myCommunity = wx.getStorageSync('myCommunity')
 
     let data = {
-      communityId: myCommunity._id,
+      communityId: userInfo.userCommunity.communityId,
       nick_name: userInfo.nick_name,
       avatar_url: userInfo.avatar_url,
-      communityName: myCommunity.name,
+      communityName: userInfo.userCommunity.name,
       type: radio,
       numberOfPeople,
       phone,
@@ -113,7 +116,7 @@ Page({
     let flag = false
     Object.values(empty).forEach((value, index) => {
       if(flag) return
-      let text = [radio==0?'座位':'人数', '手机号', '价格', '出发地', '到达地', '最早时间', '最迟时间']
+      let text = [radio==0?'座位':'人数', '手机号', '价格', '出发地', '到达地', '最早时间', '最晚时间']
       if(!String(value).trim()) {
         flag = true
         return wx.showToast({
@@ -132,7 +135,15 @@ Page({
         title: '发布中...'
       })
       let type = data.type === '0' ? 'people' : 'vehicle'
+
+      //如果是人找车，价格设置为0
+      if(data.type === '0'){
+        data.price = 0
+      }
+
       wx.setStorageSync(type, data)
+      wx.setStorageSync('defaultType', type)
+      
       // 添加行程信息
       wx.cloud.callFunction({
         name: 'addPost',

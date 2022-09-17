@@ -17,7 +17,7 @@ Page({
   /**
    * 页面加载
    */
-  onShow() {
+  async onShow() {
 
     this.setData({
       pageIndex: 1,
@@ -25,24 +25,46 @@ Page({
       reachBottom: false
     })
 
-    // 判断用户是否登录过
-    this.getUserInfo()
+    // 获取用户信息
+    await this.getUserInfo()
+
+    // 获取用户社区信息
+    await this.getUserCommunity()
+    
     // 获取行程信息
     this.getPostList()
   },
 
+  getUserCommunity(){
+    return new Promise((resolve, reject) => {
+    let currentUser = wx.getStorageSync('currentUser')
+      db.collection('UserCommunity').where({'_openid': currentUser._openid, 'status': 0}).get()
+      .then(res => {
+        if(res.data.length >= 1) {
+          currentUser.userCommunity = res.data[0]
+          wx.setStorageSync('currentUser', currentUser)
+        }
+        resolve(100);
+      })
+
+    });
+  },
 
   // 判断用户是否登录过
   getUserInfo() {
-    user.get().then(res => {
-      if(res.data.length === 1) {
-        wx.setStorageSync('currentUser', res.data[0])
-      } else {
-        wx.navigateTo({
-          url: '/pages/login/login'
-        })
-      }
-    })
+    return new Promise((resolve, reject) => {
+      user.get().then(res => {
+        if(res.data.length === 1) {
+          wx.setStorageSync('currentUser', res.data[0])
+          resolve(100);
+        } else {
+          resolve(100);
+          wx.navigateTo({
+            url: '/pages/login/login'
+          })
+        }
+      })
+    });
   },
 
   // 搜索
@@ -54,13 +76,17 @@ Page({
 
   // 获取行程信息
   getPostList() {
-    console.log('getPostList')
+
     // 查询条件
     let whereConditiion = {}
     // 判断本地是否有 searchTerm
     if(wx.getStorageSync('searchTerm')) whereConditiion = this.getConditiion()
 
-  //  whereConditiion.endTime = _.gte(new Date(2022,8,10,17,19,30))
+    //只能查询自己的社区或者关注社区的信息
+    let currentUser = wx.getStorageSync('currentUser')
+    let communityIds = []
+    communityIds.push(currentUser.userCommunity.communityId)
+    whereConditiion.communityId = _.in(communityIds)
 
     // skip(20 * (pageIndex - 1)).limit(20)
     const skin = this.data.pageSize * (this.data.pageIndex - 1)
@@ -79,7 +105,7 @@ Page({
 
       // 处理时间
       res.data.forEach(item => {
-        // 处理最早时间和最迟时间
+        // 处理最早时间和最晚时间
         item.beginTime = toDates(item.beginTime, 'display')
         item.endTime = toDates(item.endTime, 'display')
         // 处理发布时间
@@ -144,7 +170,9 @@ Page({
 
   // 跳转到发布行程信息
   toPublish() {
-    if(wx.getStorageSync('myCommunity')) {
+    
+    let currentUser = wx.getStorageSync('currentUser')
+    if(currentUser.userCommunity) {
       wx.navigateTo({
         url: '/pages/publish/publish'
       })

@@ -7,7 +7,7 @@
     <view class="content">
       <view class="namePrice">
         <view class="name">{{postItem.nick_name}}</view>
-        <view class="price">¥ {{postItem.price}}</view>
+        <view wx:if="{{postItem.type==0}}" class="price">¥ {{postItem.price}}</view>
       </view>
       <view class="location">
         <text>出发：{{postItem.departPlace}}</text>

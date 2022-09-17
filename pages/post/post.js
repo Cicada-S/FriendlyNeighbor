@@ -37,7 +37,7 @@ Page({
   // 获取行程信息信息
   async getPostInfo(id) {
     let { data } = await HitchhikingInformation.doc(id).get()
-    // 处理最早时间和最迟时间
+    // 处理最早时间和最晚时间
     data.beginTime = toDates(data.beginTime, 'display')
     data.endTime = toDates(data.endTime, 'display')
     // 处理发布时间

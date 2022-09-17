@@ -12,7 +12,7 @@
   </BlockBox>
 
   <!-- 人数 -->
-  <BlockBox>
+  <BlockBox >
     <view class="box">
       <view class="title">{{radio==0?'座位':'人数'}}</view>
       <van-field
@@ -40,8 +40,8 @@
   </BlockBox>
 
   <!-- 价格 -->
-  <BlockBox>
-    <view class="box">
+  <BlockBox  wx:if="{{radio==0}}">
+    <view class="box" >
       <view class="title">价格</view>
       <van-field
         input-class="inputClass"
@@ -76,9 +76,9 @@
   </BlockBox>
 
   <!-- 时间 -->
-  <BlockBox padding="10rpx 0 0" title="时间">
+  <BlockBox padding="10rpx 0 0" title="出发时间">
     <van-cell title="最早" is-link bindtap="selectTime" id="beginTime" value="{{beginTime}}" />
-    <van-cell title="最迟" is-link bindtap="selectTime" id="endTime" value="{{endTime}}" />
+    <van-cell title="最晚" is-link bindtap="selectTime" id="endTime" value="{{endTime}}" />
   </BlockBox>
 
   <!-- 时间选择器 -->

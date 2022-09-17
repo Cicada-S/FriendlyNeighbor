@@ -25,7 +25,7 @@ Page({
     }).get()
 
     result.data.forEach(item => {
-      // 处理最早时间和最迟时间
+      // 处理最早时间和最晚时间
       item.beginTime = toDates(item.beginTime, 'display')
       item.endTime = toDates(item.endTime, 'display')
       // 处理发布时间

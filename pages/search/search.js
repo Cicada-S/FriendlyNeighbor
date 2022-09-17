@@ -10,7 +10,7 @@ Page({
     // 时间选择器
     show: false, // 时间选择器的显示状态
     beginTime: '', // 最早出发时间
-    endTime: '', // 最迟出发时间
+    endTime: '', // 最晚出发时间
     timeType: '', // 时间类型 开始 结束
     timeStamp: { // 用于传给后端的时间戳
       beginTime: '',
