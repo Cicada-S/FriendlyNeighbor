@@ -30,10 +30,10 @@
   <!-- 管理员显示 申请中 -->
   <BlockBox wx:if="{{adminInfo._id&&applyMember.length}}" padding="20rpx">
     <view class="title">申请中</view>
-     <view class="memberList" wx:for="{{3}}">
+     <view class="memberList" wx:for="{{applyMember}}" wx:key="_id">
       <view class="memberItem">
-        <iamge class="avatar" src="" />
-        <view class="name">Cicada</view>
+        <image class="avatar" src="{{item.avatarUrl}}" />
+        <view class="name">{{item.nickName}}</view>
         <view class="btn reject" bindtap="onReject" id="{{itme._id}}">驳回</view>
         <view class="btn adopt" bindtap="onAdopt" id="{{itme._id}}">通过</view>
       </view>
@@ -43,10 +43,10 @@
   <!-- 管理员显示 成员 -->
   <BlockBox wx:if="{{adminInfo._id&&memberList.length}}" padding="20rpx">
     <view class="title">成员</view>
-    <view class="memberList" wx:for="{{3}}">
+    <view class="memberList" wx:for="{{memberList}}" wx:key="_id">
       <view class="memberItem">
-        <iamge class="avatar" src="" />
-        <view class="name">Cicada</view>
+        <image class="avatar" src="{{item.avatarUrl}}" />
+        <view class="name">{{item.nickName}}</view>
         <view class="btn kick" bindtap="onKick" id="{{itme._id}}">踢除</view>
       </view>
     </view>

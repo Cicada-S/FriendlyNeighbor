@@ -69,7 +69,6 @@
   width: 60rpx;
   height: 60rpx;
   border-radius: 50%;
-  background-color: var(--Color-MainA);
 }
 .container .memberItem .name {
   flex: 1;

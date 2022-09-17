@@ -59,9 +59,10 @@ Page({
 
   // 获取成员
   getMemberList() {
+    console.log(this.data.adminInfo._openid)
     UserCommunity.where({
       communityId: wx.getStorageSync('myCommunity').communityId,
-      _openid: _.eq(this.data.adminInfo._openid)
+      _openid: _.neq(this.data.adminInfo._openid)
     }).orderBy('createTime', 'desc').get()
     .then(res => {
       let memberList = []
