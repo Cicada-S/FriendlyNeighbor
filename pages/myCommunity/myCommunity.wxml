@@ -3,7 +3,7 @@
   <BlockBox padding="20rpx">
     <view class="communityInfo" wx:if="{{communityInfo._id}}">
       <image class="qrCode" src="{{communityInfo.qrCodePath}}" />
-      <view class="name">{{communityInfo.name}}</view>
+      <view class="name">{{communityInfo.name}}{{adminInfo._id?'（管理员）':''}}</view>
       <view class="city">{{communityInfo.province}}-{{communityInfo.city}}-{{communityInfo.county}}</view>
     </view>
 
@@ -18,7 +18,7 @@
     </block>
 
     <!-- 管理员申请 -->
-    <block wx:if="{{communityInfo._id&&!application._id}}">
+    <block wx:if="{{communityInfo._id&&!adminInfo._id}}">
       <button wx:if="{{!applyAdmin._id}}" class="applyAdmin" bindtap="applyAdmin">申请成为管理员</button>
       <view wx:else class="apply">
         <view class="status">管理员身份审核中...</view>
@@ -28,7 +28,7 @@
   </BlockBox>
 
   <!-- 管理员显示 申请中 -->
-  <BlockBox wx:if="{{adminInfo._id}}" padding="20rpx">
+  <BlockBox wx:if="{{adminInfo._id&&applyMember.length}}" padding="20rpx">
     <view class="title">申请中</view>
      <view class="memberList" wx:for="{{3}}">
       <view class="memberItem">
@@ -41,7 +41,7 @@
   </BlockBox>
 
   <!-- 管理员显示 成员 -->
-  <BlockBox wx:if="{{adminInfo._id}}" padding="20rpx">
+  <BlockBox wx:if="{{adminInfo._id&&memberList.length}}" padding="20rpx">
     <view class="title">成员</view>
     <view class="memberList" wx:for="{{3}}">
       <view class="memberItem">
