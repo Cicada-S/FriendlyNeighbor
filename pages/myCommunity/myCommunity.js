@@ -139,16 +139,61 @@ Page({
 
   // 驳回申请
   onReject(event) {
-    console.log('event', event)
+    wx.showModal({
+      title: '提示',
+      content: '确定驳回该成员的申请吗？'
+    }).then(res => {
+      if (res.confirm) {
+        let { applyMember } = this.data
+        // 删除改申请表的数据
+        UserCommunity.doc(event.target.id).remove()
+        // 将改成员去除
+        let newApplyMember = applyMember.filter(item => item._id !== event.target.id)
+        // 更新data
+        this.setData({ applyMember: newApplyMember })
+      }
+    })
   },
 
   // 通过申请
   onAdopt(event) {
-    console.log('event', event)
+    wx.showModal({
+      title: '提示',
+      content: '确定通过该成员的审核吗？'
+    }).then(res => {
+      if (res.confirm) {
+        let { applyMember, memberList } = this.data
+        // 更新数据表
+        UserCommunity.doc(event.target.id).update({data:{status: 0}})
+        // 将该成员添加到正式成员中
+        let newMember = applyMember.filter(item => item._id === event.target.id)
+        memberList.unshift(newMember)
+        // 将该成员的申请中数据去除
+        let newApplyMember = applyMember.filter(item => item._id !== event.target.id)
+        // 更新data
+        this.setData({
+          memberList: newMember,
+          applyMember: newApplyMember
+        })
+      }
+    })
   },
 
   // 踢除成员
   onKick(event) {
-    console.log('event', event)
+    wx.showModal({
+      title: '提示',
+      content: '确定踢除该成员吗？'
+    }).then(res => {
+      if (res.confirm) {
+        let { memberList } = this.data
+        // 删除改成员的数据
+        UserCommunity.doc(event.target.id).remove()
+        // 将改成员去除
+        let newMemberList = memberList.filter(item => item._id !== event.target.id)
+        // 更新data
+        this.setData({ memberList: newMemberList })
+      }
+    })
   }
 })

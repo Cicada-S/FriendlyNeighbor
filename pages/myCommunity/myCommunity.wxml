@@ -34,8 +34,8 @@
       <view class="memberItem">
         <image class="avatar" src="{{item.avatarUrl}}" />
         <view class="name">{{item.nickName}}</view>
-        <view class="btn reject" bindtap="onReject" id="{{itme._id}}">驳回</view>
-        <view class="btn adopt" bindtap="onAdopt" id="{{itme._id}}">通过</view>
+        <view class="btn reject" bindtap="onReject" id="{{item._id}}">驳回</view>
+        <view class="btn adopt" bindtap="onAdopt" id="{{item._id}}">通过</view>
       </view>
     </view>
   </BlockBox>
@@ -47,7 +47,7 @@
       <view class="memberItem">
         <image class="avatar" src="{{item.avatarUrl}}" />
         <view class="name">{{item.nickName}}</view>
-        <view class="btn kick" bindtap="onKick" id="{{itme._id}}">踢除</view>
+        <view class="btn kick" bindtap="onKick" id="{{item._id}}">踢除</view>
       </view>
     </view>
   </BlockBox>
