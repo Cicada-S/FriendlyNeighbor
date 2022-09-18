@@ -49,13 +49,15 @@ Page({
   // 数据回显
   dataEcho(type) {
     if(wx.getStorageSync(type)){
+      let radio = type == 'people' ? '0' : '1'
       let { phone, price, departPlace, destination, numberOfPeople } = wx.getStorageSync(type)
       this.setData({
         phone,
         price,
         departPlace,
         destination,
-        numberOfPeople
+        numberOfPeople,
+        radio
       })
     }
   },
@@ -137,10 +139,10 @@ Page({
       let type = data.type === '0' ? 'people' : 'vehicle'
 
       //如果是人找车，价格设置为0
-      if(data.type === '0'){
+      if(data.type === '1'){
         data.price = 0
       }
-
+      data.type = Number(data.type)
       wx.setStorageSync(type, data)
       wx.setStorageSync('defaultType', type)
       

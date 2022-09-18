@@ -129,7 +129,7 @@ Page({
 
     // 类型
     if(searchTerm.radio){
-      whereConditiion.type = searchTerm.radio
+      whereConditiion.type = Number(searchTerm.radio)
     }
 
     // 出发地址
