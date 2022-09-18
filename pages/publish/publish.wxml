@@ -30,12 +30,15 @@
     <view class="box">
       <view class="title">手机号</view>
       <van-field
-        input-class="inputClass"
+        input-class=""
         model:value="{{ phone }}"
         placeholder="请输入手机号"
         border="{{ false }}"
         type="number"
       />
+      <button class="getPhoneNumberClass"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+        获取
+      </button>
     </view>
   </BlockBox>
 

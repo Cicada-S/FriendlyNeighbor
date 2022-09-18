@@ -12,10 +12,8 @@
     </view>
   </view>
 
-  <view class="login" wx:if="{{isLogin}}" bindtap="getUserProfile">
+  <view class="login"   bindtap="getUserProfile">
     <text>登录</text>
   </view>
-  <button class="login authorize" wx:else open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
-    授权
-  </button>
+
 </view>

@@ -9,6 +9,7 @@
 .container .box .title {
   width: 100rpx;
   margin-left: 20rpx;
+  white-space:nowrap;
 }
 .container .box .inputClass {
   width: 500rpx;
@@ -36,6 +37,19 @@
 .container .input .inputClass {
   width: 520rpx;
 }
+.container .getPhoneNumberClass {
+  width: 200rpx;
+  color: #FFFFFF;
+  font-size: 38rpx;
+  background-color: #407EF5;
+  letter-spacing: 10rpx;
+  border-radius: 10rpx;
+  box-shadow: 2rpx 4rpx 12rpx 2rpx rgba(64, 126, 245, 0.8);
+  height: 80rpx;
+  font-weight: normal;
+  margin-top: 1rpx;
+}
+
 .container .bottomBtn {
   width: 690rpx;
   height: 80rpx;

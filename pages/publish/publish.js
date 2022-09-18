@@ -1,5 +1,7 @@
 // pages/publish/publish.js
 const app = getApp()
+const db = wx.cloud.database()
+
 // 引入toDates将时间戳转换成时间
 import { toDates } from '../../utils/util'
 
@@ -84,6 +86,35 @@ Page({
       ['timeStamp.' + this.data.timeType]: newDate,
       show: false
     })
+  },
+
+  
+  // 授权手机号的回调函数
+  async getPhoneNumber(event) {
+    const errMsg = event.detail.errMsg
+    // 同意授权则执行下面代码
+    if (errMsg === "getPhoneNumber:ok") {
+      const cloudId = event.detail.cloudID
+      const cloudIdList = [cloudId]
+      wx.showLoading({
+        title: '获取中',
+        mask: true
+      })
+      const cloudFunRes = await wx.cloud.callFunction({
+        name: "getMobile",
+        data: { cloudIdList }
+      })
+  
+      const jsonStr = cloudFunRes.result.dataList[0].json
+      const jsonData = JSON.parse(jsonStr)
+      const phoneNumber = jsonData.data.phoneNumber
+      this.setData({
+        'phone': phoneNumber
+      })
+      wx.hideLoading()
+      db.collection('User').doc(wx.getStorageSync('currentUser')._id).update({data: { phone: phoneNumber }})
+      
+    }
   },
 
   // 发布行程信息
