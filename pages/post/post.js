@@ -9,6 +9,16 @@ const db = wx.cloud.database()
 const HitchhikingInformation = db.collection('HitchhikingInformation')
 
 Page({
+
+  // onShareAppMessage: function (res) {
+    
+  //   console.info('onShareAppMessageonShareAppMessageonShareAppMessageonShareAppMessageonShareAppMessageonShareAppMessage')
+  //   return {
+  //     title: '自定义转发标题',
+  //     path: '/page/user?id=123'
+  //   }
+  // },
+
   data: {
     bottomLift: app.globalData.bottomLift,
     postInfo: {}, // 行程信息信息
@@ -96,6 +106,11 @@ Page({
 
   // 评论
   hairComment() {
+    let content = this.data.value
+    if(typeof content === "undefined" || content === null || content.trim() === ""){
+      return
+    }
+
     if(this.data.commentType) {
       this.sonComment() // 子级评论
     } else {

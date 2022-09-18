@@ -10,12 +10,12 @@
   </view>
 
   <!-- 地址 -->
-  <van-cell-group border="{{ false }}">
+  <van-cell-group border="{{ true }}">
     <van-field
       label="出发地址"
       model:value="{{ departPlace }}"
       placeholder="请输入出发地址"
-      border="{{ false }}"
+      border="{{ true }}"
       input-align="right"
       label-class="labelClass"
     />
@@ -23,7 +23,7 @@
       label="到达地址"
       model:value="{{ destination }}"
       placeholder="请输入到达地址"
-      border="{{ false }}"
+      border="{{ true }}"
       input-align="right"
       label-class="labelClass"
     />
@@ -31,9 +31,9 @@
 
 
   <!-- 时间 -->
-  <van-cell-group border="{{ false }}">
-    <van-cell title="最早时间" border="{{ false }}" is-link bindtap="selectTime" id="beginTime" value="{{beginTime}}" />
-    <van-cell title="最晚时间" border="{{ false }}" is-link bindtap="selectTime" id="endTime" value="{{endTime}}" />
+  <van-cell-group border="{{ true }}">
+    <van-cell  title="最早时间" border="{{ true }}" is-link bindtap="selectTime" id="beginTime" value="{{beginTime}}" />
+    <van-cell title="最晚时间" border="{{ true }}" is-link bindtap="selectTime" id="endTime" value="{{endTime}}" />
   </van-cell-group>
 
   <!-- 按钮 -->

@@ -183,6 +183,10 @@ Page({
         data
       }).then(() => {
         wx.hideLoading()
+
+        //删除首页搜索缓存
+        wx.removeStorageSync('searchTerm')
+
         wx.showToast({
           title: '发布成功！',
           icon: 'success',

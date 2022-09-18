@@ -11,8 +11,11 @@
       </view>
       <view class="location">
         <text>出发：{{postItem.departPlace}}</text>
+      </view>
+      <view class="location">
         <text>到达：{{postItem.destination}}</text>
       </view>
+
       <view class="departureTime">时间：{{postItem.beginTime}} ~ {{postItem.endTime}}</view>
       <!-- <view class="community">
         <text>{{postItem.communityName}}</text>

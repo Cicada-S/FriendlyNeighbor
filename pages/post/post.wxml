@@ -8,13 +8,15 @@
     <view class="content">
       <view class="namePrice">
         <view class="name">{{postInfo.nick_name}}</view>
-        <view class="price">¥ {{postInfo.price}}</view>
+        <view wx:if="{{postInfo.type==0}}" class="price">¥ {{postInfo.price}}</view>
       </view>
       <view class="remark">
         <text>{{postInfo.remark}}</text>
       </view>
       <view class="location">
         <text>出发：{{postInfo.departPlace}}</text>
+      </view>
+      <view class="location"> 
         <text>到达：{{postInfo.destination}}</text>
       </view>
       <view class="departureTime">时间：{{postInfo.beginTime}} ~ {{postInfo.endTime}}</view>

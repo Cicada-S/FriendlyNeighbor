@@ -16,7 +16,7 @@
   margin-top: 30rpx;
 }
 .container .operation .buttonBtn {
-  width: 300rpx;
+  width: 180rpx;
   color: var(--Color-White);
   background-color: var(--Color-MainA);
 }
