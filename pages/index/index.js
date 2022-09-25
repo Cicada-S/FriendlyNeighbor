@@ -25,14 +25,21 @@ Page({
       reachBottom: false
     })
 
-    // 获取用户信息
-    await this.getUserInfo()
+    if(!wx.getStorageSync('currentUser')){
+      console.info('获取用户数据，缓存本地')
 
-    // 获取用户社区信息
-    await this.getUserCommunity()
-    
-    // 获取行程信息
-    this.getPostList()
+      // 获取用户信息
+      await this.getUserInfo()
+
+      // 获取用户社区信息
+      await this.getUserCommunity()
+    }
+
+    if(wx.getStorageSync('currentUser')){
+      // 获取行程信息
+      this.getPostList()
+    }
+  
   },
 
   getUserCommunity(){

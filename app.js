@@ -24,6 +24,9 @@ App({
     //删除首页搜索缓存
     wx.removeStorageSync('searchTerm')
 
+    //删除当前登录账号缓存
+    wx.removeStorageSync('currentUser')
+
     this.getPhoneHeight()
     this.getSystemInfo()
   },

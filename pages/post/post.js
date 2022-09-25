@@ -7,6 +7,7 @@ import { getdate } from '../../utils/pastTime'
 
 const db = wx.cloud.database()
 const HitchhikingInformation = db.collection('HitchhikingInformation')
+const User = db.collection('User')
 
 Page({
 
@@ -37,12 +38,57 @@ Page({
   /**
    * 页面加载
    */
-  onLoad(options) {
+  async onLoad(options) {
+
+    if(!wx.getStorageSync('currentUser')){
+      console.info('获取用户数据，缓存本地')
+
+      // 获取用户信息
+      await this.getUserInfo(options.id)
+
+      // 获取用户社区信息
+      await this.getUserCommunity()
+    }
+
     // 获取行程信息信息
     this.getPostInfo(options.id)
     // 获取评论
     this.getComment(options.id)
   },
+
+  
+  getUserCommunity(){
+    return new Promise((resolve, reject) => {
+    let currentUser = wx.getStorageSync('currentUser')
+      db.collection('UserCommunity').where({'_openid': currentUser._openid, 'status': 0}).get()
+      .then(res => {
+        if(res.data.length >= 1) {
+          currentUser.userCommunity = res.data[0]
+          wx.setStorageSync('currentUser', currentUser)
+        }
+        resolve(100);
+      })
+
+    });
+  },
+
+  // 判断用户是否登录过
+  getUserInfo(hitchhikingInformationId) {
+    return new Promise((resolve, reject) => {
+      User.get().then(res => {
+        if(res.data.length === 1) {
+          wx.setStorageSync('currentUser', res.data[0])
+          resolve(100);
+        } else {
+          resolve(100);
+          wx.navigateTo({
+            url: '/pages/login/login?hitchhikingInformationId='+hitchhikingInformationId
+          })
+        }
+      })
+    });
+  },
+
 
   // 获取行程信息信息
   async getPostInfo(id) {

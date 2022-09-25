@@ -74,6 +74,7 @@ Page({
 
   // 跳转到我的小区
   toMyCommunity() {
+    return;
     if(this.data.community) {
       wx.navigateTo({
         url: '/pages/myCommunity/myCommunity'
