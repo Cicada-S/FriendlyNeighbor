@@ -88,7 +88,7 @@ Page({
     })
   },
 
-  
+
   // 授权手机号的回调函数
   async getPhoneNumber(event) {
     const errMsg = event.detail.errMsg
@@ -104,7 +104,7 @@ Page({
         name: "getMobile",
         data: { cloudIdList }
       })
-  
+
       const jsonStr = cloudFunRes.result.dataList[0].json
       const jsonData = JSON.parse(jsonStr)
       const phoneNumber = jsonData.data.phoneNumber
@@ -113,7 +113,7 @@ Page({
       })
       wx.hideLoading()
       db.collection('User').doc(wx.getStorageSync('currentUser')._id).update({data: { phone: phoneNumber }})
-      
+
     }
   },
 
@@ -176,13 +176,22 @@ Page({
       data.type = Number(data.type)
       wx.setStorageSync(type, data)
       wx.setStorageSync('defaultType', type)
-      
+
       // 添加行程信息
       wx.cloud.callFunction({
         name: 'addPost',
         data
-      }).then(() => {
+      }).then((res) => {
         wx.hideLoading()
+
+        if(res.result.code == 1){
+          wx.showToast({
+            title: res.result.error,
+            icon: 'error',
+            duration: 2000
+          })
+          return
+        }
 
         //删除首页搜索缓存
         wx.removeStorageSync('searchTerm')

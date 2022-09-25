@@ -144,6 +144,16 @@ Page({
       name: 'addComment',
       data
     }).then(res => {
+
+      if(res.result.code == 1){
+        wx.showToast({
+          title: res.result.error,
+          icon: 'error',
+          duration: 2000
+        })
+        return
+      }
+
       data._id = res.result.data
       data.createTime = getdate(data.createTime)
       data.child_comment = [] // 添加上child_comment属性 否则子评会报错
@@ -176,6 +186,16 @@ Page({
       name: 'addComment',
       data
     }).then(res => {
+
+      if(res.result.code == 1){
+        wx.showToast({
+          title: res.result.error,
+          icon: 'error',
+          duration: 2000
+        })
+        return
+      }
+
       data._id = res.result.data
       data.createTime = getdate(data.createTime)
       // 将子评添加到指定的父评下

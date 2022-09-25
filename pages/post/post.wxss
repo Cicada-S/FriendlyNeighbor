@@ -45,7 +45,8 @@
   font-weight: 400;
 }
 .container .postInfo .content .remark {
-  padding-bottom: 10rpx;
+  margin-bottom: 30rpx;
+  margin-top: 10rpx;
 }
 .container .postInfo .content .location {
   display: flex;

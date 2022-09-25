@@ -8,7 +8,22 @@ const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
   let data = {...event}
+
   try {
+
+    //内容安全监测
+    const msgSecCheckRes = await cloud.callFunction({
+      name: 'msgSecCheck',
+      data: { text: data.content }
+    })
+    if (msgSecCheckRes.result.errcode != 0) {
+      return {
+        code: 1,
+        error: '文字內容违规',
+        success: false,
+      }
+    }
+
     let result = {}
     if(data.fatherCommentId) {
       result = await db.collection('SonComment').add({data})

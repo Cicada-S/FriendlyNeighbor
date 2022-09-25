@@ -37,6 +37,34 @@ Page({
     })
   },
 
+  //关注
+  myInterest() {
+    wx.showToast({
+      title: '努力开发中...',
+      icon: 'none',
+      duration: 1500
+    })
+  },
+
+  
+  //意见 建议
+  suggestion() {
+    wx.showToast({
+      title: '请加微信 188 2590 6482 沟通！',
+      icon: 'none',
+      duration: 5000
+    })
+  },
+  
+  //设置
+  setting() {
+    wx.showToast({
+      title: '努力开发中...',
+      icon: 'none',
+      duration: 1500
+    })
+  },
+
   // 跳转到管理小区
   toCommunity() {
     wx.navigateTo({

@@ -10,13 +10,24 @@ exports.main = async (event, context) => {
   console.log(event)
   let {avatar_url, beginTime, communityId, communityName, departPlace, destination, endTime, nick_name, numberOfPeople, phone, price, remark, type} = event
   let data = {avatar_url, beginTime, communityId, communityName, departPlace, destination, endTime, nick_name, numberOfPeople, phone, price, remark, type}
+
+  //内容安全监测
+  const msgSecCheckRes = await cloud.callFunction({
+    name: 'msgSecCheck',
+    data: { text: departPlace + destination + remark }
+  })
+  if (msgSecCheckRes.result.errcode != 0) {
+    return {
+      code: 1,
+      error: '文字內容违规',
+      success: false,
+    }
+  }
+
   data._openid = cloud.getWXContext().OPENID
   data.createTime =  new Date()
-
   data.beginTime = new Date(data.beginTime)
   data.endTime = new Date(data.endTime)
-
-  console.log(data)
 
   db.collection('HitchhikingInformation').add({data})
   .then(res => {

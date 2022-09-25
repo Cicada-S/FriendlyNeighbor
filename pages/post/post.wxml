@@ -10,7 +10,7 @@
         <view class="name">{{postInfo.nick_name}}</view>
         <view wx:if="{{postInfo.type==0}}" class="price">¥ {{postInfo.price}}</view>
       </view>
-      <view class="remark">
+      <view class="remark" wx:if="{{postInfo.remark}}">
         <text>{{postInfo.remark}}</text>
       </view>
       <view class="location">
