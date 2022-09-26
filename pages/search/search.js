@@ -68,7 +68,7 @@ Page({
   // 取消 的回调函数
   cancel() {
     this.setData({
-      radio: '0',
+      radio: null,
       departPlace: '',
       destination: '',
       beginTime: '',
