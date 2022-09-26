@@ -227,3 +227,15 @@
 .container .publishComment .hair::after {
   border: none;
 }
+.container .empty {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container .empty .btn {
+  border-radius: 25rpx;
+  color: var(--Color-White);
+  background-color: var(--Color-MainA);
+}

@@ -1,7 +1,7 @@
 <!--pages/post/post.wxml-->
 <view class="container">
   <!-- 行程信息信息 -->
-  <view class="postInfo">
+  <view class="postInfo" wx:if="{{postInfo._id}}">
     <view class="picUrl">
       <image class="avatar" src="{{postInfo.avatar_url}}" />
     </view>
@@ -38,7 +38,7 @@
     </view>
   </view>
 
-  <view class="commentArea">
+  <view class="commentArea" wx:if="{{postInfo._id}}">
     <view class="title">共{{commentSum}}条评论</view>
     <!-- 评论列表 -->
     <view class="commentList" style="padding-bottom: {{bottomLift+45}}px">
@@ -82,7 +82,11 @@
   </view>
 
   <!-- 评论框 -->
-  <view class="publishComment" style="padding-bottom: {{inputBottom ? inputBottom : bottomLift}}px">
+  <view
+    class="publishComment"
+    wx:if="{{postInfo._id}}"
+    style="padding-bottom: {{inputBottom ? inputBottom : bottomLift}}px"
+  >
     <input
       class="input"
       type="text"
@@ -97,5 +101,11 @@
       bindblur="inputBlur"
     />
     <view class="hair" bindtap="hairComment">发送</view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:if="{{!postInfo._id}}">
+    <van-empty image="error" description="该帖子已被删除" />
+    <button class="btn" bindtap="toHome">返回首页</button>
   </view>
 </view>

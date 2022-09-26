@@ -40,13 +40,11 @@ Page({
    * 页面加载
    */
   async onLoad(options) {
-
     if(!wx.getStorageSync('currentUser')){
       console.info('获取用户数据，缓存本地')
 
       // 获取用户信息
       await this.getUserInfo(options.id)
-
       // 获取用户社区信息
       await this.getUserCommunity()
     }
@@ -66,9 +64,9 @@ Page({
           currentUser.userCommunity = res.data[0]
           wx.setStorageSync('currentUser', currentUser)
         }
-        resolve(100);
+        resolve(100)
       })
-    });
+    })
   },
 
   // 判断用户是否登录过
@@ -90,13 +88,16 @@ Page({
 
   // 获取行程信息信息
   async getPostInfo(id) {
-    let { data } = await HitchhikingInformation.doc(id).get()
-    // 处理最早时间和最晚时间
-    data.beginTime = toDates(data.beginTime, 'display')
-    data.endTime = toDates(data.endTime, 'display')
-    // 处理发布时间
-    data.createTime = getdate(data.createTime)
-    this.setData({ postInfo: data })
+    HitchhikingInformation.doc(id).get()
+    .then(res => {
+      // 处理最早时间和最晚时间
+      res.data.beginTime = toDates(res.data.beginTime, 'display')
+      res.data.endTime = toDates(res.data.endTime, 'display')
+      // 处理发布时间
+      res.data.createTime = getdate(res.data.createTime)
+      // 更新data
+      this.setData({ postInfo: res.data })
+    })
   },
 
   // 获取评论
@@ -285,6 +286,11 @@ Page({
         placeholder: '评论...'
       })
     }
+  },
+
+  // 空状态时返回首页
+  toHome() {
+    wx.switchTab({url: '/pages/index/index'})
   },
 
   /**
