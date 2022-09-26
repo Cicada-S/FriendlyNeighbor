@@ -15,8 +15,6 @@
       </view>
       <view class="location">
         <text>出发：{{postInfo.departPlace}}</text>
-      </view>
-      <view class="location"> 
         <text>到达：{{postInfo.destination}}</text>
       </view>
       <view class="departureTime">时间：{{postInfo.beginTime}} ~ {{postInfo.endTime}}</view>
@@ -84,7 +82,7 @@
   </view>
 
   <!-- 评论框 -->
-  <view class="publishComment" style="padding-bottom: {{bottomLift}}px">
+  <view class="publishComment" style="padding-bottom: {{inputBottom ? inputBottom : bottomLift}}px">
     <input
       class="input"
       type="text"
@@ -92,9 +90,11 @@
       confirm-hold="{{true}}"
       model:value="{{value}}"
       focus="{{focus}}"
-      bindblur="onBlur"
       placeholder="{{placeholder}}"
       bindconfirm="hairComment"
+      adjust-position="{{false}}"
+      bindfocus="inputFocus"
+      bindblur="inputBlur"
     />
     <view class="hair" bindtap="hairComment">发送</view>
   </view>

@@ -32,7 +32,8 @@ Page({
     toNickName: '', // 被评论者昵称
     replyType: 0, // 0: 子评 1: 回复
     fatherCommentId: '', // 父评id
-    commentList: [] // 评论列表
+    commentList: [], // 评论列表
+    inputBottom: 0,
   },
 
   /**
@@ -56,7 +57,6 @@ Page({
     this.getComment(options.id)
   },
 
-  
   getUserCommunity(){
     return new Promise((resolve, reject) => {
     let currentUser = wx.getStorageSync('currentUser')
@@ -68,7 +68,6 @@ Page({
         }
         resolve(100);
       })
-
     });
   },
 
@@ -88,7 +87,6 @@ Page({
       })
     });
   },
-
 
   // 获取行程信息信息
   async getPostInfo(id) {
@@ -138,16 +136,6 @@ Page({
     wx.makePhoneCall({
       phoneNumber: this.data.postInfo.phone
     })
-  },
-
-  // 评论框失去焦点时触发
-  onBlur() {
-    if(!this.data.value) {
-      this.setData({
-        commentType: false,
-        placeholder: '评论...'
-      })
-    }
   },
 
   // 评论
@@ -281,6 +269,22 @@ Page({
       replyType: 1,
       fatherCommentId: id
     })
+  },
+
+  // 评论框获取焦点
+  inputFocus(event) {
+    this.setData({ inputBottom: event.detail.height })
+  },
+
+  // 评论框失去焦点
+  inputBlur() {
+    this.setData({ inputBottom: 0 })
+    if(!this.data.value) {
+      this.setData({
+        commentType: false,
+        placeholder: '评论...'
+      })
+    }
   },
 
   /**
