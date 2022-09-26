@@ -88,7 +88,6 @@ Page({
     })
   },
 
-
   // 授权手机号的回调函数
   async getPhoneNumber(event) {
     const errMsg = event.detail.errMsg
@@ -113,7 +112,6 @@ Page({
       })
       wx.hideLoading()
       db.collection('User').doc(wx.getStorageSync('currentUser')._id).update({data: { phone: phoneNumber }})
-
     }
   },
 

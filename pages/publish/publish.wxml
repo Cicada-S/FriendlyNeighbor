@@ -36,9 +36,15 @@
         border="{{ false }}"
         type="number"
       />
-      <button class="getPhoneNumberClass"  open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
-        获取
-      </button>
+      <view class="btn">
+        <button
+          class="phoneNumber"
+          open-type="getPhoneNumber"
+          bindgetphonenumber="getPhoneNumber"
+        >
+          获取
+        </button>
+      </view>
     </view>
   </BlockBox>
 

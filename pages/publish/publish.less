@@ -4,15 +4,30 @@
 
   .box {
     display: flex;
-    align-items: center;
+    // align-items: stretch;
+    // align-items: center;
+    justify-content: space-between;
 
     .title {
       width: 100rpx;
-      margin-left: 20rpx;
+      margin: auto 0 auto 20rpx;
     }
 
     .inputClass {
       width: 500rpx;
+    }
+
+    .btn {
+      width: 170rpx;
+      overflow: hidden;
+      border-radius: 8rpx;
+      background-color: var(--Color-MainA);
+      
+      .phoneNumber {
+        width: 100%;
+        color: var(--Color-White);
+        background-color: var(--Color-MainA);
+      }
     }
   }
 
