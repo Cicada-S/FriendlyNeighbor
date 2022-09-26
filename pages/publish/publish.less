@@ -4,8 +4,6 @@
 
   .box {
     display: flex;
-    // align-items: stretch;
-    // align-items: center;
     justify-content: space-between;
 
     .title {
@@ -45,18 +43,33 @@
     }
   }
 
-  .input {
-    display: flex;
-    align-items: center;
-    padding-left: 30rpx;
+  .content {
+    position: relative;
 
-    .label {
-      font-size: 28rpx;
-      padding-bottom: 5rpx;
+    .icon {
+      position: absolute;
+      top: -60rpx;
+      right: 20rpx;
+      width: 50rpx;
+      height: 50rpx;
+      line-height: 50rpx;
+      text-align: center;
+      transform:rotate(90deg);
     }
 
-    .inputClass {
-      width: 520rpx;
+    .input {
+      display: flex;
+      align-items: center;
+      padding-left: 30rpx;
+  
+      .label {
+        font-size: 28rpx;
+        padding-bottom: 5rpx;
+      }
+  
+      .inputClass {
+        width: 520rpx;
+      }
     }
   }
 

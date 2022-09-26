@@ -6,7 +6,8 @@
     "van-field": "@vant/weapp/field/index",
     "van-cell": "@vant/weapp/cell/index",
     "van-action-sheet": "@vant/weapp/action-sheet/index",
-    "van-datetime-picker": "@vant/weapp/datetime-picker/index"
+    "van-datetime-picker": "@vant/weapp/datetime-picker/index",
+    "van-icon": "@vant/weapp/icon/index"
   },
   "navigationBarTitleText": "发布行程信息"
 }

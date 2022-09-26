@@ -64,23 +64,26 @@
 
   <!-- 地址 -->
   <BlockBox padding="10rpx 0 0" title="地址">
-    <view class="input">
-      <text class="label">出发</text>
-      <van-field
-        input-class="inputClass"
-        model:value="{{ departPlace }}"
-        placeholder="请输入出发地"
-        border="{{ false }}"
-      />
-    </view>
-    <view class="input">
-      <text class="label">到达</text>
-      <van-field
-        input-class="inputClass"
-        model:value="{{ destination }}"
-        placeholder="请输入到达地"
-        border="{{ false }}"
-      />
+    <view class="content">
+      <view class="icon" bindtap="reversal"><van-icon name="sort" /></view>
+      <view class="input">
+        <text class="label">出发</text>
+        <van-field
+          input-class="inputClass"
+          model:value="{{ departPlace }}"
+          placeholder="请输入出发地"
+          border="{{ false }}"
+        />
+      </view>
+      <view class="input">
+        <text class="label">到达</text>
+        <van-field
+          input-class="inputClass"
+          model:value="{{ destination }}"
+          placeholder="请输入到达地"
+          border="{{ false }}"
+        />
+      </view>
     </view>
   </BlockBox>
 

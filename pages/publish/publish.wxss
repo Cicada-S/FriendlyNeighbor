@@ -35,16 +35,29 @@
 .container .van-radio-group .van-radio {
   margin-right: 20rpx;
 }
-.container .input {
+.container .content {
+  position: relative;
+}
+.container .content .icon {
+  position: absolute;
+  top: -60rpx;
+  right: 20rpx;
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  transform: rotate(90deg);
+}
+.container .content .input {
   display: flex;
   align-items: center;
   padding-left: 30rpx;
 }
-.container .input .label {
+.container .content .input .label {
   font-size: 28rpx;
   padding-bottom: 5rpx;
 }
-.container .input .inputClass {
+.container .content .input .inputClass {
   width: 520rpx;
 }
 .container .bottomBtn {

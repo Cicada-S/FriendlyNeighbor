@@ -204,5 +204,13 @@ Page({
         }, 1000)
       })
     }
+  },
+
+  // 反转地址
+  reversal() {
+    this.setData({
+      departPlace: this.data.destination,
+      destination: this.data.departPlace
+    })
   }
 })
