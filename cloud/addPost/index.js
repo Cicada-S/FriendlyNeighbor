@@ -29,13 +29,11 @@ exports.main = async (event, context) => {
   data.beginTime = new Date(data.beginTime)
   data.endTime = new Date(data.endTime)
 
-  db.collection('HitchhikingInformation').add({data})
-  .then(res => {
-    console.log(res)
-  })
+  const result = await db.collection('HitchhikingInformation').add({data})
 
   return {
     code: 0,
+    data: result,
     success: true
   }
 }

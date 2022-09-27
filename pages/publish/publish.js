@@ -26,6 +26,8 @@ Page({
     },
     minDate: new Date().getTime(), // 可选的最小时间
     currentDate: new Date().getTime(), // 当前时间
+    showShare: false, // 转发框的显示状态
+    newPostId: '', // 发布成功的帖子ID
   },
 
   /**
@@ -37,7 +39,6 @@ Page({
     if(wx.getStorageSync('defaultType')){
       this.dataEcho(wx.getStorageSync('defaultType'))
     }
-
   },
 
   // 切换类型
@@ -162,13 +163,11 @@ Page({
       data.beginTime = timeStamp.beginTime
       data.endTime = timeStamp.endTime
 
-      wx.showLoading({
-        title: '发布中...'
-      })
+      wx.showLoading({ title: '发布中...' })
       let type = data.type === '0' ? 'people' : 'vehicle'
 
-      //如果是人找车，价格设置为0
-      if(data.type === '1'){
+      // 如果是人找车，价格设置为0
+      if(data.type === '1') {
         data.price = 0
       }
       data.type = Number(data.type)
@@ -191,7 +190,7 @@ Page({
           return
         }
 
-        //删除首页搜索缓存
+        // 删除首页搜索缓存
         wx.removeStorageSync('searchTerm')
 
         wx.showToast({
@@ -199,9 +198,11 @@ Page({
           icon: 'success',
           duration: 1000
         })
-        setTimeout(() => {
-          wx.navigateBack({ delta: 1 })
-        }, 1000)
+
+        this.setData({ 
+          showShare: true,
+          newPostId: res.result.data._id
+        })
       })
     }
   },
@@ -212,5 +213,22 @@ Page({
       departPlace: this.data.destination,
       destination: this.data.departPlace
     })
+  },
+
+  // 分享
+  onShareAppMessage() {
+    let { departPlace, destination, radio, newPostId } = this.data
+    let travel = radio === '1' ? '人找车' : '车找人'
+    let title = `${travel}，出发：${departPlace} -> 到达：${destination}`
+    wx.switchTab({url: '/pages/index/index'})
+    return {
+      title,
+      path: `/pages/post/post?id=${newPostId}`
+    }
+  },
+
+  // 取消分享
+  onCancelShare() {
+    wx.switchTab({url: '/pages/index/index'})
   }
 })
