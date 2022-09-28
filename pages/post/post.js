@@ -34,7 +34,8 @@ Page({
     fatherCommentId: '', // 父评id
     commentList: [], // 评论列表
     inputBottom: 0,
-    show: false // 转发框的显示状态
+    show: false, // 转发框的显示状态
+    isDelete: false // 是否为空状态
   },
 
   /**
@@ -102,6 +103,7 @@ Page({
       // 更新data
       this.setData({ postInfo: res.data })
     })
+    .catch(() => this.setData({ isDelete: true }))
   },
 
   // 获取评论

@@ -112,7 +112,7 @@
   </van-action-sheet>
 
   <!-- 空状态 -->
-  <view class="empty" wx:if="{{!postInfo._id}}">
+  <view class="empty" wx:if="{{isDelete}}">
     <van-empty image="error" description="该帖子已被删除" />
     <button class="btn" bindtap="toHome">返回首页</button>
   </view>
