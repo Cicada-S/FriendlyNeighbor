@@ -26,8 +26,6 @@ Page({
     },
     minDate: new Date().getTime(), // 可选的最小时间
     currentDate: new Date().getTime(), // 当前时间
-    showShare: false, // 转发框的显示状态
-    newPostId: '', // 发布成功的帖子ID
   },
 
   /**
@@ -199,10 +197,7 @@ Page({
           duration: 1000
         })
 
-        this.setData({ 
-          showShare: true,
-          newPostId: res.result.data._id
-        })
+        wx.redirectTo({url: `/pages/post/post?id=${res.result.data._id}&type=${true}`})
       })
     }
   },
@@ -213,22 +208,5 @@ Page({
       departPlace: this.data.destination,
       destination: this.data.departPlace
     })
-  },
-
-  // 分享
-  onShareAppMessage() {
-    let { departPlace, destination, radio, newPostId } = this.data
-    let travel = radio === '1' ? '人找车' : '车找人'
-    let title = `${travel}，出发：${departPlace} -> 到达：${destination}`
-    wx.switchTab({url: '/pages/index/index'})
-    return {
-      title,
-      path: `/pages/post/post?id=${newPostId}`
-    }
-  },
-
-  // 取消分享
-  onCancelShare() {
-    wx.switchTab({url: '/pages/index/index'})
   }
 })

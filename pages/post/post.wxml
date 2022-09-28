@@ -103,6 +103,14 @@
     <view class="hair" bindtap="hairComment">发送</view>
   </view>
 
+  <!-- 发布成功后的分享面板 -->
+  <van-action-sheet show="{{ show }}" bind:close="onCancel" overlay="{{false}}"  title="立即分享给好友">
+    <view class="shareContent">
+      <button class="share" open-type="share">分享</button>
+      <button class="cancel" bindtap="onCancel">取消</button>
+    </view>
+  </van-action-sheet>
+
   <!-- 空状态 -->
   <view class="empty" wx:if="{{!postInfo._id}}">
     <van-empty image="error" description="该帖子已被删除" />

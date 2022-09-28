@@ -75,15 +75,3 @@
   background-color: #407EF5;
   box-shadow: 2rpx 4rpx 12rpx 2rpx rgba(64, 126, 245, 0.8);
 }
-.container .shareContent {
-  width: 100%;
-  padding-bottom: 20rpx;
-}
-.container .shareContent .share {
-  color: var(--Color-White);
-  background-color: var(--Color-MainA);
-  margin-bottom: 30rpx;
-}
-.container .shareContent .cancel {
-  background-color: var(--Color-FontE);
-}

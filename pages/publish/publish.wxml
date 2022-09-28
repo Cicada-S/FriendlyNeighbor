@@ -119,12 +119,4 @@
   <view class="bottomBtn" bindtap="onRelease" style="margin-bottom:{{bottomLift}}px">
     <text>发布行程信息</text>
   </view>
-
-  <!-- 发布成功后的分享面板 -->
-  <van-action-sheet show="{{ showShare }}" title="立即分享给好友">
-    <view class="shareContent">
-      <button class="share" open-type="share">分享</button>
-      <button class="cancel" bindtap="onCancelShare">取消</button>
-    </view>
-  </van-action-sheet>
 </view>

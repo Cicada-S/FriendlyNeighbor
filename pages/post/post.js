@@ -34,12 +34,16 @@ Page({
     fatherCommentId: '', // 父评id
     commentList: [], // 评论列表
     inputBottom: 0,
+    show: false // 转发框的显示状态
   },
 
   /**
    * 页面加载
    */
   async onLoad(options) {
+    // 判断是否为刚发布 跳转过来的
+    if(options.type) this.setData({show: true})
+
     if(!wx.getStorageSync('currentUser')){
       console.info('获取用户数据，缓存本地')
 
@@ -291,6 +295,11 @@ Page({
   // 空状态时返回首页
   toHome() {
     wx.switchTab({url: '/pages/index/index'})
+  },
+
+  // 取消分享
+  onCancel() {
+    this.setData({ show: false })
   },
 
   /**

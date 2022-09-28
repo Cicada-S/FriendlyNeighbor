@@ -227,6 +227,18 @@
 .container .publishComment .hair::after {
   border: none;
 }
+.container .shareContent {
+  width: 100%;
+  padding-bottom: 20rpx;
+}
+.container .shareContent .share {
+  color: var(--Color-White);
+  background-color: var(--Color-MainA);
+  margin-bottom: 30rpx;
+}
+.container .shareContent .cancel {
+  background-color: var(--Color-FontE);
+}
 .container .empty {
   width: 100vw;
   height: 100vh;
