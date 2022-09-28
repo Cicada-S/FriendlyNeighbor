@@ -229,14 +229,21 @@
 }
 .container .shareContent {
   width: 100%;
-  padding-bottom: 20rpx;
+  padding: 10rpx 30rpx 20rpx;
+  border-top: 2rpx solid var(--Color-FontE);
+}
+.container .shareContent .btn {
+  width: 100%;
+  margin-top: 20rpx;
+  letter-spacing: 10rpx;
 }
 .container .shareContent .share {
+  width: 100%;
   color: var(--Color-White);
   background-color: var(--Color-MainA);
-  margin-bottom: 30rpx;
 }
 .container .shareContent .cancel {
+  width: 100%;
   background-color: var(--Color-FontE);
 }
 .container .empty {

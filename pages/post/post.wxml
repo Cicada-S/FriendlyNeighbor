@@ -104,10 +104,10 @@
   </view>
 
   <!-- 发布成功后的分享面板 -->
-  <van-action-sheet show="{{ show }}" bind:close="onCancel" overlay="{{false}}"  title="立即分享给好友">
+  <van-action-sheet show="{{ show }}" overlay="{{ false }}">
     <view class="shareContent">
-      <button class="share" open-type="share">分享</button>
-      <button class="cancel" bindtap="onCancel">取消</button>
+      <button class="btn share" open-type="share">分享</button>
+      <button class="btn cancel" bindtap="onCancel">取消</button>
     </view>
   </van-action-sheet>
 
