@@ -197,7 +197,8 @@ Page({
           duration: 1000
         })
 
-        wx.redirectTo({url: `/pages/post/post?id=${res.result.data._id}&type=${true}`})
+        wx.redirectTo({url: `/pages/post/post?id=${res.result.data._id}`})
+        wx.setStorageSync('newPost', true)
       })
     }
   },

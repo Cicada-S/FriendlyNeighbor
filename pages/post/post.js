@@ -42,7 +42,7 @@ Page({
    */
   async onLoad(options) {
     // 判断是否为刚发布 跳转过来的
-    if(options.type) this.setData({show: true})
+    if(wx.getStorageSync('newPost')) this.setData({show: true})
 
     if(!wx.getStorageSync('currentUser')){
       console.info('获取用户数据，缓存本地')
@@ -306,9 +306,17 @@ Page({
    * 用户点击右上角转发
    */
   onShareAppMessage() {
+    this.setData({ show: false })
     let { type, departPlace, destination } = this.data.postInfo
     let travel = type === '1' ? '人找车' : '车找人'
     let title = `${travel}，出发：${departPlace} -> 到达：${destination}`
     return { title }
+  },
+
+  /**
+   * 页面卸载
+   */
+  onUnload() {
+    wx.removeStorageSync('newPost')
   }
 })
