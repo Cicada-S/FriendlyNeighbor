@@ -11,7 +11,6 @@ const UserCommunity = db.collection('UserCommunity')
 Page({
   data: {
     bottomLift: app.globalData.bottomLift,
-    isChoice: false, // 是否为选择小区状态
     search: '', // 搜索
     address: [], // 地区
     area: '', // 区
@@ -26,7 +25,7 @@ Page({
   onLoad(options) {
     console.log('options.type',options.type)
     if(options.type) this.setData({ isChoice: true })
-  },
+  }, 
 
   /**
    * 页面显示

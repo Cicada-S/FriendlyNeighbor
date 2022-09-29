@@ -43,7 +43,4 @@
       bind:confirm="onConfirm"
     />
   </van-action-sheet>
-
-  <!-- 底部按钮 -->
-  <BottomBtn wx:if="{{!isChoice}}" text="添加小区" bind:onClick="onClick" />
 </view>
