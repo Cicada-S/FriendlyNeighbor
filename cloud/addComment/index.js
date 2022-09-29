@@ -7,10 +7,10 @@ const db = cloud.database()
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  let data = {...event}
+  let { avatarUrl, content, createTime, nickName, postId, _openid } = event
+  let data = { avatarUrl, content, createTime, nickName, postId, _openid }
 
   try {
-
     //内容安全监测
     const msgSecCheckRes = await cloud.callFunction({
       name: 'msgSecCheck',
