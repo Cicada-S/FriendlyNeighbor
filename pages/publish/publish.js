@@ -9,7 +9,7 @@ Page({
   data: {
     bottomLift: app.globalData.bottomLift,
     radio: '0', // 类型
-    numberOfPeople: 1, // 人数/座位
+    numberOfPeople: 4, // 人数/座位
     phone: '', // 手机号
     price: 0, // 价格
     departPlace: '', // 出发地
@@ -34,14 +34,23 @@ Page({
   onLoad(options) {
     console.log('页面加载')
     // 数据回显
-    if(wx.getStorageSync('defaultType')){
+    if(wx.getStorageSync('defaultType')) {
       this.dataEcho(wx.getStorageSync('defaultType'))
     }
+
+    /* if(!wx.getStorageSync('defaultType') && this.data.radio === '0') {
+      this.setData({ numberOfPeople: 4 })
+    } */
   },
 
   // 切换类型
   onRadioChange(event) {
-    this.setData({ radio: event.detail })
+    let quantity = event.detail === '1' ? 1 : 4
+    this.setData({
+      radio: event.detail,
+      numberOfPeople: quantity
+    })
+
     let type = event.detail === '0' ? 'people' : 'vehicle'
     // 数据回显
     this.dataEcho(type)
@@ -49,7 +58,7 @@ Page({
 
   // 数据回显
   dataEcho(type) {
-    if(wx.getStorageSync(type)){
+    if(wx.getStorageSync(type)) {
       let radio = type == 'people' ? '0' : '1'
       let { phone, price, departPlace, destination, numberOfPeople } = wx.getStorageSync(type)
       this.setData({
