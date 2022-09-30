@@ -41,24 +41,19 @@ Page({
     const community = await Community.where(data).get()
     // 获取关注的小区
     const followRes = await CommunityOfInterest.where({_openid}).get()
-    
-    console.log('community',community.data)
-    console.log('followRes', followRes.data)
 
     // 将已关注的小区去除
-    community.data.forEach((item, index) => {
-      followRes.data.forEach(fitem => {
-        if(item._id === fitem.communityId) delete community[index]
-      })
+    const communityList = community.filter(citem => {
+      return !followRes.some(fitem => citem._id === fitem.communityId)
     })
 
     // 添加状态
-    /* let newData = res.data.map(item => {
+    let newCommunityList = communityList.map(item => {
       item.isFollow = false
       return item
-    }) */
+    })
 
-    console.log('community', community)
+    this.setData({ communityList: newCommunityList })
   },
 
   // 选择地区
