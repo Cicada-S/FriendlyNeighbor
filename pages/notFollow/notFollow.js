@@ -25,6 +25,8 @@ Page({
 
   // 获取小区列表
   async getCommunity() {
+    wx.showLoading({title: '获取中...'})
+
     const { _openid } = wx.getStorageSync('currentUser')
     let { search, address } = this.data
     let data = {}
@@ -42,6 +44,10 @@ Page({
     // 获取关注的小区
     const followRes = await CommunityOfInterest.where({_openid}).get()
 
+
+    console.log('community', community)
+    console.log('followRes', followRes)
+
     // 将已关注的小区去除
     const communityList = community.data.filter(citem => {
       return !followRes.data.some(fitem => citem._id === fitem.communityId)
@@ -52,6 +58,10 @@ Page({
       item.isFollow = false
       return item
     })
+
+    console.log('newCommunityList', newCommunityList)
+
+    wx.hideLoading()
 
     this.setData({ communityList: newCommunityList })
   },
@@ -132,6 +142,19 @@ Page({
 
   // 取关小区
   unFollow(event) {
-    console.log('event', event)
+    let id = event.target.id
+    let { communityList } = this.data
+    let _openid = wx.getStorageSync('currentUser')._openid
+
+    // 删除数据表
+    CommunityOfInterest.where({communityId: id}).remove()
+    // 找出该条数据将其 isFollow 改成 false
+    communityList.forEach(item => {
+      if(item._id === id) item.isFollow = false
+    })
+    console.log('new', communityList)
+
+    // 更新data
+    this.setData({ communityList })
   }
 })
