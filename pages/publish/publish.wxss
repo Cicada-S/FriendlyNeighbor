@@ -75,3 +75,7 @@
   background-color: #407EF5;
   box-shadow: 2rpx 4rpx 12rpx 2rpx rgba(64, 126, 245, 0.8);
 }
+
+.container .bottom {
+  padding: 40rpx 0rpx;
+}

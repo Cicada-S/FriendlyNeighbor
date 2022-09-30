@@ -10,17 +10,20 @@
         <view class="name">{{postInfo.nick_name}}</view>
         <view wx:if="{{postInfo.type==0}}" class="price">¥ {{postInfo.price}}</view>
       </view>
-      <view class="remark" wx:if="{{postInfo.remark}}">
-        <text>{{postInfo.remark}}</text>
+      <view class="location"> 
+        <text>出发：{{postInfo.departPlace}}</text>
       </view>
       <view class="location">
-        <text>出发：{{postInfo.departPlace}}</text>
         <text>到达：{{postInfo.destination}}</text>
       </view>
       <view class="departureTime">时间：{{postInfo.beginTime}} ~ {{postInfo.endTime}}</view>
       <view class="community">
         <text>{{postInfo.communityName}}</text>
       </view>
+      <view class="remark" wx:if="{{postInfo.remark}}">
+        <text>备注：{{postInfo.remark}}</text>
+      </view>
+
       <view class="footer">
         <view class="releaseTime">{{postInfo.createTime}}</view>
         <view class="partition">

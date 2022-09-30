@@ -22,7 +22,7 @@ Page({
   async getPostList() {
     let result = await HitchhikingInformation.where({
       _openid: wx.getStorageSync('currentUser')._openid
-    }).get()
+    }).orderBy('createTime', 'desc').get()
 
     result.data.forEach(item => {
       // 处理最早时间和最晚时间

@@ -7,8 +7,8 @@ const db = cloud.database()
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  let { avatarUrl, content, createTime, nickName, postId, _openid } = event
-  let data = { avatarUrl, content, createTime, nickName, postId, _openid }
+  let { avatarUrl, content, createTime, nickName, postId, _openid, fatherCommentId } = event
+  let data = { avatarUrl, content, createTime, nickName, postId, _openid, fatherCommentId }
 
   try {
     //内容安全监测

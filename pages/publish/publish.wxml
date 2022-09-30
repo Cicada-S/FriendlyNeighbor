@@ -115,6 +115,9 @@
     />
   </BlockBox>
 
+  <view class="bottom">
+  </view> 
+
   <!-- 发布按钮 -->
   <view class="bottomBtn" bindtap="onRelease" style="margin-bottom:{{bottomLift}}px">
     <text>发布行程信息</text>
