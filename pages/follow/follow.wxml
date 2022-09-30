@@ -5,8 +5,8 @@
     <BlockBox wx:for="{{communityList}}" wx:key="_id">
       <view class="communityItem">
         <view class="content" bindtap="toCommunityInfo" id="{{item._id}}">
-          <view class="name">{{item.name}}</view>
-          <view class="city">{{item.province}}-{{item.city}}-{{item.county}}</view>
+          <view class="name">{{item.communityName}}</view>
+          <view class="city">{{item.communityProvince}}-{{item.communityCity}}-{{item.communityCounty}}</view>
         </view>
         <view class="joinBtn" bindtap="unFollow" id="{{item._id}}">取关</view>
       </view>
