@@ -43,8 +43,8 @@ Page({
     const followRes = await CommunityOfInterest.where({_openid}).get()
 
     // 将已关注的小区去除
-    const communityList = community.filter(citem => {
-      return !followRes.some(fitem => citem._id === fitem.communityId)
+    const communityList = community.data.filter(citem => {
+      return !followRes.data.some(fitem => citem._id === fitem.communityId)
     })
 
     // 添加状态
