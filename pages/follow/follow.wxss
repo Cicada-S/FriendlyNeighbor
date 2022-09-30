@@ -1,43 +1,20 @@
-/* pages/community/community.wxss */
+/* pages/follow/follow.wxss */
 .container {
   width: 100vw;
 }
-.container .search {
-  position: fixed;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--Color-White);
-  padding-left: 30rpx;
-}
-.container .search .icon {
-  font-size: 36rpx;
-  color: var(--Color-MainA);
-}
-.container .search .searchCustom {
-  width: 580rpx;
-  padding: 20rpx 30rpx 20rpx 0;
-}
 .container .communityList {
-  padding: 110rpx 30rpx 0;
+  padding: 0 30rpx;
 }
 .container .communityList .communityItem {
   display: flex;
   align-items: center;
   padding: 20rpx;
 }
-.container .communityList .communityItem .image {
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 50%;
-}
 .container .communityList .communityItem .content {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 20rpx;
 }
 .container .communityList .communityItem .content .city {
   color: var(--Color-FontA);
@@ -50,5 +27,5 @@
   text-align: center;
   color: var(--Color-White);
   border-radius: 10rpx;
-  background-color: var(--Color-MainA);
+  background-color: var(--Color-ViceA);
 }

@@ -37,5 +37,12 @@ Page({
         }
       }
     })
+  },
+
+  // 跳转到未关注的小区
+  toNotFollow() {
+    wx.navigateTo({
+      url: '/pages/notFollow/notFollow'
+    })
   }
 })

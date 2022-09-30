@@ -12,4 +12,7 @@
       </view>
     </BlockBox>
   </view>
+
+  <!-- 底部按钮 -->
+  <BottomBtn text="新的小区" bind:onClick="toNotFollow" />
 </view>
