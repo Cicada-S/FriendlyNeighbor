@@ -37,10 +37,6 @@ Page({
     if(wx.getStorageSync('defaultType')) {
       this.dataEcho(wx.getStorageSync('defaultType'))
     }
-
-    /* if(!wx.getStorageSync('defaultType') && this.data.radio === '0') {
-      this.setData({ numberOfPeople: 4 })
-    } */
   },
 
   // 切换类型
@@ -87,8 +83,22 @@ Page({
 
   // 时间选择器 点击确定 的回调函数
   onConfirm(event) {
-    console.log(event)
     let newDate = event.detail
+
+    // 如果最晚/最早如果没有值，赋予它一直跟最早/最晚一样的值
+    if(this.data.timeType === 'beginTime') {
+      if(!this.data.endTime) this.setData({
+        endTime: toDates(newDate),
+        'timeStamp.endTime': newDate
+      })
+    } else {
+      if(!this.data.beginTime) this.setData({
+        beginTime: toDates(newDate),
+        'timeStamp.beginTime': newDate
+      })
+    }
+
+    // 更新data
     this.setData({
       [this.data.timeType]: toDates(newDate),
       ['timeStamp.' + this.data.timeType]: newDate,
