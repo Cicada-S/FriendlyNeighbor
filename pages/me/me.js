@@ -39,10 +39,8 @@ Page({
 
   //关注
   myInterest() {
-    wx.showToast({
-      title: '努力开发中...',
-      icon: 'none',
-      duration: 1500
+    wx.navigateTo({
+      url: '/pages/follow/follow'
     })
   },
 
