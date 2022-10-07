@@ -30,10 +30,20 @@ Page({
   unFollow(event) {
     let { communityList } = this.data
     let id = event.target.id
+    // 获取不到currentUser
     let _openid = wx.getStorageSync('currentUser')._openid
 
+    // 获取数据进行测试
+    /* CommunityOfInterest.where({ _openid, communityId: id }).get()
+    .then(res => {
+      console.log('res',res)
+    }) */
+
+    console.log('id', id)
+    console.log('_openid', _openid)
+
     // 删除数据表
-    CommunityOfInterest.where({ _openid, communityId: id}).remove()
+    CommunityOfInterest.where({ _openid, communityId: id }).remove()
     .then(res => {
       console.log('res', res)
     })
