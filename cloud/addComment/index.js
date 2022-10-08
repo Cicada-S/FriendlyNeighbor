@@ -7,8 +7,8 @@ const db = cloud.database()
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  let { avatarUrl, content, createTime, nickName, postId, _openid } = event
-  let data = { avatarUrl, content, createTime, nickName, postId, _openid }
+  // 解决在手机上传数据时多出来的userInfo字段
+  let { userInfo, ...data } = event
 
   try {
     //内容安全监测

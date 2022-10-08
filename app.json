@@ -11,7 +11,8 @@
     "pages/addCommunity/addCommunity",
     "pages/communityInfo/communityInfo",
     "pages/myCommunity/myCommunity",
-    "pages/follow/follow"
+    "pages/follow/follow",
+    "pages/notFollow/notFollow"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,47 @@
+<!--pages/notFollow/notFollow.wxml-->
+<view class="container">
+   <!-- 搜索框 -->
+  <view class="search">
+    <text wx:if="{{area}}" bindtap="selectCity" class="city">{{area}}</text>
+    <view wx:else bindtap="selectCity">
+      <van-icon custom-class="icon" name="location" />
+      <text>地区</text>
+    </view>
+    <van-search
+      custom-class="searchCustom"
+      model:value="{{ search }}"
+      shape="round"
+      placeholder="Search..."
+      bind:search="onSearch"
+    />
+  </view>
+
+  <!-- 小区列表 -->
+  <view class="communityList">
+    <BlockBox wx:for="{{communityList}}" wx:key="_id">
+      <view class="communityItem">
+        <image class="image" src="{{item.qrCodePath}}" />
+        <view class="content">
+          <view class="name">{{item.name}}</view>
+          <view class="city">{{item.province}}-{{item.city}}-{{item.county}}</view>
+        </view>
+        <!-- 关注 -->
+        <view class="joinBtn" wx:if="{{!item.isFollow}}" bindtap="follow" data-item="{{item}}">关注</view>
+        <view class="joinBtn active" wx:else bindtap="unFollow" id="{{item._id}}">取关</view>
+      </view>
+    </BlockBox>
+  </view>
+
+  <!-- 选择器 -->
+  <van-action-sheet
+    show="{{ show }}"
+    actions="{{ actions }}"
+    bind:click-overlay="onOverlay"
+  >
+    <van-area
+      area-list="{{ areaList }}"
+      bind:cancel="onCancel"
+      bind:confirm="onConfirm"
+    />
+  </van-action-sheet>
+</view>
