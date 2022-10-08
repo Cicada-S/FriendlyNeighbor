@@ -12,7 +12,8 @@
     "pages/communityInfo/communityInfo",
     "pages/myCommunity/myCommunity",
     "pages/follow/follow",
-    "pages/notFollow/notFollow"
+    "pages/notFollow/notFollow",
+    "pages/oldThings/oldThings"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -31,6 +32,12 @@
         "text": "首页",
         "iconPath": "static/images/tabs/home.png",
         "selectedIconPath": "static/images/tabs/home-active.png"
+      },
+      {
+        "pagePath": "pages/oldThings/oldThings",
+        "text": "旧物",
+        "iconPath": "static/images/tabs/oldThings.png",
+        "selectedIconPath": "static/images/tabs/oldThings-active.png"
       },
       {
         "pagePath": "pages/me/me",

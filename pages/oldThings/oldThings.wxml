@@ -1,0 +1,4 @@
+<!--pages/oldThings/oldThings.wxml-->
+<view class="container">
+  旧物交易
+</view>
