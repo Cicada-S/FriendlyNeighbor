@@ -54,6 +54,8 @@ Page({
 
   // 跳转到发布页面
   toRelease() {
-    console.log('toRelease')
+    wx.navigateTo({
+      url: '/pages/release/release'
+    })
   }
 })

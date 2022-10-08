@@ -1,0 +1,30 @@
+/* pages/release/release.wxss */
+.container {
+  padding: 20rpx 0;
+}
+.container .content {
+  padding: 0 30rpx;
+}
+.container .takeType {
+  display: flex;
+  justify-content: space-between;
+}
+.container .box {
+  display: flex;
+  justify-content: space-between;
+}
+.container .box .title {
+  width: 100rpx;
+  margin: auto 0 auto 20rpx;
+}
+.container .box .btn {
+  width: 170rpx;
+  overflow: hidden;
+  border-radius: 8rpx;
+  background-color: var(--Color-MainA);
+}
+.container .box .btn .phoneNumber {
+  width: 100%;
+  color: var(--Color-White);
+  background-color: var(--Color-MainA);
+}

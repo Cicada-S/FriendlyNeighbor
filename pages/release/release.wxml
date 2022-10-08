@@ -1,0 +1,65 @@
+<!--pages/release/release.wxml-->
+<view class="container">
+  <view class="content">
+    <!-- 名称 -->
+    <BlockBox title="名称">
+      <van-field
+        model:value="{{ name }}"
+        placeholder="请输入名称"
+        border="{{ false }}"
+      />
+    </BlockBox>
+    <!-- 价格 -->
+    <BlockBox title="价格">
+      <van-field
+        model:value="{{ price }}"
+        placeholder="请输入价格"
+        border="{{ false }}"
+      />
+    </BlockBox>
+    <!-- 取货方式 -->
+    <BlockBox padding="22rpx 20rpx">
+      <view class="takeType">
+        <view class="title">取货方式</view>
+        <van-radio-group value="{{ radio }}" bind:change="onRadioChange" direction="horizontal">
+          <van-radio name="0">自提</van-radio>
+          <van-radio name="1">送货上门</van-radio>
+        </van-radio-group>
+      </view>
+    </BlockBox>
+    <!-- 手机号 -->
+    <BlockBox>
+      <view class="box">
+        <view class="title">手机号</view>
+        <van-field
+          model:value="{{ phone }}"
+          placeholder="请输入手机号"
+          border="{{ false }}"
+          type="number"
+        />
+        <view class="btn">
+          <button
+            class="phoneNumber"
+            open-type="getPhoneNumber"
+            bindgetphonenumber="getPhoneNumber"
+          >
+            获取
+          </button>
+        </view>
+      </view>
+    </BlockBox>
+    <!-- 备注 -->
+    <BlockBox title="备注">
+      <van-field
+        model:value="{{ remark }}"
+        placeholder="备注信息"
+        border="{{ false }}"
+        type="textarea"
+        autosize
+      />
+    </BlockBox>
+  </view>
+
+  <!-- 底部按钮 -->
+  <BottomBtn text="发布" bind:onClick="onRelease" />
+</view>

@@ -13,7 +13,8 @@
     "pages/myCommunity/myCommunity",
     "pages/follow/follow",
     "pages/notFollow/notFollow",
-    "pages/oldThings/oldThings"
+    "pages/oldThings/oldThings",
+    "pages/release/release"
   ],
   "window": {
     "backgroundTextStyle": "light",
