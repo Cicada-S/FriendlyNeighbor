@@ -1,4 +1,23 @@
 <!--pages/oldThings/oldThings.wxml-->
 <view class="container">
-  旧物交易
+  <!-- 发布 -->
+  <view class="publish" bindtap="toRelease">
+    <van-icon name="add-o" />
+  </view>
+
+  <!-- 旧物列表 -->
+  <view class="picture">
+    <block wx:for="{{listData}}" wx:key="_id">
+      <view class="item" >
+        <image lazy-load mode="widthFix" src="{{item.path}}" />
+        <view class="remark">{{item.remark}}</view>
+        <view class="tags">
+          <view class="tag">全新</view>
+          <view class="tag">iPhone13</view>
+          <view class="tag">蓝色</view>
+        </view>
+        <view class="price"><text>¥</text>{{item.price}}</view>
+      </view>
+    </block>
+  </view>
 </view>

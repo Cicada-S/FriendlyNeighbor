@@ -1,1 +1,67 @@
 /* pages/oldThings/oldThings.wxss */
+.container {
+  padding: 0 10rpx;
+  /* 瀑布流布局 */
+}
+.container .publish {
+  position: fixed;
+  bottom: 150rpx;
+  right: 20rpx;
+  z-index: 999;
+  width: 100rpx;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  color: var(--Color-MainA);
+  font-size: 60rpx;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 7px 7px 10px #d4dbe0, -5px -5px 20px #f8ffff;
+}
+.container .picture {
+  column-gap: 5rpx;
+  column-count: 2;
+  margin: 20rpx 0;
+}
+.container .picture .item {
+  width: calc(100% - 30rpx);
+  break-inside: avoid;
+  box-shadow: 0 10rpx 30rpx 0 rgba(0, 0, 0, 0.1);
+  border-radius: 10rpx;
+  margin: 0 15rpx 30rpx;
+  overflow: hidden;
+}
+.container .picture .item image {
+  width: 100%;
+  background-color: aqua;
+}
+.container .picture .item .remark {
+  font-size: 28rpx;
+  margin: 20rpx 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  /* 设置对齐模式 */
+  -webkit-line-clamp: 2;
+  /* 设置多行的行数 */
+}
+.container .picture .item .tags {
+  display: flex;
+  font-size: 20rpx;
+  color: var(--Color-ViceA);
+}
+.container .picture .item .tags .tag {
+  border: 1rpx solid var(--Color-ViceA);
+  border-radius: 10rpx;
+  padding: 0 5rpx;
+  margin: 0 10rpx;
+}
+.container .picture .item .price {
+  color: var(--Color-ViceA);
+  margin: 20rpx 10rpx;
+}
+.container .picture .item .price text {
+  font-size: 24rpx;
+  margin-right: 5rpx;
+}
