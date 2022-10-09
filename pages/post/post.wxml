@@ -103,7 +103,14 @@
       bindfocus="inputFocus"
       bindblur="inputBlur"
     />
-    <view class="hair" bindtap="hairComment">发送</view>
+    <button 
+      class="hair"
+      bindtap="hairComment"
+      disabled="{{isDisabled}}"
+      style="background-color: {{isDisabled?'#EFEFEF':'#407FF5'}}; color: {{isDisabled?'#979797':'#FFFFFF'}}"
+    >
+      发送
+    </button>
   </view>
 
   <!-- 发布成功后的分享面板 -->

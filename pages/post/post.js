@@ -27,7 +27,8 @@ Page({
     commentList: [], // 评论列表
     inputBottom: 0,
     show: false, // 转发框的显示状态
-    isDelete: false // 是否为空状态
+    isDelete: false, // 是否为空状态
+    isDisabled: false // 是否禁用发送按钮
   },
 
   /**
@@ -186,25 +187,18 @@ Page({
   },
 
   // 评论
-  hairComment() {
+  async hairComment() {
     let content = this.data.value
-    if(typeof content === "undefined" || content === null || content.trim() === ""){
-      return
-    }
+    if(typeof content === "undefined" || content === null || content.trim() === '') return
+
+    // 禁用发送按钮 发送成功后再解除
+    this.setData({ isDisabled: true })
 
     if(this.data.commentType) {
-      this.sonComment() // 子级评论
+      await this.sonComment() // 子级评论
     } else {
-      this.fatherComment() // 父级评论
+      await this.fatherComment() // 父级评论
     }
-
-    // 计算评论数量
-    this.setData({
-      commentSum: ++this.data.commentSum,
-      focus: false,
-      commentType: false,
-      placeholder: '评论...'
-    })
   },
 
   // 父级评论
@@ -240,7 +234,7 @@ Page({
       data.child_comment = [] // 添加上child_comment属性 否则子评会报错
       commentList.unshift(data)
       // 更新data
-      this.setData({ commentList, value: '' })
+      this.commentRes(commentList)
     })
   },
 
@@ -284,7 +278,20 @@ Page({
         if(item._id === fatherCommentId) item.child_comment.push(data)
       })
       // 更新data
-      this.setData({ commentList, value: '' })
+      this.commentRes(commentList)
+    })
+  },
+
+  // 评论成功清除更新data
+  commentRes(commentList){
+    this.setData({
+      commentList,
+      commentSum: ++this.data.commentSum,
+      focus: false,
+      commentType: false,
+      placeholder: '评论...',
+      value: '',
+      isDisabled: false
     })
   },
 
