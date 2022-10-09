@@ -8,7 +8,7 @@ Page({
     radio: '0', // 取货方式
     phone: '', // 手机号
     remark: '', // 备注
-    specifications: [{key: '', value: ''}], //  规格
+    specifications: [{key: '', value: ''}], // 规格
   },
 
   // 切换取货方式
@@ -44,12 +44,28 @@ Page({
 
   // 删除规格
   delSpec(event) {
-    console.log('event', event.target.id)
+    let id = event.target.id
+    let { specifications } = this.data
+    let newSpecifications = specifications.filter((item, index) => index != id)
+    console.log('newSpecifications', newSpecifications)
+    this.setData({ specifications: newSpecifications })
+  },
+
+  // 监听规格中输入框的值
+  onChangeSpec(event) {
+    let { index, type } = event.currentTarget.dataset
+    // 将 event.detail 赋值到对应的index上
+    this.setData({
+      [`specifications[${index}].${type}`]: event.detail
+    })
   },
 
   // 添加规格
   addSpec() {
     console.log('addSpec')
+    let { specifications } = this.data
+    specifications.push({key: '', value: ''})
+    this.setData({ specifications })
   },
 
   // 发布
