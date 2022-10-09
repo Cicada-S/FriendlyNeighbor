@@ -350,7 +350,7 @@ Page({
   onShareAppMessage() {
     this.setData({ show: false })
     let { type, departPlace, destination } = this.data.postInfo
-    let travel = type === '1' ? '人找车' : '车找人'
+    let travel = type ? '人找车' : '车找人'
     let title = `${travel}，出发：${departPlace} -> 到达：${destination}`
     return { title }
   },
