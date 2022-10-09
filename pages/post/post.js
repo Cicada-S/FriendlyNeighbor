@@ -120,9 +120,9 @@ Page({
   },
 
   // 复制手机号
-  copyPhone() {
+  async copyPhone() {
     // 创建获取手机号日志
-    const result = this.getPhoneLog(0)
+    const result = await this.getPhoneLog(0)
 
     // 复制手机号
     if(result) wx.setClipboardData({ data: this.data.postInfo.phone })
@@ -133,12 +133,12 @@ Page({
         duration: 1500
       })
     })
-  }, 
+  },
 
   // 拨打电话
-  dialPhone() {
+  async dialPhone() {
     // 创建获取手机号日志
-    const result = this.getPhoneLog(1)
+    const result = await this.getPhoneLog(1)
 
     // 拨打电话
     if(result) wx.makePhoneCall({
@@ -159,12 +159,11 @@ Page({
       createTime: _.and(_.gte(new Date(today+" 00:00:00")),_.lte(new Date(today+" 23:59:59")))
     }).get()
 
-    console.log('data', data)
     // 判断当天的日志数量
     if(data.length >= 6) {
       wx.showToast({
         title: '每天只能获取6个手机号',
-        icon: 'error',
+        icon: 'none',
         duration: 2000
       })
       return false
