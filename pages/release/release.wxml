@@ -48,6 +48,32 @@
         </view>
       </view>
     </BlockBox>
+    <!-- 规格 -->
+    <BlockBox title="规格">
+      <van-cell-group wx:for="{{specifications}}" wx:key="title">
+        <view class="fieldBox">
+          <!-- key -->
+          <van-field
+            model:value="{{ item.key }}"
+            placeholder="请输入规格"
+            border="{{ false }}"
+            input-class="optionTitle"
+          >
+          </van-field>:
+          <!-- value -->
+          <van-field
+            model:value="{{ item.value }}"
+            placeholder="请输入值"
+            border="{{ false }}"
+            input-class="optionInput"
+          />
+          <!-- 删除规格的图标 -->
+          <van-icon custom-class="customIcon" id="{{index}}" bindtap="delSpec" slot="right-icon" name="clear" />
+        </view>
+      </van-cell-group>
+      <!-- 添加规格 -->
+      <van-button type="default" custom-class="addBtn" bindtap="addSpec" block>添加规格</van-button>
+    </BlockBox>
     <!-- 备注 -->
     <BlockBox title="备注">
       <van-field

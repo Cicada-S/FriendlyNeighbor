@@ -7,7 +7,8 @@ Page({
     price: null, // 价格
     radio: '0', // 取货方式
     phone: '', // 手机号
-    remark: '' // 备注
+    remark: '', // 备注
+    specifications: [{key: '', value: ''}], //  规格
   },
 
   // 切换取货方式
@@ -39,6 +40,16 @@ Page({
       this.setData({ phone: phoneNumber })
       db.collection('User').doc(wx.getStorageSync('currentUser')._id).update({data: { phone: phoneNumber }})
     }
+  },
+
+  // 删除规格
+  delSpec(event) {
+    console.log('event', event.target.id)
+  },
+
+  // 添加规格
+  addSpec() {
+    console.log('addSpec')
   },
 
   // 发布
