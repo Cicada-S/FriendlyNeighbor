@@ -205,9 +205,9 @@
 }
 .container .publishComment .input {
   flex: 1;
-  height: 80rpx;
+  height: 60rpx;
   padding: 0 30rpx;
-  line-height: 80rpx;
+  line-height: 60rpx;
   margin-bottom: 10rpx;
   color: var(--Color-FontD);
   border-radius: 30rpx;
@@ -215,9 +215,9 @@
 }
 .container .publishComment .hair {
   width: 120rpx;
-  height: 80rpx;
+  height: 60rpx;
   text-align: center;
-  line-height: 80rpx;
+  line-height: 60rpx;
   color: var(--Color-White);
   padding: 0;
   margin-bottom: 10rpx;
