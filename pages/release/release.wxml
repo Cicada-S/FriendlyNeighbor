@@ -1,6 +1,6 @@
 <!--pages/release/release.wxml-->
 <view class="container">
-  <view class="content">
+  <view class="content" style="padding-bottom: {{bottomLift*2+85}}rpx">
     <!-- 名称 -->
     <BlockBox title="名称">
       <van-field
@@ -79,6 +79,25 @@
       </van-cell-group>
       <!-- 添加规格 -->
       <van-button type="default" custom-class="addBtn" bindtap="addSpec" block>添加规格</van-button>
+    </BlockBox>
+    <!-- 图片 -->
+    <BlockBox title="首图">
+      <van-uploader
+        file-list="{{ firstList }}"
+        multiple
+        id="first"
+        bind:after-read="afterRead"
+        bind:delete="onDelete"
+      />
+    </BlockBox>
+    <BlockBox title="详情图">
+      <van-uploader
+        file-list="{{ detailsList }}"
+        multiple
+        id="details"
+        bind:after-read="afterRead"
+        bind:delete="onDelete"
+      />
     </BlockBox>
     <!-- 备注 -->
     <BlockBox title="备注">

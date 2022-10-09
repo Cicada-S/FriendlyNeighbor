@@ -1,14 +1,23 @@
 // pages/release/release.js
+const app = getApp()
 const db = wx.cloud.database()
+
+const type = {
+  first: 'firstList',
+  details: 'detailsList',
+}
 
 Page({
   data: {
+    bottomLift: app.globalData.bottomLift,
     name: '', // 商品名称
     price: null, // 价格
     radio: '0', // 取货方式
     phone: '', // 手机号
     remark: '', // 备注
     specifications: [{key: '', value: ''}], // 规格
+    firstList: [], // 首图的数据
+    detailsList: [], // 详情图的数据
   },
 
   // 切换取货方式
@@ -66,6 +75,23 @@ Page({
     let { specifications } = this.data
     specifications.push({key: '', value: ''})
     this.setData({ specifications })
+  },
+
+  // 文件读取完成后
+  afterRead(event) {
+    this.data[type[event.target.id]].push(...event.detail.file)
+    this.setData({
+      [type[event.target.id]]: this.data[type[event.target.id]]
+    })
+  },
+
+  // 删除图片的方法
+  onDelete(event) {
+    const id = event.target.id
+    let newList = this.data[type[id]]?.filter((item, index) => index !== event.detail.index)
+    this.setData({
+      [type[id]]: newList
+    })
   },
 
   // 发布
