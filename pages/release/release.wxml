@@ -52,15 +52,15 @@
     <BlockBox title="规格">
       <van-cell-group wx:for="{{specifications}}" wx:key="title">
         <view class="fieldBox">
-          <!-- key -->
+          <!-- name -->
           <van-field
-            model:value="{{ item.key }}"
+            model:value="{{ item.name }}"
             placeholder="请输入规格"
             border="{{ false }}"
             input-class="optionTitle"
             bind:change="onChangeSpec"
             data-index="{{index}}"
-            data-type="key"
+            data-type="name"
           >
           </van-field>:
           <!-- value -->

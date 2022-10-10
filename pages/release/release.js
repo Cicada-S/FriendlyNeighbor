@@ -10,7 +10,7 @@ const type = {
   details: 'detailsList'
 }
 // 添加到数据表中的图片path
-const upCloudImage = {
+let upCloudImage = {
   first: [],
   details: []
 }
@@ -23,7 +23,7 @@ Page({
     radio: '0', // 取货方式
     phone: '', // 手机号
     remark: '', // 备注
-    specifications: [{key: '', value: ''}], // 规格
+    specifications: [{name: '', value: ''}], // 规格
     firstList: [], // 首图的数据
     detailsList: [], // 详情图的数据
   },
@@ -80,7 +80,7 @@ Page({
   // 添加规格
   addSpec() {
     let { specifications } = this.data
-    specifications.push({key: '', value: ''})
+    specifications.push({name: '', value: ''})
     this.setData({ specifications })
   },
 
@@ -122,10 +122,17 @@ Page({
     })
     
     if(emoty) {
+      wx.showLoading({title: '发布中...'})
+      
       // 将图片上传到云存储
       await this.upCloud(firstList, 'first')
       await this.upCloud(detailsList, 'details')
 
+      const { nick_name, avatar_url } = wx.getStorageSync('currentUser')
+      form.nickName = nick_name
+      form.avatarUrl = avatar_url
+      // 给每个规格添加上order
+      specifications.forEach((item, index) => item.order = index)
       // upCloudImage转成数组
       const newUpCloudImage = Object.values(upCloudImage).flat()
       const data = {
@@ -135,12 +142,26 @@ Page({
       }
 
       // 发布旧物的请求
-      const result = await wx.cloud.callFunction({
+      const { result } = await wx.cloud.callFunction({
         name: 'addIdleItem',
         data
       })
 
-      // console.log('result', result)
+      // 发布成功
+      if(result.code === 0) {
+        console.log('result', result)
+        wx.hideLoading()
+        // 清空upCloudImage
+        upCloudImage = { first: [], details: [] }
+        wx.showToast({
+          title: '发布成功！',
+          icon: 'success',
+          duration: 1000
+        })
+        setTimeout(() => {
+          wx.switchTab({ url: '/pages/oldThings/oldThings' })
+        }, 1000)
+      }
     }
   },
 
