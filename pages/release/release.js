@@ -71,7 +71,6 @@ Page({
 
   // 添加规格
   addSpec() {
-    console.log('addSpec')
     let { specifications } = this.data
     specifications.push({key: '', value: ''})
     this.setData({ specifications })
@@ -96,6 +95,45 @@ Page({
 
   // 发布
   onRelease() {
-    console.log('发布')
+    let { bottomLift, specifications, firstList, detailsList, ...form } = this.data
+    let newSpec = []
+    // 将规格的每一个属性取出来
+    specifications.forEach(item => newSpec.push(...Object.values(item)))
+    const isEmptyArr = [...Object.values(form), ...newSpec, firstList, detailsList]
+    let emoty = true
+    // 遍历判断每一项是否为空
+    isEmptyArr.forEach(item => {
+      if(this.isEmpty(item)) {
+        emoty = false
+        return wx.showToast({
+          title: '所有选项都是必填项！',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
+    
+    if(emoty) {
+      console.log('发布')
+    }
+  },
+
+  // 判断是否为空
+  isEmpty(target) {
+    const bol = target !== undefined && target !== null
+    const type = bol ? this.getVariableType(target) : '[object String]'
+    const value = bol ? target : ''
+    switch(type) {
+    case '[object Object]':
+      return Object.keys(value).length < 1
+    case '[object Array]':
+      return value.length < 1
+    default:
+      return String.prototype.trim.call(value) === ''
+    }
+  },
+
+  getVariableType(variable) {
+    return Object.prototype.toString.call(variable)
   }
 })
