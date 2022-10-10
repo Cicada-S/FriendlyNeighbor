@@ -2,9 +2,17 @@
 const app = getApp()
 const db = wx.cloud.database()
 
+import { uuid } from "../../utils/uuid"
+import { pathOfDate } from "../../utils/util"
+
 const type = {
   first: 'firstList',
-  details: 'detailsList',
+  details: 'detailsList'
+}
+// 添加到数据表中的图片path
+const upCloudImage = {
+  first: [],
+  details: []
 }
 
 Page({
@@ -94,7 +102,7 @@ Page({
   },
 
   // 发布
-  onRelease() {
+  async onRelease() {
     let { bottomLift, specifications, firstList, detailsList, ...form } = this.data
     let newSpec = []
     // 将规格的每一个属性取出来
@@ -114,7 +122,25 @@ Page({
     })
     
     if(emoty) {
-      console.log('发布')
+      // 将图片上传到云存储
+      await this.upCloud(firstList, 'first')
+      await this.upCloud(detailsList, 'details')
+
+      // upCloudImage转成数组
+      const newUpCloudImage = Object.values(upCloudImage).flat()
+      const data = {
+        IdleItem: form,
+        IdleItemSpecification: specifications,
+        IdleItemVideoImage: newUpCloudImage
+      }
+
+      // 发布旧物的请求
+      const result = await wx.cloud.callFunction({
+        name: 'addIdleItem',
+        data
+      })
+
+      // console.log('result', result)
     }
   },
 
@@ -135,5 +161,30 @@ Page({
 
   getVariableType(variable) {
     return Object.prototype.toString.call(variable)
+  },
+
+  // 将图片上传到云存储
+  upCloud(imageList, type) {
+    let worker = []
+    // 遍历上传图片
+    imageList.forEach((item, index) => {
+      let cloudPath = pathOfDate() + uuid() + item.url.match(/.[^.]+$/)[0]
+      // 上传图片
+      let process = wx.cloud.uploadFile({
+        cloudPath,
+        filePath: item.url
+      })
+      .then(res => {
+        // 标记图片 首图为 0 详情图为 1 
+        let typeID = type === 'first' ? 0 : 1
+        upCloudImage[type].push({
+          path: res.fileID,
+          type: typeID,
+          order: index
+        })
+      })
+      worker.push(process)
+    })
+    return Promise.all(worker)
   }
 })
