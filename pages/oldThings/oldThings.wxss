@@ -33,7 +33,6 @@
 }
 .container .picture .item image {
   width: 100%;
-  background-color: aqua;
 }
 .container .picture .item .remark {
   font-size: 28rpx;

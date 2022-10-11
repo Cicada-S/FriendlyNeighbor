@@ -9,12 +9,12 @@
   <view class="picture">
     <block wx:for="{{listData}}" wx:key="_id">
       <view class="item" >
-        <image lazy-load mode="widthFix" src="{{item.path}}" />
-        <view class="remark">{{item.remark}}</view>
+        <image lazy-load mode="widthFix" src="{{item.pathUrl[0].path}}" />
+        <view class="remark">{{item.name}}-{{item.remark}}</view>
         <view class="tags">
-          <view class="tag">全新</view>
-          <view class="tag">iPhone13</view>
-          <view class="tag">蓝色</view>
+          <block wx:for="{{item.specification}}" wx:for-item="sitem" wx:for-index="sindex" wx:key="_id">
+            <view class="tag">{{sitem.value}}</view>
+          </block>
         </view>
         <view class="price"><text>¥</text>{{item.price}}</view>
       </view>
