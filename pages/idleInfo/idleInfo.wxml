@@ -1,4 +1,5 @@
 <!--pages/idleInfo/idleInfo.wxml-->
 <view class="container">
+  <Swiper imageList="{{imageList}}" />
   闲物详情
 </view>
