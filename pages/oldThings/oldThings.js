@@ -29,6 +29,13 @@ Page({
     this.setData({ listData: result.data })
   },
 
+  // 跳转到闲物详情
+  toIdleInfo(event) {
+    wx.navigateTo({
+      url: `/pages/idleInfo/idleInfo?id="${event.currentTarget.id}"`
+    })
+  },
+
   // 跳转到发布页面
   toRelease() {
     wx.navigateTo({

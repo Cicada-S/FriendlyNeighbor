@@ -1,0 +1,4 @@
+/* pages/idleInfo/idleInfo.wxss */
+.container {
+  width: 100vw;
+}

@@ -1,0 +1,4 @@
+<!--pages/idleInfo/idleInfo.wxml-->
+<view class="container">
+  闲物详情
+</view>

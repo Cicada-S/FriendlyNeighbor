@@ -8,7 +8,7 @@
   <!-- 旧物列表 -->
   <view class="picture">
     <block wx:for="{{listData}}" wx:key="_id">
-      <view class="item" >
+      <view class="item" bindtap="toIdleInfo" id="{{item._id}}">
         <image lazy-load mode="widthFix" src="{{item.pathUrl[0].path}}" />
         <view class="remark">{{item.name}}-{{item.remark}}</view>
         <view class="tags">
