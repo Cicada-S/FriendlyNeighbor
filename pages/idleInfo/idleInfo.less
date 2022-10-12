@@ -1,4 +1,252 @@
 /* pages/idleInfo/idleInfo.wxss */
 .container {
   width: 100vw;
+
+  // 信息
+  .idleInfo {
+    padding: 20rpx 30rpx;
+
+    .infoTop {
+      display: flex;
+      align-items: center;
+
+      // 价格 名字
+      .left {
+        .price {
+          font-size: 36rpx;
+          color: var(--Color-ViceA);
+
+          .icon {
+            font-size: 24rpx;
+            margin-right: 8rpx;
+          }
+
+          .type {
+            color: var(--Color-MainA);
+            font-size: 20rpx;
+            border-radius: 10rpx;
+            padding: 2rpx 8rpx;
+            margin-left: 10rpx;
+            background-color: rgba(64,127,245, .2);
+          }
+        }
+        
+        .name {
+          font-size: 32rpx;
+          font-weight: 550;
+          color: var(--Color-MainB);
+        }
+      }
+
+      // 手机号
+      .operation {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        color: var(--Color-White);
+        font-size: 32rpx;
+
+        .button {
+          width: 80rpx;
+          height: 50rpx;
+          text-align: center;
+          line-height: 50rpx;
+          padding: 0 20rpx;
+          border-radius: 20rpx;
+          background-color: var(--Color-MainA);
+        }
+
+        .copy {
+          position: relative;
+        }
+
+        .copy::after,
+        .copy::before {
+          content: '';
+          position: absolute;
+          width: 22rpx;
+          height: 22rpx;
+          border-radius: 5rpx;
+          background-color: var(--Color-White);
+        }
+
+        .copy::after {
+          top: 30%;
+          left: 30%;
+          border-top: 2rpx solid var(--Color-MainA);
+          border-right: 2rpx solid var(--Color-MainA);
+        }
+
+        .copy::before  {
+          top: 20%;
+          left: 40%;
+        }
+
+        .dial {
+          margin-left: 30rpx;
+        }
+      }
+    }
+
+    // 备注
+    .remark {
+      padding: 20rpx 0;
+    }
+
+    // 配置
+    .specification {
+      display: flex;
+      padding: 10rpx 0;
+
+      .specItem + .specItem {
+        border-left: 1rpx solid var(--Color-FontB);
+      }
+
+      .specItem:first-child {
+        padding-left: 0;
+      }
+
+      .specItem:nth-last-child(1) {
+        padding-right: 0;
+      }
+
+      .specItem {
+        font-size: 24rpx;
+        padding: 0 30rpx;
+
+        .name {
+          color: var(--Color-FontB);
+          padding-bottom: 8rpx;
+        }
+      }
+    }
+  }
+
+  // 详情图片
+  .detailsImage  {
+    width: 100%;
+    padding-top: 30rpx;
+
+    image {
+      width: 100%;
+    }
+  }
+
+  // 评论
+  .commentArea {
+    margin: 40rpx 30rpx;
+    font-size: 28rpx;
+
+    .title {
+      color: var(--Color-FontA);
+      letter-spacing: 2rpx;
+    }
+
+    .commentList {
+      margin: 30rpx 0;
+
+      .commentItem {
+        margin-bottom: 30rpx;
+        border-bottom: 1rpx solid var(--Color-FontE);
+
+        .fatherComment,
+        .sonCommentItem {
+          display: flex;
+
+          .userPic {
+            width: 80rpx;
+            height: 80rpx;
+            border-radius: 50%;
+          }
+
+          .sonUserPic {
+            width: 60rpx;
+            height: 60rpx;
+            border-radius: 50%;
+          }
+
+          .content {
+            flex: 1;
+            margin: 0 20rpx;
+
+            .userName {
+              color: var(--Color-FontA);
+              margin-bottom: 10rpx;
+
+              .author {
+                color: var(--Color-FontD);
+                font-size: 22rpx;
+                background-color: var(--Color-FontE);
+                border-radius: 20rpx;
+                padding: 5rpx 10rpx;
+                margin-left: 10rpx;
+              }
+            }
+
+            .commentContent {
+              margin-bottom: 20rpx;
+
+              .comment {
+                margin-right: 10rpx;
+
+                .reply {
+                  margin-right: 8rpx;
+                }
+
+                .coverReply {
+                  margin-left: 8rpx;
+                  color: var(--Color-FontA);
+                }
+              }
+
+              .commentTime {
+                color: var(--Color-FontA);
+                font-size: 24rpx;
+                white-space: nowrap;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // 评论框
+  .publishComment {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10rpx 30rpx 0;
+    background-color: var(--Color-White);
+
+    .input {
+      flex: 1;
+      height: 80rpx;
+      padding: 0 30rpx;
+      line-height: 80rpx;
+      margin-bottom: 10rpx;
+      color: var(--Color-FontD);
+      border-radius: 30rpx;
+      background: var(--Color-FontE);
+    }
+
+    .hair {
+      width: 120rpx;
+      height: 80rpx;
+      text-align: center;
+      line-height: 80rpx;
+      color: var(--Color-White);
+      margin-bottom: 10rpx;
+      margin-left: 20rpx;
+      border-radius: 20rpx;
+      background-color: var(--Color-MainA);
+    }
+
+    .hair::after {
+      border: none;
+    }
+  }
 }
