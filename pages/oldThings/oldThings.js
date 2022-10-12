@@ -32,7 +32,7 @@ Page({
   // 跳转到闲物详情
   toIdleInfo(event) {
     wx.navigateTo({
-      url: `/pages/idleInfo/idleInfo?id="${event.currentTarget.id}"`
+      url: `/pages/idleInfo/idleInfo?id=${event.currentTarget.id}`
     })
   },
 
