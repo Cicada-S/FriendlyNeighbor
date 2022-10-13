@@ -41,48 +41,14 @@
     </view>
   </view>
 
-  <view class="commentArea" wx:if="{{postInfo._id}}">
-    <view class="title">共{{commentSum}}条评论</view>
-    <!-- 评论列表 -->
-    <view class="commentList" style="padding-bottom: {{bottomLift+45}}px">
-      <!-- 父评论 -->
-      <view class="commentItem" wx:for="{{commentList}}" wx:key="_id">
-        <view class="fatherComment">
-          <image class="userPic" src="{{item.avatarUrl}}" />
-          <!-- 评论内容 -->
-          <view class="content" bindtap="replyComment" id="{{item._id}}" data-fid="{{item._openid}}" data-name="{{item.nickName}}">
-            <view class="userName">
-              <text>{{item.nickName}}</text>
-              <text wx:if="{{postInfo._openid===item._openid}}" class="author">作者</text>
-            </view>
-            <!-- 父评论 内容 -->
-            <view class="commentContent">
-              <text class="comment">{{item.content}}</text>
-              <text class="commentTime">{{item.createTime}}</text>
-            </view>
-            <!-- 子评论 回复 -->
-            <view class="sonCommentItem" wx:for="{{item.child_comment}}" wx:key="_id" wx:for-item="child">
-              <image class="sonUserPic" src="{{child.avatarUrl}}" />
-              <view class="content" catchtap="answerComment" id="{{item._id}}" data-fid="{{child._openid}}" data-name="{{child.nickName}}">
-                <view class="userName">
-                  <text>{{child.nickName}}</text>
-                  <text wx:if="{{postInfo._openid===child._openid}}" class="author">作者</text>
-                </view>
-                <!-- 子评论 内容 -->
-                <view class="commentContent">
-                  <text class="comment">
-                    <text wx:if="{{child.replyType}}" class="reply">回复<text class="coverReply">{{child.toNickName}}</text>:</text>
-                    <text>{{child.content}}</text>
-                  </text>
-                  <text class="commentTime">{{child.createTime}}</text>
-                </view>
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
+  <!-- 评论区 -->
+  <CommentArea
+    wx:if="{{postInfo._id}}"
+    commentList="{{commentList}}"
+    commentSum="{{commentSum}}"
+    bind:replyComment="replyComment"
+    bind:answerComment="answerComment"
+  />
 
   <!-- 评论框 -->
   <view

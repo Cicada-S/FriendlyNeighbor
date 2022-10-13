@@ -290,7 +290,7 @@ Page({
 
   // 点击父级评论 的回调函数
   replyComment(event) {
-    let { id, dataset } = event.currentTarget
+    let { id, dataset } = event.detail
 
     this.setData({
       focus: true,
@@ -305,7 +305,7 @@ Page({
 
   // 点击子级评论 的回调函数
   answerComment(event) {
-    let { id, dataset } = event.currentTarget
+    let { id, dataset } = event.detail
 
     this.setData({
       focus: true,
