@@ -27,6 +27,8 @@ Page({
   onLoad(options) {
     // 获取闲物详情
     this.getIdleInfo(options.id)
+    // 获取评论
+    this.getComment(options.id)
   },
 
   // 获取闲物详情
@@ -41,6 +43,26 @@ Page({
     result.data.firstList = firstList
 
     this.setData({ idleInfo: result.data })
+  },
+
+  // 获取评论
+  async getComment(id) {
+    let { result } = await wx.cloud.callFunction({
+      name: 'getComment',
+      data: { id }
+    })
+
+    let { commentSum } = this.data
+    // 将发布时间改成文字  计算评论数量
+    result.data.forEach(item => {
+      ++commentSum
+      item.createTime = getdate(item.createTime)
+      item.child_comment.forEach(child => {
+        ++commentSum
+        child.createTime = getdate(child.createTime)
+      })
+    })
+    this.setData({ commentList: result.data, commentSum })
   },
 
   // 复制手机号
