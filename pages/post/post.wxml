@@ -31,12 +31,8 @@
           ( {{postInfo.type==0?'座位':'人数'}}
           {{postInfo.numberOfPeople}} )
         </view>
-        <view class="operation">
-          <view class="copy button" bindtap="copyPhone"></view>
-          <view class="dial button" bindtap="dialPhone">
-            <van-icon name="phone" />
-          </view>
-        </view>
+        <!-- 复制 拨打 手机号 -->
+        <PhoneNumber phone="{{postInfo.phone}}" openId="{{postInfo._openid}}" />
       </view>
     </view>
   </view>

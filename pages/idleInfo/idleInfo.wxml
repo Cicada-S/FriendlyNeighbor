@@ -14,12 +14,7 @@
         <view class="name">{{idleInfo.name}}</view>
       </view>
       <!-- 手机号码 -->
-      <view class="operation">
-        <view class="copy button" bindtap="copyPhone"></view>
-        <view class="dial button" bindtap="dialPhone">
-          <van-icon name="phone" />
-        </view>
-      </view>
+      <PhoneNumber phone="{{idleInfo.phone}}" openId="{{idleInfo._openid}}" />
     </view>
     <!-- 备注 -->
     <view class="remark">{{idleInfo.remark}}</view>

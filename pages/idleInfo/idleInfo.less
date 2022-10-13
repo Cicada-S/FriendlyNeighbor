@@ -12,6 +12,8 @@
 
       // 价格 名字
       .left {
+        flex: 1;
+
         .price {
           font-size: 36rpx;
           color: var(--Color-ViceA);
@@ -35,55 +37,6 @@
           font-size: 32rpx;
           font-weight: 550;
           color: var(--Color-MainB);
-        }
-      }
-
-      // 手机号
-      .operation {
-        flex: 1;
-        display: flex;
-        justify-content: flex-end;
-        color: var(--Color-White);
-        font-size: 32rpx;
-
-        .button {
-          width: 80rpx;
-          height: 50rpx;
-          text-align: center;
-          line-height: 50rpx;
-          padding: 0 20rpx;
-          border-radius: 20rpx;
-          background-color: var(--Color-MainA);
-        }
-
-        .copy {
-          position: relative;
-        }
-
-        .copy::after,
-        .copy::before {
-          content: '';
-          position: absolute;
-          width: 22rpx;
-          height: 22rpx;
-          border-radius: 5rpx;
-          background-color: var(--Color-White);
-        }
-
-        .copy::after {
-          top: 30%;
-          left: 30%;
-          border-top: 2rpx solid var(--Color-MainA);
-          border-right: 2rpx solid var(--Color-MainA);
-        }
-
-        .copy::before  {
-          top: 20%;
-          left: 40%;
-        }
-
-        .dial {
-          margin-left: 30rpx;
         }
       }
     }

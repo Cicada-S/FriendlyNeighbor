@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "Swiper": "/components/Swiper/Swiper",
+    "PhoneNumber": "/components/PhoneNumber/PhoneNumber",
     "CommentArea": "/components/CommentArea/CommentArea",
     "CommentBox": "/components/CommentBox/CommentBox",
     "van-icon": "@vant/weapp/icon/index",

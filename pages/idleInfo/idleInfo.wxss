@@ -9,6 +9,9 @@
   display: flex;
   align-items: center;
 }
+.container .idleInfo .infoTop .left {
+  flex: 1;
+}
 .container .idleInfo .infoTop .left .price {
   font-size: 36rpx;
   color: var(--Color-ViceA);
@@ -29,47 +32,6 @@
   font-size: 32rpx;
   font-weight: 550;
   color: var(--Color-MainB);
-}
-.container .idleInfo .infoTop .operation {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  color: var(--Color-White);
-  font-size: 32rpx;
-}
-.container .idleInfo .infoTop .operation .button {
-  width: 80rpx;
-  height: 50rpx;
-  text-align: center;
-  line-height: 50rpx;
-  padding: 0 20rpx;
-  border-radius: 20rpx;
-  background-color: var(--Color-MainA);
-}
-.container .idleInfo .infoTop .operation .copy {
-  position: relative;
-}
-.container .idleInfo .infoTop .operation .copy::after,
-.container .idleInfo .infoTop .operation .copy::before {
-  content: '';
-  position: absolute;
-  width: 22rpx;
-  height: 22rpx;
-  border-radius: 5rpx;
-  background-color: var(--Color-White);
-}
-.container .idleInfo .infoTop .operation .copy::after {
-  top: 30%;
-  left: 30%;
-  border-top: 2rpx solid var(--Color-MainA);
-  border-right: 2rpx solid var(--Color-MainA);
-}
-.container .idleInfo .infoTop .operation .copy::before {
-  top: 20%;
-  left: 40%;
-}
-.container .idleInfo .infoTop .operation .dial {
-  margin-left: 30rpx;
 }
 .container .idleInfo .remark {
   padding: 20rpx 0;

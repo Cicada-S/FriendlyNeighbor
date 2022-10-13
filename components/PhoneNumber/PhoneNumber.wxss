@@ -1,0 +1,41 @@
+/* components/PhoneNumber/PhoneNumber.wxss */
+.phoneNumber {
+  display: flex;
+  justify-content: flex-end;
+  color: var(--Color-White);
+  font-size: 32rpx;
+}
+.phoneNumber .button {
+  width: 80rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  padding: 0 20rpx;
+  border-radius: 20rpx;
+  background-color: var(--Color-MainA);
+}
+.phoneNumber .copy {
+  position: relative;
+}
+.phoneNumber .copy::after,
+.phoneNumber .copy::before {
+  content: '';
+  position: absolute;
+  width: 22rpx;
+  height: 22rpx;
+  border-radius: 5rpx;
+  background-color: var(--Color-White);
+}
+.phoneNumber .copy::after {
+  top: 30%;
+  left: 30%;
+  border-top: 2rpx solid var(--Color-MainA);
+  border-right: 2rpx solid var(--Color-MainA);
+}
+.phoneNumber .copy::before {
+  top: 20%;
+  left: 40%;
+}
+.phoneNumber .dial {
+  margin-left: 30rpx;
+}

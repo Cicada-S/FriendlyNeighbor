@@ -1,0 +1,7 @@
+<!--components/PhoneNumber/PhoneNumber.wxml-->
+<view class="phoneNumber">
+  <view class="copy button" bindtap="copyPhone"></view>
+  <view class="dial button" bindtap="dialPhone">
+    <van-icon name="phone" />
+  </view>
+</view>

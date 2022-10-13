@@ -69,49 +69,9 @@
   font-size: 26rpx;
 }
 .container .postInfo .content .footer .partition {
+  flex: 1;
   color: var(--Color-FontB);
   padding: 0 20rpx;
-}
-.container .postInfo .content .footer .operation {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  color: var(--Color-White);
-  font-size: 32rpx;
-}
-.container .postInfo .content .footer .operation .button {
-  width: 80rpx;
-  height: 50rpx;
-  text-align: center;
-  line-height: 50rpx;
-  padding: 0 20rpx;
-  border-radius: 20rpx;
-  background-color: var(--Color-MainA);
-}
-.container .postInfo .content .footer .operation .copy {
-  position: relative;
-}
-.container .postInfo .content .footer .operation .copy::after,
-.container .postInfo .content .footer .operation .copy::before {
-  content: '';
-  position: absolute;
-  width: 22rpx;
-  height: 22rpx;
-  border-radius: 5rpx;
-  background-color: var(--Color-White);
-}
-.container .postInfo .content .footer .operation .copy::after {
-  top: 30%;
-  left: 30%;
-  border-top: 2rpx solid var(--Color-MainA);
-  border-right: 2rpx solid var(--Color-MainA);
-}
-.container .postInfo .content .footer .operation .copy::before {
-  top: 20%;
-  left: 40%;
-}
-.container .postInfo .content .footer .operation .dial {
-  margin-left: 30rpx;
 }
 .container .postInfo .content .icon {
   flex: 1;
