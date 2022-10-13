@@ -11,7 +11,7 @@
         <view class="content" bindtap="replyComment" id="{{item._id}}" data-fid="{{item._openid}}" data-name="{{item.nickName}}">
           <view class="userName">
             <text>{{item.nickName}}</text>
-            <text wx:if="{{postInfo._openid===item._openid}}" class="author">作者</text>
+            <text wx:if="{{openId===item._openid}}" class="author">作者</text>
           </view>
           <!-- 父评论 内容 -->
           <view class="commentContent">
@@ -24,7 +24,7 @@
             <view class="content" catchtap="answerComment" id="{{item._id}}" data-fid="{{child._openid}}" data-name="{{child.nickName}}">
               <view class="userName">
                 <text>{{child.nickName}}</text>
-                <text wx:if="{{postInfo._openid===child._openid}}" class="author">作者</text>
+                <text wx:if="{{openId===child._openid}}" class="author">作者</text>
               </view>
               <!-- 子评论 内容 -->
               <view class="commentContent">

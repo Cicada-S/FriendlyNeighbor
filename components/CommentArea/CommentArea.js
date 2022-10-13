@@ -13,6 +13,10 @@ Component({
     commentSum: {
       type: Number,
       value: 0
+    },
+    openId: {
+      type: String,
+      value: ''
     }
   },
 

@@ -49,6 +49,7 @@
         wx:if="{{idleInfo._id}}"
         commentList="{{commentList}}"
         commentSum="{{commentSum}}"
+        openId="{{idleInfo._openid}}"
         bind:replyComment="replyComment"
         bind:answerComment="answerComment"
       />

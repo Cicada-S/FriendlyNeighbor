@@ -46,6 +46,7 @@
     wx:if="{{postInfo._id}}"
     commentList="{{commentList}}"
     commentSum="{{commentSum}}"
+    openId="{{postInfo._openid}}"
     bind:replyComment="replyComment"
     bind:answerComment="answerComment"
   />
