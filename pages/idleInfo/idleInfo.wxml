@@ -44,6 +44,7 @@
       </view>
     </van-tab>
     <van-tab title="评论">
+      <!-- 评论区 -->
       <CommentArea
         wx:if="{{idleInfo._id}}"
         commentList="{{commentList}}"
@@ -51,28 +52,16 @@
         bind:replyComment="replyComment"
         bind:answerComment="answerComment"
       />
+      <!-- 评论框 -->
+      <CommentBox
+        model:value="{{value}}"
+        focus="{{focus}}"
+        placeholder="{{placeholder}}"
+        isDisabled="{{isDisabled}}"
+        bind:hairComment="hairComment"
+        bind:inputFocus="inputFocus"
+        bind:inputBlur="inputBlur"
+      />
     </van-tab>
   </van-tabs>
-
-  <!-- 评论框 -->
-  <view
-    class="publishComment"
-    wx:if="{{idleInfo._id && active == 1}}"
-    style="padding-bottom: {{inputBottom ? inputBottom : bottomLift}}px"
-    >
-    <input
-      class="input"
-      type="text"
-      confirm-type="send"
-      confirm-hold="{{true}}"
-      model:value="{{value}}"
-      focus="{{focus}}"
-      placeholder="{{placeholder}}"
-      bindconfirm="hairComment"
-      adjust-position="{{false}}"
-      bindfocus="inputFocus"
-      bindblur="inputBlur"
-    />
-    <view class="hair" bindtap="hairComment">发送</view>
-  </view>
 </view>

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "CommentArea": "/components/CommentArea/CommentArea",
+    "CommentBox": "/components/CommentBox/CommentBox",
     "van-icon": "@vant/weapp/icon/index",
     "van-empty": "@vant/weapp/empty/index",
     "van-action-sheet": "@vant/weapp/action-sheet/index"

@@ -1,0 +1,27 @@
+<!--components/CommentBox/CommentBox.wxml-->
+<view
+  class="publishComment"
+  style="padding-bottom: {{inputBottom ? inputBottom : bottomLift}}px"
+  >
+  <input
+    class="input"
+    type="text"
+    confirm-type="send"
+    confirm-hold="{{true}}"
+    model:value="{{value}}"
+    focus="{{focus}}"
+    placeholder="{{placeholder}}"
+    bindconfirm="hairComment"
+    adjust-position="{{false}}"
+    bindfocus="inputFocus"
+    bindblur="inputBlur"
+  />
+  <button 
+    class="hair"
+    bindtap="hairComment"
+    disabled="{{isDisabled}}"
+    style="background-color: {{isDisabled?'#EFEFEF':'#407FF5'}}; color: {{isDisabled?'#979797':'#FFFFFF'}}"
+    >
+    发送
+  </button>
+</view>

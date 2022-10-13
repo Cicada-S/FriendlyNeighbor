@@ -120,40 +120,6 @@
 .container .postInfo .content .icon .ellipsis {
   padding: 0 20rpx;
 }
-.container .publishComment {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10rpx 30rpx 0;
-  background-color: var(--Color-White);
-}
-.container .publishComment .input {
-  flex: 1;
-  height: 80rpx;
-  padding: 0 30rpx;
-  line-height: 80rpx;
-  margin-bottom: 10rpx;
-  color: var(--Color-FontD);
-  border-radius: 30rpx;
-  background: var(--Color-FontE);
-}
-.container .publishComment .hair {
-  width: 120rpx;
-  height: 80rpx;
-  text-align: center;
-  line-height: 80rpx;
-  color: var(--Color-White);
-  margin-bottom: 10rpx;
-  margin-left: 20rpx;
-  border-radius: 20rpx;
-  background-color: var(--Color-MainA);
-}
-.container .publishComment .hair::after {
-  border: none;
-}
 .container .shareContent {
   width: 100%;
   padding: 10rpx 30rpx 20rpx;

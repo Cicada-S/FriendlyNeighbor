@@ -51,26 +51,16 @@
   />
 
   <!-- 评论框 -->
-  <view
-    class="publishComment"
+  <CommentBox
     wx:if="{{postInfo._id}}"
-    style="padding-bottom: {{inputBottom ? inputBottom : bottomLift}}px"
-  >
-    <input
-      class="input"
-      type="text"
-      confirm-type="send"
-      confirm-hold="{{true}}"
-      model:value="{{value}}"
-      focus="{{focus}}"
-      placeholder="{{placeholder}}"
-      bindconfirm="hairComment"
-      adjust-position="{{false}}"
-      bindfocus="inputFocus"
-      bindblur="inputBlur"
-    />
-    <view class="hair" bindtap="hairComment">发送</view>
-  </view>
+    model:value="{{value}}"
+    focus="{{focus}}"
+    placeholder="{{placeholder}}"
+    isDisabled="{{isDisabled}}"
+    bind:hairComment="hairComment"
+    bind:inputFocus="inputFocus"
+    bind:inputBlur="inputBlur"
+  />
 
   <!-- 发布成功后的分享面板 -->
   <van-action-sheet show="{{ show }}" overlay="{{ false }}">
