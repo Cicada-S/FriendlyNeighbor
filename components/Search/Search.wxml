@@ -1,0 +1,11 @@
+<!--components/Search/Search.wxml-->
+<view class="search">
+  <input 
+    class="input"
+    type="text"
+    model:value="{{searchValue}}"
+    placeholder="Search..."
+    bindconfirm="search"
+  />
+  <van-icon name="search" size="25px" bindtap="search" />
+</view>

@@ -7,8 +7,19 @@ const $ = db.command.aggregate
 
 // 云函数入口函数
 exports.main = async (event, context) => {
+
+  console.log(event)
+
+  // 搜索内容
+  const screen = {} 
+  if(event.searchValue) screen.name = db.RegExp({
+    regexp: event.searchValue,
+    options: 'i'
+  })
+
   try {
     const result = await db.collection('IdleItem').aggregate()
+    .match(screen) // 筛选
     .sort({ createTime: -1 }) // 排序
     .skip(event.pageSize * (event.pageIndex - 1)) // 跳过第n条开始查询
     .limit(event.pageSize) // 每次查询的数量
@@ -35,6 +46,8 @@ exports.main = async (event, context) => {
         .done(),
       as: 'specification'
     }).end()
+
+    console.log(result.list)
 
     return {
       code: 0,

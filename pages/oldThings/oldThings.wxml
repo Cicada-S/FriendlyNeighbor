@@ -1,5 +1,7 @@
 <!--pages/oldThings/oldThings.wxml-->
 <view class="container">
+  <Search bind:search="onSearch" />
+
   <!-- 发布 -->
   <view class="publish" bindtap="toRelease">
     <van-icon name="add-o" />
