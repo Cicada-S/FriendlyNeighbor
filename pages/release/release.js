@@ -141,7 +141,7 @@ Page({
         IdleItemVideoImage: newUpCloudImage
       }
 
-      // 发布旧物的请求
+      // 发布好物的请求
       const { result } = await wx.cloud.callFunction({
         name: 'addIdleItem',
         data

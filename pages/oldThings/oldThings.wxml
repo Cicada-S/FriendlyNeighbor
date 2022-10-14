@@ -7,7 +7,7 @@
     <van-icon name="add-o" />
   </view>
 
-  <!-- 旧物列表 -->
+  <!-- 好物列表 -->
   <view class="picture">
     <block wx:for="{{listData}}" wx:key="_id">
       <view class="item" bindtap="toIdleInfo" id="{{item._id}}">

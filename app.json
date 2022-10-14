@@ -37,7 +37,7 @@
       },
       {
         "pagePath": "pages/oldThings/oldThings",
-        "text": "旧物",
+        "text": "好物",
         "iconPath": "static/images/tabs/oldThings.png",
         "selectedIconPath": "static/images/tabs/oldThings-active.png"
       },

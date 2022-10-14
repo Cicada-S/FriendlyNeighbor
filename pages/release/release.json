@@ -9,5 +9,5 @@
     "van-button": "@vant/weapp/button/index",
     "van-uploader": "@vant/weapp/uploader/index"
   },
-  "navigationBarTitleText": "发布旧物"
+  "navigationBarTitleText": "发布好物"
 }
