@@ -6,7 +6,7 @@ import { getdate } from '../../utils/pastTime'
 Page({
   data: {
     bottomLift: app.globalData.bottomLift,
-    idleInfo: {}, // 闲物详情
+    idleInfo: {}, // 好物详情
     commentList: [], // 评论列表
     active: 0, // 标签栏
     commentSum: 0, // 评论数量
@@ -25,13 +25,13 @@ Page({
    * 页面加载
    */
   onLoad(options) {
-    // 获取闲物详情
+    // 获取好物详情
     this.getIdleInfo(options.id)
     // 获取评论
     this.getComment(options.id)
   },
 
-  // 获取闲物详情
+  // 获取好物详情
   async getIdleInfo(id) {
     const { result } = await wx.cloud.callFunction({
       name: 'getIdleInfo',

@@ -2,7 +2,7 @@
 <view class="container">
   <Swiper imageList="{{idleInfo.firstList}}" />
 
-  <!-- 闲物详情 -->
+  <!-- 好物详情 -->
   <view class="idleInfo">
     <view class="infoTop">
       <view class="left">

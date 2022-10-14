@@ -37,7 +37,7 @@ Page({
     this.getIdleItem(event.detail.searchValue)
   },
 
-  // 跳转到闲物详情
+  // 跳转到好物详情
   toIdleInfo(event) {
     wx.navigateTo({
       url: `/pages/idleInfo/idleInfo?id=${event.currentTarget.id}`

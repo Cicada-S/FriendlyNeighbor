@@ -8,5 +8,5 @@
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index"
   },
-  "navigationBarTitleText": "闲物详情"
+  "navigationBarTitleText": "好物详情"
 }
