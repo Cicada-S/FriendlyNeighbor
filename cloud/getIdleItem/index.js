@@ -7,15 +7,14 @@ const $ = db.command.aggregate
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-
-  console.log(event)
-
   // 搜索内容
   const screen = {} 
   if(event.searchValue) screen.name = db.RegExp({
     regexp: event.searchValue,
     options: 'i'
   })
+
+  if(event.openId) screen._openid = event.openId
 
   try {
     const result = await db.collection('IdleItem').aggregate()

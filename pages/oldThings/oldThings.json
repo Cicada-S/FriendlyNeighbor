@@ -3,5 +3,6 @@
     "Search": "/components/Search/Search",
     "van-icon": "@vant/weapp/icon/index"
   },
-  "navigationBarTitleText": "好物交易"
+  "navigationBarTitleText": "好物交易",
+  "enablePullDownRefresh": true
 }

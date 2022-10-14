@@ -15,7 +15,8 @@
     "pages/notFollow/notFollow",
     "pages/oldThings/oldThings",
     "pages/release/release",
-    "pages/idleInfo/idleInfo"
+    "pages/idleInfo/idleInfo",
+    "pages/myOldThings/myOldThings"
   ],
   "window": {
     "backgroundTextStyle": "light",
