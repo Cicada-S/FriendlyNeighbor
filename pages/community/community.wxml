@@ -26,7 +26,7 @@
           <view class="city">{{item.province}}-{{item.city}}-{{item.county}}</view>
         </view>
         <!-- 申请加入 -->
-        <view wx:if="{{isChoice}}" class="joinBtn" bindtap="onJoin" id="{{item._id}}" data-name="{{item.name}}">申请</view>
+        <view wx:if="{{isChoice}}" class="joinBtn" bindtap="onJoin" id="{{item._id}}" data-name="{{item.name}}">加入</view>
       </view>
     </BlockBox>
   </view>

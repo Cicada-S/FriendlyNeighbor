@@ -7,5 +7,5 @@
     "van-action-sheet": "@vant/weapp/action-sheet/index",
     "van-area": "@vant/weapp/area/index"
   },
-  "navigationBarTitleText": "管理小区"
+  "navigationBarTitleText": "选择小区"
 }

@@ -5,7 +5,8 @@ const UserCommunity = db.collection('UserCommunity')
 Page({
   data: {
     userInfo: {}, // 用户信息
-    community: {} // 用户小区
+    community: {}, // 用户小区
+    isAdmin: false
   },
 
   /**
@@ -16,6 +17,18 @@ Page({
     let userInfo = wx.getStorageSync('currentUser')
     this.setData({ userInfo })
     this.getUserCommunity(userInfo._openid)
+
+    //判断是否是管理员
+    const _ = db.command
+    let whereConditiion = {'key': 'adminOpenIds',  'value': _.in([userInfo._openid]) };
+    db.collection('SystemConfig').where(whereConditiion).get().then(systemConfig => {
+      console.info('systemConfig = ' + JSON.stringify(systemConfig))
+      if(systemConfig.data.length > 0){
+        this.setData({
+          isAdmin: true
+        })
+      }
+    })
   },
 
   // 获取所在的小区
@@ -70,7 +83,6 @@ Page({
 
   // 跳转到我的小区
   toMyCommunity() {
-    return;
     if(this.data.community) {
       wx.navigateTo({
         url: '/pages/myCommunity/myCommunity'

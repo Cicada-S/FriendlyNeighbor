@@ -8,11 +8,11 @@
           <view class="name">{{item.communityName}}</view>
           <view class="city">{{item.communityProvince}}-{{item.communityCity}}-{{item.communityCounty}}</view>
         </view>
-        <view class="joinBtn" bindtap="unFollow" id="{{item._id}}">取关</view>
+        <view class="joinBtn" bindtap="unFollow" id="{{item._id}}">取消</view>
       </view>
     </BlockBox>
   </view>
 
   <!-- 底部按钮 -->
-  <BottomBtn text="新的小区" bind:onClick="toNotFollow" />
+  <BottomBtn text="添加关注" bind:onClick="toNotFollow" />
 </view>

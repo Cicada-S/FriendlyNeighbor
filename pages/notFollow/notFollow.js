@@ -116,10 +116,10 @@ Page({
 
     wx.showModal({
       title: '提示',
-      content: '确定申请加入该小区吗？',
+      content: '确定关注该小区吗？',
     }).then(res => {
       if (res.confirm) {
-        // 创建申请表
+        // 创建关注
         CommunityOfInterest.add({data: {
           communityId: _id,
           communityName: name,

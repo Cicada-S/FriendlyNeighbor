@@ -16,11 +16,11 @@
     </van-grid>
   </BlockBox>
 
-  <!-- <BlockBox>
+  <BlockBox wx:if="{{isAdmin}}">
     <van-cell-group border="{{false}}">
       <van-cell title="管理小区" is-link border="{{false}}" bindtap="toCommunity" />
     </van-cell-group>
-  </BlockBox> -->
+  </BlockBox>
 
   <BlockBox>
     <van-cell-group border="{{false}}">

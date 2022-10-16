@@ -27,7 +27,7 @@
         </view>
         <!-- 关注 -->
         <view class="joinBtn" wx:if="{{!item.isFollow}}" bindtap="follow" data-item="{{item}}">关注</view>
-        <view class="joinBtn active" wx:else bindtap="unFollow" id="{{item._id}}">取关</view>
+        <view class="joinBtn active" wx:else bindtap="unFollow" id="{{item._id}}">取消</view>
       </view>
     </BlockBox>
   </view>

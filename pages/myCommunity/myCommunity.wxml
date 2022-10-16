@@ -8,14 +8,14 @@
     </view>
 
     <!-- 更换小区 -->
-    <!-- <block wx:if="{{!applyAdmin._id}}">
+    <block wx:if="{{!applyAdmin._id}}">
       <button wx:if="{{!application._id}}" class="change" bindtap="changeCommunity">更换小区</button>
       <view wx:else class="apply">
         <view class="communityName">{{application.communityName}}</view>
         <view class="status">申请中</view>
         <view class="cancel" bindtap="cancelCommunity" id="{{application._id}}">取消</view>
       </view>
-    </block> -->
+    </block>
 
     <!-- 管理员申请 -->
     <!-- <block wx:if="{{communityInfo._id&&!adminInfo._id}}">

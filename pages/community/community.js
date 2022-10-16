@@ -7,6 +7,7 @@ import { areaList } from '@vant/area-data'
 const db = wx.cloud.database()
 const Community = db.collection('Community')
 const UserCommunity = db.collection('UserCommunity')
+const CommunityOfInterest = db.collection('CommunityOfInterest')
 
 Page({
   data: {
@@ -139,7 +140,7 @@ Page({
 
     wx.showModal({
       title: '提示',
-      content: '确定申请加入该小区吗？',
+      content: '确定加入该小区吗？',
       async success (res) {
         if (res.confirm) {
           // 创建申请表
@@ -153,6 +154,16 @@ Page({
             createTime: new Date()
           }})
           wx.navigateBack({ delta: 1 })
+
+          //删除关注中的这个小区
+          await db.collection('CommunityOfInterest').where({
+            _openid: userInfo._openid,
+            communityId: id
+          }).remove()
+          
+          //获取个人信息和更新
+          
+        
         }
       }
     })
