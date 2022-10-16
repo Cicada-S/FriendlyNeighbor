@@ -1,4 +1,6 @@
 // pages/post/post.js
+let app = getApp()
+
 // 引入date
 import { toDates } from '../../utils/util'
 import { getdate } from '../../utils/pastTime'
@@ -11,6 +13,7 @@ const GetPhoneNumberLog = db.collection('GetPhoneNumberLog')
 
 Page({
   data: {
+    bottomLift: app.globalData.bottomLift,
     postInfo: {}, // 行程信息信息
     value: '', // 评论
     commentSum: 0, // 评论数量
@@ -287,7 +290,7 @@ Page({
   onShareAppMessage() {
     this.setData({ show: false })
     let { type, departPlace, destination } = this.data.postInfo
-    let travel = type === '1' ? '人找车' : '车找人'
+    let travel = type ? '人找车' : '车找人'
     let title = `${travel}，出发：${departPlace} -> 到达：${destination}`
     return { title }
   },

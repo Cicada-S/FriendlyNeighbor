@@ -31,6 +31,14 @@ App({
     this.getSystemInfo()
   },
 
+  /**
+   * 小程序最小化(隐藏)时
+   */
+  onHide() {
+    //删除首页搜索缓存
+    wx.removeStorageSync('searchTerm')
+  },
+
   // 获取 状态栏 导航栏 自定义导航栏 高度
   getPhoneHeight() {
     // 获取手机状态栏信息和高度

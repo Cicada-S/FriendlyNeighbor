@@ -33,14 +33,14 @@ Page({
     let managerData = await CommunityManager.where({_openid}).get()
 
     // 处理数据
-    this.handleData(communityData, ['communityInfo', 'application'])
-    this.handleData(managerData, ['adminInfo', 'applyAdmin'])
+    this.handleData(communityData.data, ['communityInfo', 'application'])
+    this.handleData(managerData.data, ['adminInfo', 'applyAdmin'])
   },
 
   // 处理申请表数据
-  handleData({data}, type) {
+  async handleData(data, type) {
     // 2. 遍历获取到的数据 判断数据的status
-    data?.forEach(async item => {
+    /* data?.forEach(async item => {
       if(!item.status) {
         // 2.1 如果 status === 0 则根据 communityId 获取社区表
         if(type[0] === 'communityInfo') {
@@ -54,7 +54,24 @@ Page({
         // 2.2 如果 status !== 0 则将数据渲染到页面的申请中模块
         this.setData({ [type[1]]: item })
       }
-    })
+    }) */
+
+    // 2. 遍历获取到的数据 判断数据的status
+    if(data.length) for (item of data) {
+      if(!item.status) {
+        // 2.1 如果 status === 0 则根据 communityId 获取社区表
+        if(type[0] === 'communityInfo') {
+          let { data } = await Community.where({_id: item.communityId}).get()
+          this.setData({ [type[0]]: data[0] })
+          return
+        }
+        this.setData({ [type[0]]: data[0] })
+        if(type[0] === 'adminInfo') this.getMemberList()
+      } else {
+        // 2.2 如果 status !== 0 则将数据渲染到页面的申请中模块
+        this.setData({ [type[1]]: item })
+      }
+    }
   },
 
   // 获取成员

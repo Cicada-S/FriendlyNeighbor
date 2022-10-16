@@ -12,7 +12,7 @@ exports.main = async (event, context) => {
   //内容安全监测
   const msgSecCheckRes = await cloud.callFunction({
     name: 'msgSecCheck',
-    data: { text: departPlace + destination + remark }
+    data: { text: data.departPlace + data.destination + data.remark }
   })
   if (msgSecCheckRes.result.errcode != 0) {
     return {
