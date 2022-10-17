@@ -2,6 +2,7 @@
   "usingComponents": {
     "BlockBox": "/components/BlockBox/BlockBox",
     "BottomBtn": "/components/BottomBtn/BottomBtn",
+    "Empty": "/components/Empty/Empty",
     "van-search": "@vant/weapp/search/index",
     "van-icon": "@vant/weapp/icon/index",
     "van-action-sheet": "@vant/weapp/action-sheet/index",

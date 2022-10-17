@@ -1,5 +1,5 @@
 <!--components/Empty/Empty.wxml-->
 <view class="empty">
   <van-empty image="{{type}}" description="{{tips}}" />
-  <button wx:if="{{type!='danger'}}" class="btn" bindtap="onJump">返回</button>
+  <button wx:if="{{type!='search'}}" class="btn" bindtap="onJump">返回</button>
 </view>

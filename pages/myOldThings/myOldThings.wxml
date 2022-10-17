@@ -18,4 +18,7 @@
       </view>
     </block>
   </view>
+
+  <!-- 空状态 -->
+  <Empty wx:if="{{!listData.length}}" />
 </view>

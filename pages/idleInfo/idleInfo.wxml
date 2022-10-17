@@ -1,9 +1,9 @@
 <!--pages/idleInfo/idleInfo.wxml-->
 <view class="container">
-  <Swiper imageList="{{idleInfo.firstList}}" />
+  <Swiper wx:if="{{idleInfo._id}}" imageList="{{idleInfo.firstList}}" />
 
   <!-- 好物详情 -->
-  <view class="idleInfo">
+  <view class="idleInfo" wx:if="{{idleInfo._id}}">
     <view class="infoTop">
       <view class="left">
         <view class="price">
@@ -30,7 +30,7 @@
   </view>
 
   <!-- 标签栏 -->
-  <van-tabs active="{{ active }}" color="#407FF5" line-width="70" bind:change="onChange">
+  <van-tabs wx:if="{{idleInfo._id}}" active="{{ active }}" color="#407FF5" line-width="70" bind:change="onChange">
     <van-tab title="详情">
       <view class="detailsImage">
         <block wx:for="{{idleInfo.detailsList}}" wx:key="_id">
@@ -68,4 +68,7 @@
       <button class="btn cancel" bindtap="onCancel">取消</button>
     </view>
   </van-action-sheet>
+
+  <!-- 空状态 -->
+  <Empty wx:if="{{isDelete}}" type="error" tips="该商品已被删除" path="oldThings" />
 </view>

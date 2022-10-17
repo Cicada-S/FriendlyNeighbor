@@ -5,4 +5,7 @@
       <PostItem postItem="{{item}}" operation="{{true}}" bindtap="toPost" id="{{item._id}}" bind:noDelete="noDelete"></PostItem>
     </block>
   </PostList>
+
+  <!-- 空状态 -->
+  <Empty wx:if="{{!postList.length}}" />
 </view>

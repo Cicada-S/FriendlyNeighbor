@@ -6,7 +6,7 @@ Component({
   properties: {
     type: {
       type: String,
-      value: 'danger'
+      value: 'search'
     },
     tips: {
       type: String,

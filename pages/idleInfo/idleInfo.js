@@ -19,7 +19,8 @@ Page({
     replyType: 0, // 0: 子评 1: 回复
     fatherCommentId: '', // 父评id
     inputBottom: 0, // 评论框的底部距离
-    show: false // 转发框的显示状态
+    show: false, // 转发框的显示状态
+    isDelete: false // 是否显示空状态
   },
 
   /**
@@ -36,16 +37,17 @@ Page({
 
   // 获取好物详情
   async getIdleInfo(id) {
-    const { result } = await wx.cloud.callFunction({
+    await wx.cloud.callFunction({
       name: 'getIdleInfo',
       data: { id }
+    }).then(({result}) => {
+      // 处理首图
+      let firstList = result.data.firstList.map(item => item.path)
+      result.data.firstList = firstList
+
+      this.setData({ idleInfo: result.data })
     })
-
-    // 处理首图
-    let firstList = result.data.firstList.map(item => item.path)
-    result.data.firstList = firstList
-
-    this.setData({ idleInfo: result.data })
+    .catch(() => this.setData({ isDelete: true }))
   },
 
   // 获取评论

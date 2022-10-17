@@ -1,7 +1,7 @@
 <!--pages/follow/follow.wxml-->
 <view class="container">
   <!-- 小区列表 -->
-  <view class="communityList">
+  <view class="communityList" style="padding-bottom: {{bottomLift*2+85}}rpx">
     <BlockBox wx:for="{{communityList}}" wx:key="_id">
       <view class="communityItem">
         <view class="content" bindtap="toCommunityInfo" id="{{item._id}}">
@@ -12,6 +12,9 @@
       </view>
     </BlockBox>
   </view>
+
+  <!-- 空状态 -->
+  <Empty wx:if="{{!communityList.length}}" tips="快去关注新的小区吧" />
 
   <!-- 底部按钮 -->
   <BottomBtn text="添加关注" bind:onClick="toNotFollow" />
