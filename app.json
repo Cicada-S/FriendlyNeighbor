@@ -16,7 +16,8 @@
     "pages/oldThings/oldThings",
     "pages/release/release",
     "pages/idleInfo/idleInfo",
-    "pages/myOldThings/myOldThings"
+    "pages/myOldThings/myOldThings",
+    "pages/opinion/opinion"
   ],
   "window": {
     "backgroundTextStyle": "light",

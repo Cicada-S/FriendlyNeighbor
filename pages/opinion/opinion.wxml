@@ -1,0 +1,19 @@
+<!--pages/opinion/opinion.wxml-->
+<view class="container">
+  <CommentArea
+    commentList="{{commentList}}"
+    commentSum="{{commentSum}}"
+    bind:replyComment="replyComment"
+    bind:answerComment="answerComment"
+  />
+
+  <CommentBox
+    model:value="{{value}}"
+    focus="{{focus}}"
+    placeholder="{{placeholder}}"
+    isDisabled="{{isDisabled}}"
+    bind:hairComment="hairComment"
+    bind:inputFocus="inputFocus"
+    bind:inputBlur="inputBlur"
+  />
+</view>

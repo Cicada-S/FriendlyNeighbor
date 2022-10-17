@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "CommentArea": "/components/CommentArea/CommentArea",
+    "CommentBox": "/components/CommentBox/CommentBox"
+  },
+  "navigationBarTitleText": "意见/建议"
+}

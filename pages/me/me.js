@@ -67,10 +67,8 @@ Page({
   
   // 意见 建议
   suggestion() {
-    wx.showToast({
-      title: '请加微信 188 2590 6482 沟通！',
-      icon: 'none',
-      duration: 5000
+    wx.navigateTo({
+      url: '/pages/opinion/opinion'
     })
   },
   
