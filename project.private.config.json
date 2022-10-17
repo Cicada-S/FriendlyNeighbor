@@ -41,6 +41,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/post/post",
+          "query": "id=a0041d0f633540d7005478f224c83eec",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

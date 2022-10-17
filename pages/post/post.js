@@ -274,11 +274,6 @@ Page({
     }
   },
 
-  // 空状态时返回首页
-  toHome() {
-    wx.switchTab({url: '/pages/index/index'})
-  },
-
   // 取消分享
   onCancel() {
     this.setData({ show: false })
