@@ -5,8 +5,6 @@ const db = cloud.database()
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  console.log('event', event)
-
   const { IdleItem, IdleItemSpecification, IdleItemVideoImage } = event
 
   // 给数据添加上发布者id和创建时间
@@ -15,22 +13,23 @@ exports.main = async (event, context) => {
 
   try {
     // 添加闲置物品
-    await db.collection('IdleItem').add({data: IdleItem})
-    .then(res => {
-      // 闲置物品图片
-      Object.values(IdleItemVideoImage).forEach(item => {
-        item.IdleItemId = res._id
-        db.collection('IdleItemVideoImage').add({data: item})
-      })
-      // 闲置物品规格
-      IdleItemSpecification.forEach(item => {
-        item.IdleItemId = res._id
-        db.collection('IdleItemSpecification').add({data: item})
-      })
+    let result = await db.collection('IdleItem').add({data: IdleItem})
+
+    // 闲置物品图片
+    await IdleItemVideoImage.forEach(item => {
+      item.IdleItemId = result._id
+      db.collection('IdleItemVideoImage').add({data: item})
     })
+    // 闲置物品规格
+    await IdleItemSpecification.forEach(item => {
+      item.IdleItemId = result._id
+      db.collection('IdleItemSpecification').add({data: item})
+    })
+
     // 成功返回
     return {
       code: 0,
+      data: result,
       success: true
     }
   }

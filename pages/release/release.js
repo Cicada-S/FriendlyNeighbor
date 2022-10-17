@@ -158,9 +158,9 @@ Page({
           icon: 'success',
           duration: 1000
         })
-        setTimeout(() => {
-          wx.switchTab({ url: '/pages/oldThings/oldThings' })
-        }, 1000)
+
+        wx.redirectTo({url: `/pages/idleInfo/idleInfo?id=${result.data._id}`})
+        wx.setStorageSync('newIdleItem', true)
       }
     }
   },

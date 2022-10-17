@@ -18,7 +18,8 @@ Page({
     toNickName: '', // 被评论者昵称
     replyType: 0, // 0: 子评 1: 回复
     fatherCommentId: '', // 父评id
-    inputBottom: 0 // 评论框的底部距离
+    inputBottom: 0, // 评论框的底部距离
+    show: false // 转发框的显示状态
   },
 
   /**
@@ -29,6 +30,8 @@ Page({
     this.getIdleInfo(options.id)
     // 获取评论
     this.getComment(options.id)
+
+    if(wx.getStorageSync('newIdleItem')) this.setData({show: true})
   },
 
   // 获取好物详情
@@ -241,4 +244,27 @@ Page({
       })
     }
   },
+
+  // 取消分享
+  onCancel() {
+    this.setData({ show: false })
+  },
+
+  /**
+   * 用户点击右上角转发
+   */
+   onShareAppMessage() {
+    this.setData({ show: false })
+    let { idleInfo } = this.data
+    let title = idleInfo.name
+    let imageUrl = idleInfo.firstList[0]
+    return { title, imageUrl }
+  },
+
+  /**
+   * 页面卸载
+   */
+   onUnload() {
+    wx.removeStorageSync('newIdleItem')
+  }
 })

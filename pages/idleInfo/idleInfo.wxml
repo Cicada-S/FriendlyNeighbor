@@ -60,4 +60,12 @@
       />
     </van-tab>
   </van-tabs>
+
+  <!-- 发布成功后的分享面板 -->
+  <van-action-sheet show="{{ show }}" overlay="{{ false }}">
+    <view class="shareContent">
+      <button class="btn share" open-type="share">分享</button>
+      <button class="btn cancel" bindtap="onCancel">取消</button>
+    </view>
+  </van-action-sheet>
 </view>
