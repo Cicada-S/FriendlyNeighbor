@@ -3,7 +3,7 @@ Page({
   data: {
     listData: [], // 列表数据
     pageIndex: 1, // 当前分页
-    pageSize: 5, // 每次获取数据数量
+    pageSize: 10, // 每次获取数据数量
     reachBottom: false // 是否到底部
   },
 

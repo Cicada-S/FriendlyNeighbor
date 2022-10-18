@@ -18,23 +18,24 @@
   background: #ffffff;
   box-shadow: 7px 7px 10px #d4dbe0, -5px -5px 20px #f8ffff;
 }
-.container .picture {
-  column-gap: 5rpx;
-  column-count: 2;
-  margin: 20rpx 0;
+.container .content .left,
+.container .content .right {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
 }
-.container .picture .item {
+.container .item {
+  display: inline-block;
   width: calc(100% - 30rpx);
-  break-inside: avoid;
-  box-shadow: 0 10rpx 30rpx 0 rgba(0, 0, 0, 0.1);
-  border-radius: 10rpx;
-  margin: 0 15rpx 30rpx;
+  margin: 0 15rpx 20rpx;
+  border-radius: 15rpx;
+  box-shadow: 0 10rpx 20rpx 0 rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
-.container .picture .item image {
+.container .item image {
   width: 100%;
 }
-.container .picture .item .remark {
+.container .item .remark {
   font-size: 28rpx;
   margin: 20rpx 10rpx;
   overflow: hidden;
@@ -45,22 +46,28 @@
   -webkit-line-clamp: 2;
   /* 设置多行的行数 */
 }
-.container .picture .item .tags {
+.container .item .tags {
   display: flex;
   font-size: 20rpx;
   color: var(--Color-ViceA);
 }
-.container .picture .item .tags .tag {
+.container .item .tags .tag {
   border: 1rpx solid var(--Color-ViceA);
   border-radius: 10rpx;
   padding: 0 5rpx;
   margin: 0 10rpx;
 }
-.container .picture .item .price {
+.container .item .price {
   color: var(--Color-ViceA);
   margin: 20rpx 10rpx;
 }
-.container .picture .item .price text {
+.container .item .price text {
   font-size: 24rpx;
   margin-right: 5rpx;
+}
+.container .baseline {
+  color: var(--Color-FontB);
+  font-size: 22rpx;
+  text-align: center;
+  padding-bottom: 30rpx;
 }

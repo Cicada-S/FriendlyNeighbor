@@ -1,23 +1,35 @@
 <!--pages/myOldThings/myOldThings.wxml-->
 <view class="container">
-  <!-- 好物列表 -->
-  <view class="picture">
-    <block wx:for="{{listData}}" wx:key="_id">
-      <view class="item" bindtap="toIdleInfo" id="{{item._id}}">
-        <image lazy-load mode="widthFix" src="{{item.pathUrl[0].path}}" />
-        <view class="remark">{{item.name}}-{{item.remark}}</view>
-        <view class="tags">
-          <block wx:for="{{item.specification}}" wx:for-item="sitem" wx:for-index="sindex" wx:key="_id">
-            <view class="tag">{{sitem.value}}</view>
-          </block>
-        </view>
-        <view class="footer">
-          <view class="price"><text>¥</text>{{item.price}}</view>
-          <van-icon custom-class="ellipsis" catchtap="noDelete" id="{{item._id}}" name="delete-o" />
-        </view>
-      </view>
-    </block>
+  <!-- 瀑布流布局 -->
+  <view class="content">
+    <view class="left">
+      <block wx:for="{{listData}}" wx:key="_id">
+        <template is="item" data="{{...item}}" wx:if="{{index%2==0}}"></template>
+      </block>
+    </view>
+    <view class="right">
+      <block wx:for="{{listData}}" wx:key="_id">
+        <template is="item" data="{{...item}}" wx:if="{{index%2==1}}"></template>
+      </block>
+    </view>
   </view>
+
+  <!-- 商品模板 -->
+  <template name="item">
+    <view class="item">
+      <image lazy-load mode="widthFix" src="{{pathUrl[0].path}}" />
+      <view class="remark">{{name}}</view>
+      <view class="tags">
+        <block wx:for="{{specification}}" wx:key="_id">
+          <view class="tag">{{item.value}}</view>
+        </block>
+      </view>
+      <view class="price"><text>¥</text>{{price}}</view>
+    </view>
+  </template>
+
+  <!-- 这是我的底线啦 -->
+  <view class="baseline" wx:if="{{reachBottom}}">—— 这是我的底线啦 ——</view>
 
   <!-- 空状态 -->
   <Empty wx:if="{{!listData.length}}" />
