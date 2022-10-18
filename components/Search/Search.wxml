@@ -7,5 +7,5 @@
     placeholder="Search..."
     bindconfirm="search"
   />
-  <van-icon name="search" size="25px" bindtap="search" />
+  <van-icon custom-class="icon" name="search" size="25px" bindtap="search" />
 </view>

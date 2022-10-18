@@ -2,6 +2,7 @@
 Page({
   data: {
     listData: [], // 列表数据
+    searchValue: '', // 搜索
     pageIndex: 1, // 当前分页
     pageSize: 10, // 每次获取数据数量
     reachBottom: false // 是否到底部
@@ -41,7 +42,13 @@ Page({
 
   // 搜索
   onSearch(event) {
+    wx.showToast({
+      title: '加载中...',
+      icon: 'loading',
+      duration: 500
+    })
     this.getIdleItem(event.detail.searchValue)
+    this.setData({searchValue: event.detail.searchValue})
   },
 
   // 跳转到好物详情
@@ -61,13 +68,15 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-   onPullDownRefresh: function() {
+   onPullDownRefresh: async function() {
     this.setData({
       pageIndex: 1,
       listData: [],
       reachBottom: false
     })
-    this.getIdleItem(this.data.searchValue)
+    await this.getIdleItem()
+    // 解决下拉刷新不回弹
+    wx.stopPullDownRefresh()
   },
 
   /**
