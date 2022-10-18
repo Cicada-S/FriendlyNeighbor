@@ -11,7 +11,7 @@ Page({
   /**
    * 页面加载
    */
-  onLoad(options) {
+  onLoad() {
     // 获取闲置物品
     this.getIdleItem()
   },

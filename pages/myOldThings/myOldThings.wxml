@@ -16,7 +16,7 @@
 
   <!-- 商品模板 -->
   <template name="item">
-    <view class="item">
+    <view class="item" bindtap="toIdleInfo" id="{{_id}}">
       <image lazy-load mode="widthFix" src="{{pathUrl[0].path}}" />
       <view class="remark">{{name}}</view>
       <view class="tags">

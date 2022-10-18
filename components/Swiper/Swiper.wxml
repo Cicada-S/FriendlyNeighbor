@@ -11,7 +11,13 @@
   >
     <block wx:for="{{imageList}}" wx:key="*this">
       <swiper-item>
-        <image class="swiperItemImg" src="{{item}}"  />
+        <image 
+          class="swiperItemImg"
+          src="{{item}}"
+          bindtap="preview"
+          data-current="{{item}}"
+          data-urls="{{imageList}}"
+        />
       </swiper-item>
     </block>
   </swiper>

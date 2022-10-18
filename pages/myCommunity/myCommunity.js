@@ -196,5 +196,12 @@ Page({
         this.setData({ memberList: newMemberList })
       }
     })
+  },
+
+  // 预览图片
+  preview(event) {
+    let { current } = event.currentTarget.dataset
+    let urls = [current]
+    wx.previewImage({ current, urls })
   }
 })

@@ -34,7 +34,14 @@
     <van-tab title="详情">
       <view class="detailsImage">
         <block wx:for="{{idleInfo.detailsList}}" wx:key="_id">
-          <image class="image" src="{{item.path}}" mode="widthFix" />
+          <image 
+            class="image"
+            src="{{item.path}}"
+            mode="widthFix"
+            bindtap="preview"
+            data-current="{{item.path}}"
+            data-urls="{{idleInfo.detailsList}}"
+          />
         </block>
       </view>
     </van-tab>

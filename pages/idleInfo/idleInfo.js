@@ -231,20 +231,21 @@ Page({
     })
   },
 
-  // 评论框获取焦点
-  /* inputFocus(event) {
-    this.setData({ inputBottom: event.detail.height })
-  }, */
-
   // 评论框失去焦点
   inputBlur() {
-    // this.setData({ inputBottom: 0 })
     if(!this.data.value) {
       this.setData({
         commentType: false,
         placeholder: '评论...'
       })
     }
+  },
+
+  // 预览图片
+  preview(event) {
+    let { current, urls } = event.currentTarget.dataset
+    urls = urls.map(item => item.path)
+    wx.previewImage({ current, urls })
   },
 
   // 取消分享

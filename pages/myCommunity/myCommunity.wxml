@@ -2,7 +2,7 @@
 <view class="container">
   <BlockBox padding="20rpx">
     <view class="communityInfo" wx:if="{{communityInfo._id}}">
-      <image class="qrCode" src="{{communityInfo.qrCodePath}}" />
+      <image class="qrCode" src="{{communityInfo.qrCodePath}}" bindtap="preview" data-current="{{communityInfo.qrCodePath}}"/>
       <view class="name">{{communityInfo.name}}{{adminInfo._id?'（管理员）':''}}</view>
       <view class="city">{{communityInfo.province}}-{{communityInfo.city}}-{{communityInfo.county}}</view>
     </view>

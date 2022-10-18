@@ -9,7 +9,6 @@ const db = wx.cloud.database()
 const _ = db.command
 const HitchhikingInformation = db.collection('HitchhikingInformation')
 const User = db.collection('User')
-const GetPhoneNumberLog = db.collection('GetPhoneNumberLog')
 
 Page({
   data: {
@@ -81,7 +80,7 @@ Page({
           })
         }
       })
-    });
+    })
   },
 
   // 获取行程信息信息
@@ -258,14 +257,8 @@ Page({
     })
   },
 
-  // 评论框获取焦点
-  /* inputFocus(event) {
-    this.setData({ inputBottom: event.detail.height })
-  }, */
-
   // 评论框失去焦点
   inputBlur() {
-    // this.setData({ inputBottom: 0 })
     if(!this.data.value) {
       this.setData({
         commentType: false,
