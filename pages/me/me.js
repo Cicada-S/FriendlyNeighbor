@@ -1,5 +1,6 @@
 // pages/me/me.js
 const db = wx.cloud.database()
+const _ = db.command
 const UserCommunity = db.collection('UserCommunity')
 
 Page({
@@ -18,16 +19,14 @@ Page({
     this.setData({ userInfo })
     this.getUserCommunity(userInfo._openid)
 
-    //判断是否是管理员
-    const _ = db.command
-    let whereConditiion = {'key': 'adminOpenIds',  'value': _.in([userInfo._openid]) };
-    db.collection('SystemConfig').where(whereConditiion).get().then(systemConfig => {
+    // 
+    const whereConditiion = {'key': 'adminOpenIds',  'value': _.in([userInfo._openid]) }
+    // 查询管理员数据表
+    db.collection('SystemConfig').where(whereConditiion).get()
+    .then(systemConfig => {
       console.info('systemConfig = ' + JSON.stringify(systemConfig))
-      if(systemConfig.data.length > 0){
-        this.setData({
-          isAdmin: true
-        })
-      }
+      // 判断用户是否为管理员
+      if(systemConfig.data.length > 0) this.setData({ isAdmin: true })
     })
   },
 

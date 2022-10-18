@@ -26,13 +26,6 @@ Component({
   },
 
   /**
-   * 组件生命周期函数 - 在组件实例进入页面节点树时执行
-   */
-  attached() {
-    console.log('this', this)
-  },
-
-  /**
    * 组件的方法列表
    */
   methods: {

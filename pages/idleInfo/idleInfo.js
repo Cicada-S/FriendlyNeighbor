@@ -259,7 +259,7 @@ Page({
    onShareAppMessage() {
     this.setData({ show: false })
     let { idleInfo } = this.data
-    let title = idleInfo.name
+    let title = `${idleInfo.name}（¥${idleInfo.price}）`
     let imageUrl = idleInfo.firstList[0]
     return { title, imageUrl }
   },
