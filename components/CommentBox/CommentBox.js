@@ -28,7 +28,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    bottomLift: app.globalData.bottomLift
+    bottomLift: app.globalData.bottomLift,
+    inputBottom: 0
   },
 
   /**
@@ -42,13 +43,13 @@ Component({
 
     // 评论框获取焦点
     inputFocus(event) {
-      const { height } = event.detail
-      this.triggerEvent('inputFocus', { height })
+      this.setData({ inputBottom: event.detail.height })
     },
 
     // 评论框失去焦点
     inputBlur() {
       this.triggerEvent('inputBlur')
+      this.setData({ inputBottom: 0 })
     }
   }
 })

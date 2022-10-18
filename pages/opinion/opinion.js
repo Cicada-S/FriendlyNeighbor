@@ -1,7 +1,10 @@
 // pages/opinion/opinion.js
+import { getdate } from '../../utils/pastTime'
+
 Page({
   data: {
     commentList: [],
+    postId: '3ebc85cb634e059400d6330d35bd4f57',
     value: '', // 评论
     placeholder: '评论...', // 评论框占位符
     focus: false, // 评论框焦点
@@ -16,49 +19,56 @@ Page({
   /**
    * 页面加载
    */
-  onLoad(options) {
+  onLoad() {
+    this.getComment()
+  },
 
+  // 获取评论
+  async getComment() {
+    const { result } = await wx.cloud.callFunction({
+      name: 'getComment',
+      data: {id: this.data.postId}
+    })
+
+    result.data.forEach(item => {
+      item.createTime = getdate(item.createTime)
+      item.child_comment.forEach(child => {
+        child.createTime = getdate(child.createTime)
+      })
+    })
+
+    this.setData({ commentList: result.data })
   },
 
   // 点击父级评论 的回调函数
   replyComment(event) {
     let { id, dataset } = event.detail
-
-    this.setData({
-      focus: true,
-      placeholder: `回复 @${dataset.name}`,
-      commentType: true,
-      toUid: dataset._openid,
-      toNickName: dataset.name,
-      replyType: 0,
-      fatherCommentId: id
-    })
+    this.comment(id, dataset, 0)
   },
 
   // 点击子级评论 的回调函数
   answerComment(event) {
     let { id, dataset } = event.detail
+    this.comment(id, dataset, 1)
+  },
 
+  // 点击评论的回调函数
+  comment(id, dataset, replyType) {
     this.setData({
       focus: true,
       placeholder: `回复 @${dataset.name}`,
       commentType: true,
       toUid: dataset._openid,
       toNickName: dataset.name,
-      replyType: 1,
+      replyType,
       fatherCommentId: id
     })
-  },
-
-  // 发表评论
-  comment() {
-
   },
 
   // 评论
   async hairComment() {
     let content = this.data.value
-    if(content.trim()) return
+    if(!content.trim()) return
 
     // 禁用发送按钮 发送成功后再解除
     this.setData({ isDisabled: true })
@@ -72,11 +82,11 @@ Page({
 
   // 父级评论
   fatherComment() {
-    let { value, commentList, postInfo } = this.data
+    let { value, commentList, postId } = this.data
     let userInfo = wx.getStorageSync('currentUser')
 
     let data = {
-      postId: postInfo._id,
+      postId,
       _openid: userInfo._openid,
       nickName: userInfo.nick_name,
       avatarUrl: userInfo.avatar_url,
@@ -109,11 +119,11 @@ Page({
 
   // 子级评论
   sonComment() {
-    let { value, commentList, postInfo, toUid, toNickName, replyType, fatherCommentId } = this.data
+    let { value, commentList, postId, toUid, toNickName, replyType, fatherCommentId } = this.data
     let userInfo = wx.getStorageSync('currentUser')
 
     let data = {
-      post_id: postInfo._id,
+      post_id: postId,
       _openid: userInfo._openid,
       nickName: userInfo.nick_name,
       avatarUrl: userInfo.avatar_url,
@@ -150,15 +160,28 @@ Page({
       this.commentRes(commentList)
     })
   },
+  
+  // 评论成功清除更新data
+  commentRes(commentList) {
+    this.setData({
+      commentList,
+      commentSum: ++this.data.commentSum,
+      focus: false,
+      commentType: false,
+      placeholder: '评论...',
+      value: '',
+      isDisabled: false
+    })
+  },
 
   // 评论框获取焦点
-  inputFocus(event) {
+  /* inputFocus(event) {
     this.setData({ inputBottom: event.detail.height })
-  },
+  }, */
 
   // 评论框失去焦点
   inputBlur() {
-    this.setData({ inputBottom: 0 })
+    // this.setData({ inputBottom: 0 })
     if(!this.data.value) {
       this.setData({
         commentType: false,
