@@ -128,9 +128,11 @@ Page({
       await this.upCloud(firstList, 'first')
       await this.upCloud(detailsList, 'details')
 
-      const { nick_name, avatar_url } = wx.getStorageSync('currentUser')
+      const { nick_name, avatar_url, userCommunity } = wx.getStorageSync('currentUser')
       form.nickName = nick_name
       form.avatarUrl = avatar_url
+      form.communityId = userCommunity.communityId
+      form.communityName = userCommunity.communityName
       // 给每个规格添加上order
       specifications.forEach((item, index) => item.order = index)
       // upCloudImage转成数组

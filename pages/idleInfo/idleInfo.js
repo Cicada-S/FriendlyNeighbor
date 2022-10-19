@@ -27,12 +27,17 @@ Page({
    * 页面加载
    */
   onLoad(options) {
+    console.log('options', options)
+    
     // 获取好物详情
     this.getIdleInfo(options.id)
     // 获取评论
     this.getComment(options.id)
 
+    // 判断是否为刚发布 跳转过来的
     if(wx.getStorageSync('newIdleItem')) this.setData({show: true})
+
+
   },
 
   // 获取好物详情
@@ -68,23 +73,6 @@ Page({
       })
     })
     this.setData({ commentList: result.data, commentSum })
-  },
-
-  // 复制手机号
-  copyPhone() {
-    wx.setClipboardData({ data: this.data.idleInfo.phone })
-    .then(() => {
-      wx.showToast({
-        title: '复制手机号成功',
-        icon: 'none',
-        duration: 1500
-      })
-    })
-  },
-
-  // 拨打电话
-  dialPhone() {
-    wx.makePhoneCall({ phoneNumber: this.data.idleInfo.phone })
   },
 
   // 切换标签栏

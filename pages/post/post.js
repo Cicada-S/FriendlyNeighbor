@@ -34,14 +34,14 @@ Page({
    * 页面加载
    */
   async onLoad(options) {
+    console.log('options', options)
+
     // 判断是否为刚发布 跳转过来的
     if(wx.getStorageSync('newPost')) this.setData({show: true})
 
-    if(!wx.getStorageSync('currentUser')){
-      console.info('获取用户数据，缓存本地')
-
+    if(!wx.getStorageSync('currentUser')) {
       // 获取用户信息
-      await this.getUserInfo(options.id)
+      await this.getUserInfo(options.id, options.communityId)
       // 获取用户社区信息
       await this.getUserCommunity()
     }
@@ -52,9 +52,9 @@ Page({
     this.getComment(options.id)
   },
 
-  getUserCommunity(){
+  getUserCommunity() {
     return new Promise((resolve, reject) => {
-    let currentUser = wx.getStorageSync('currentUser')
+      let currentUser = wx.getStorageSync('currentUser')
       db.collection('UserCommunity').where({'_openid': currentUser._openid, 'status': 0}).get()
       .then(res => {
         if(res.data.length >= 1) {
@@ -67,16 +67,16 @@ Page({
   },
 
   // 判断用户是否登录过
-  getUserInfo(hitchhikingInformationId) {
+  getUserInfo(id, communityId) {
     return new Promise((resolve, reject) => {
       User.get().then(res => {
-        if(res.data.length === 1) {
+        if(!res.data.length === 1) {
           wx.setStorageSync('currentUser', res.data[0])
           resolve(100);
         } else {
           resolve(100);
           wx.navigateTo({
-            url: '/pages/login/login?hitchhikingInformationId='+hitchhikingInformationId
+            url: `/pages/login/login?id=${id}&communityId=${communityId}&type=post`
           })
         }
       })
@@ -277,10 +277,12 @@ Page({
    */
   onShareAppMessage() {
     this.setData({ show: false })
-    let { type, departPlace, destination } = this.data.postInfo
+    let { _id, type, departPlace, destination, communityId } = this.data.postInfo
     let travel = type ? '人找车' : '车找人'
-    let title = `${travel}，出发：${departPlace} -> 到达：${destination}`
-    return { title }
+    return {
+      title: `${travel}，出发：${departPlace} -> 到达：${destination}`,
+      path: `pages/post/post?id=${_id}&communityId=${communityId}`
+    }
   },
 
   /**
