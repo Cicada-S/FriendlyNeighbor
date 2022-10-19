@@ -32,5 +32,5 @@
   <view class="baseline" wx:if="{{reachBottom}}">—— 这是我的底线啦 ——</view>
 
   <!-- 空状态 -->
-  <Empty wx:if="{{!listData.length}}" />
+  <Empty wx:if="{{isEmpty}}" />
 </view>

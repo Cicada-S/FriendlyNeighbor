@@ -14,7 +14,7 @@
   </view>
 
   <!-- 空状态 -->
-  <Empty wx:if="{{!communityList.length}}" tips="快去关注新的小区吧" />
+  <Empty wx:if="{{isEmpty}}" tips="快去关注新的小区吧" />
 
   <!-- 底部按钮 -->
   <BottomBtn text="添加关注" bind:onClick="toNotFollow" />

@@ -7,7 +7,8 @@ const CommunityOfInterest = db.collection('CommunityOfInterest')
 Page({
   data: {
     bottomLift: app.globalData.bottomLift,
-    communityList: [] // 小区列表
+    communityList: [], // 小区列表
+    isEmpty: false
   },
 
   /**
@@ -23,6 +24,9 @@ Page({
     let _openid = wx.getStorageSync('currentUser')._openid
     // 获取小区
     let { data } = await CommunityOfInterest.where({_openid}).get()
+
+    if(!data.length) this.setData({ isEmpty: true })
+
     this.setData({ communityList: data })
   },
 
@@ -42,6 +46,9 @@ Page({
         .then(() => {
           // 将data中的该条数据删除
           let newCommunityList = communityList.filter(item => item._id !== _id)
+          // 数据是否为空
+          if(!newCommunityList.length) this.setData({isEmpty: true})
+
           // 更新data
           this.setData({communityList: newCommunityList})
         })

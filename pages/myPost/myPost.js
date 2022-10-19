@@ -7,7 +7,8 @@ const HitchhikingInformation = db.collection('HitchhikingInformation')
 
 Page({
   data: {
-    postList: []
+    postList: [],
+    isEmpty: false
   },
 
   /**
@@ -23,6 +24,9 @@ Page({
     let result = await HitchhikingInformation.where({
       _openid: wx.getStorageSync('currentUser')._openid
     }).orderBy('createTime', 'desc').get()
+
+    // 判断数据是否为空
+    if(!result.data.length && !this.data.postList.length) this.setData({isEmpty: true})
 
     result.data.forEach(item => {
       // 处理最早时间和最晚时间
@@ -55,6 +59,9 @@ Page({
             let newPostList = this.data.postList.filter(item => {
               if(item._id !== event.detail.id) return item
             })
+            // 数据是否为空
+            if(!newPostList.length) this.setData({isEmpty: true})
+
             this.setData({ postList: newPostList })
           })
         }

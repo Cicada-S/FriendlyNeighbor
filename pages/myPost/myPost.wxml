@@ -7,5 +7,5 @@
   </PostList>
 
   <!-- 空状态 -->
-  <Empty wx:if="{{!postList.length}}" />
+  <Empty wx:if="{{isEmpty}}" />
 </view>
