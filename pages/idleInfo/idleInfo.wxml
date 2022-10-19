@@ -6,18 +6,18 @@
   <view class="idleInfo" wx:if="{{idleInfo._id}}">
     <view class="infoTop">
       <view class="left">
+        <view class="name">{{idleInfo.name}}</view>
         <view class="price">
           <text class="icon">¥</text>
           <text>{{idleInfo.price}}</text>
           <text class="type">{{idleInfo.radio==0?'自提':'送货上门'}}</text>
         </view>
-        <view class="name">{{idleInfo.name}}</view>
       </view>
       <!-- 手机号码 -->
       <PhoneNumber phone="{{idleInfo.phone}}" openId="{{idleInfo._openid}}" />
     </view>
     <!-- 备注 -->
-    <view class="remark">{{idleInfo.remark}}</view>
+    <view class="remark">备注：{{idleInfo.remark}}</view>
     <!-- 配置 -->
     <view class="specification">
       <block wx:for="{{idleInfo.specification}}" wx:key="_id">

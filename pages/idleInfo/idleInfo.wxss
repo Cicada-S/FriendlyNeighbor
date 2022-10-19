@@ -13,10 +13,14 @@
   flex: 1;
 }
 .container .idleInfo .infoTop .left .price {
+  display: flex;
+  align-items: center;
   font-size: 36rpx;
   color: var(--Color-ViceA);
 }
 .container .idleInfo .infoTop .left .price .icon {
+  padding-bottom: 5rpx;
+  align-self: flex-end;
   font-size: 24rpx;
   margin-right: 8rpx;
 }
@@ -34,6 +38,7 @@
   color: var(--Color-MainB);
 }
 .container .idleInfo .remark {
+  font-size: 28rpx;
   padding: 20rpx 0;
 }
 .container .idleInfo .specification {
