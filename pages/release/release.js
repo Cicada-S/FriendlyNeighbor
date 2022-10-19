@@ -103,7 +103,7 @@ Page({
 
   // 发布
   async onRelease() {
-    let { bottomLift, specifications, firstList, detailsList, ...form } = this.data
+    let { bottomLift, specifications, firstList, detailsList, remark, ...form } = this.data
     let newSpec = []
     // 将规格的每一个属性取出来
     specifications.forEach(item => newSpec.push(...Object.values(item)))

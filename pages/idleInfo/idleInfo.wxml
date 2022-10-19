@@ -17,7 +17,7 @@
       <PhoneNumber phone="{{idleInfo.phone}}" openId="{{idleInfo._openid}}" />
     </view>
     <!-- 备注 -->
-    <view class="remark">备注：{{idleInfo.remark}}</view>
+    <view wx:if="{{idleInfo.remark}}" class="remark">备注：{{idleInfo.remark}}</view>
     <!-- 配置 -->
     <view class="specification">
       <block wx:for="{{idleInfo.specification}}" wx:key="_id">
