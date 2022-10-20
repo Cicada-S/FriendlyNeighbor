@@ -41,13 +41,6 @@
           "query": "",
           "launchMode": "default",
           "scene": null
-        },
-        {
-          "name": "",
-          "pathName": "pages/index/index",
-          "query": "communityId=655065af631aae36000faefd63cef891",
-          "launchMode": "default",
-          "scene": null
         }
       ]
     }

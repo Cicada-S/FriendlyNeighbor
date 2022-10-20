@@ -283,10 +283,12 @@ Page({
    */
   onShareAppMessage() {
     this.setData({ show: false })
-    let { idleInfo } = this.data
-    let title = `${idleInfo.name}（¥${idleInfo.price}）`
-    let imageUrl = idleInfo.firstList[0]
-    return { title, imageUrl }
+    let { _id, name, price, communityId, firstList } = this.data.idleInfo
+    return {
+      title: `${name}（¥${price}）`,
+      path: `pages/idleInfo/idleInfo?id=${_id}&communityId=${communityId}`,
+      imageUrl: firstList[0]
+    }
   },
 
   /**

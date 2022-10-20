@@ -18,8 +18,6 @@ Page({
    * 页面加载
    */
   async onLoad(options) {
-    console.log('options', options)
-
     this.setData({
       pageIndex: 1,
       postList: [],
@@ -27,35 +25,20 @@ Page({
     })
 
     // 判断用户是否登录
-    if(wx.getStorageSync('currentUser')) {
-      // 获取行程信息
-      this.getPostList()
-    } else {
-      // 获取用户信息
+    if(!wx.getStorageSync('currentUser')) {
+      // 判断用户是否登录过
       await this.getUserInfo(options.communityId)
       // 获取用户社区信息
       await this.getUserCommunity()
     }
+
+    // 获取行程信息
+    if(wx.getStorageSync('currentUser')) this.getPostList()
   },
 
-  /**
-   * 页面显示
-   */
-  /* async onShow() {
-    // 判断用户是否登录
-    if(wx.getStorageSync('currentUser')) {
-      // 获取行程信息
-      this.getPostList()
-    } else {
-      // 获取用户信息
-      await this.getUserInfo()
-      // 获取用户社区信息
-      await this.getUserCommunity()
-    }
-  }, */
-
   // 获取用户社区信息
-  getUserCommunity(){
+  getUserCommunity() {
+    console.log('getUserCommunity')
     return new Promise((resolve, reject) => {
     let currentUser = wx.getStorageSync('currentUser')
       db.collection('UserCommunity').where({'_openid': currentUser._openid, 'status': 0}).get()
@@ -71,6 +54,7 @@ Page({
 
   // 判断用户是否登录过
   getUserInfo(communityId) {
+    console.log('getUserInfo')
     return new Promise((resolve, reject) => {
       user.get().then(res => {
         if(res.data.length === 1) {
@@ -95,6 +79,8 @@ Page({
 
   // 获取行程信息
   getPostList() {
+
+    console.log('getPostList')
 
     // 查询条件
     let whereConditiion = {}
@@ -147,7 +133,7 @@ Page({
     let searchTerm = wx.getStorageSync('searchTerm')
 
     // 类型
-    if(searchTerm.radio){
+    if(searchTerm.radio) {
       whereConditiion.type = Number(searchTerm.radio)
     }
 
@@ -166,7 +152,7 @@ Page({
       })
     }
     // 时间
-    if(searchTerm.timeStamp){
+    if(searchTerm.timeStamp) {
       let { beginTime, endTime } = searchTerm.timeStamp
       // date 数据类型为 Object  时间戳数据类型为 Number
 
@@ -189,7 +175,6 @@ Page({
 
   // 跳转到发布行程信息
   toPublish() {
-    
     let currentUser = wx.getStorageSync('currentUser')
     if(currentUser.userCommunity) {
       wx.navigateTo({
