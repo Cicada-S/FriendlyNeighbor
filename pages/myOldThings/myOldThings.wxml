@@ -24,7 +24,10 @@
           <view class="tag">{{item.value}}</view>
         </block>
       </view>
-      <view class="price"><text>¥</text>{{price}}</view>
+      <view class="footer">
+        <view class="price"><text>¥</text>{{price}}</view>
+        <van-icon custom-class="ellipsis" catchtap="noDelete" id="{{_id}}" name="delete-o" />
+      </view>
     </view>
   </template>
 

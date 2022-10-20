@@ -42,13 +42,20 @@
   padding: 0 5rpx;
   margin: 0 10rpx;
 }
-.container .item .price {
+.container .item .footer {
+  display: flex;
+  justify-content: space-between;
+}
+.container .item .footer .price {
   color: var(--Color-ViceA);
   margin: 20rpx 10rpx;
 }
-.container .item .price text {
+.container .item .footer .price text {
   font-size: 24rpx;
   margin-right: 5rpx;
+}
+.container .item .footer .ellipsis {
+  padding: 0 20rpx;
 }
 .container .baseline {
   color: var(--Color-FontB);
