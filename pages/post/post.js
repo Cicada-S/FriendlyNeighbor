@@ -52,6 +52,7 @@ Page({
     this.getComment(options.id)
   },
 
+  // 获取用户社区信息
   getUserCommunity() {
     return new Promise((resolve, reject) => {
       let currentUser = wx.getStorageSync('currentUser')
@@ -70,11 +71,11 @@ Page({
   getUserInfo(id, communityId) {
     return new Promise((resolve, reject) => {
       User.get().then(res => {
-        if(!res.data.length === 1) {
+        if(res.data.length === 1) {
           wx.setStorageSync('currentUser', res.data[0])
-          resolve(100);
+          resolve(100)
         } else {
-          resolve(100);
+          resolve(100)
           wx.navigateTo({
             url: `/pages/login/login?id=${id}&communityId=${communityId}&type=post`
           })

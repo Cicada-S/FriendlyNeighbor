@@ -2,6 +2,7 @@
 const db = wx.cloud.database()
 const User = db.collection('User')
 const UserCommunity = db.collection('UserCommunity')
+const Community = db.collection('Community')
 
 Page({
   data: {
@@ -10,7 +11,7 @@ Page({
     userInfo: {},
     user: {},
     infoId: '', // 帖子或好物id
-    communityId: '', // 社区id
+    communityInfo: {}, // 社区信息
     type: '', // post IdleItem
     coordinate: [
       {x: -20, y: 80},
@@ -30,13 +31,20 @@ Page({
    * 页面加载
    */
   onLoad(options) {
-    console.log('options', options)
-    if(options.id){
-      this.setData({
-        infoId: options.id,
-        communityId: options.communityId
-      })
-    }
+    // 获取社区信息
+    this.getCommunity(options.communityId)
+  
+    if(options.id) this.setData({
+      infoId: options.id,
+      type: options.type
+    })
+  },
+
+  // 获取社区信息
+  async getCommunity(id) {
+    console.log('id', id)
+    let { data } = await Community.doc(id).get()
+    this.setData({ communityInfo: data })
   },
 
   // 登录的回调函数
@@ -53,34 +61,39 @@ Page({
         create_date: new Date()
       }
 
-      // 將用戶添加到数据库
+      // 將用戶添加到 用户数据表
       User.add({data: user}).then(() => {
-        UserCommunity.add({
-          data: {
-            nickName: res.userInfo.nickName,
-            avatarUrl: res.userInfo.avatarUrl,
-            communityId: '5a845e43632ed2f000391944385091ac',
-            // communityId: this.data.communityId,
-            communityName: '保利御江南',
-            reasonsForApplying: '',
-            status: 0,
-            createTime: new Date()
-          }
-        })
+        // 将用户添加到 用户社区关系表
+        const { _id, name } = this.data.communityInfo
+        UserCommunity.add({data: {
+          nickName: res.userInfo.nickName,
+          avatarUrl: res.userInfo.avatarUrl,
+          // communityId: '5a845e43632ed2f000391944385091ac',
+          communityId: _id,
+          // communityName: '保利御江南',
+          communityName: name,
+          reasonsForApplying: '',
+          status: 0,
+          createTime: new Date()
+        }})
       })
       .then(() => {
+        console.log(this.data.type)
         switch (this.data.type) {
           case 'post': // 跳转行程信息详情页
+            console.log('post')
             wx.reLaunch({
               url: '/pages/post/post?id=' + this.data.infoId
             })
             break;
-          case 'IdleItem': // 跳转好物详情页
+          case 'idleItem': // 跳转好物详情页
+            console.log('idleItem') 
             wx.reLaunch({
               url: '/pages/idleInfo/idleInfo?id=' + this.data.infoId
             })
             break;
           default: // 跳转到首页
+            console.log('index') 
             wx.reLaunch({
               url: '/pages/index/index'
             })

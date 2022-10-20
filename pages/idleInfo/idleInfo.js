@@ -26,18 +26,55 @@ Page({
   /**
    * 页面加载
    */
-  onLoad(options) {
+  async onLoad(options) {
     console.log('options', options)
-    
-    // 获取好物详情
-    this.getIdleInfo(options.id)
-    // 获取评论
-    this.getComment(options.id)
 
     // 判断是否为刚发布 跳转过来的
     if(wx.getStorageSync('newIdleItem')) this.setData({show: true})
 
+    if(!wx.getStorageSync('currentUser')) {
+      // 获取用户信息
+      await this.getUserInfo(options.id, options.communityId)
+      // 获取用户社区信息
+      await this.getUserCommunity()
+    }
 
+    // 获取好物详情
+    this.getIdleInfo(options.id)
+    // 获取评论
+    this.getComment(options.id)
+  },
+
+  // 获取用户社区信息
+  getUserCommunity() {
+    return new Promise((resolve, reject) => {
+      let currentUser = wx.getStorageSync('currentUser')
+      db.collection('UserCommunity').where({'_openid': currentUser._openid, 'status': 0}).get()
+      .then(res => {
+        if(res.data.length >= 1) {
+          currentUser.userCommunity = res.data[0]
+          wx.setStorageSync('currentUser', currentUser)
+        }
+        resolve(100)
+      })
+    })
+  },
+
+  // 判断用户是否登录过
+  getUserInfo(id, communityId) {
+    return new Promise((resolve, reject) => {
+      User.get().then(res => {
+        if(res.data.length === 1) {
+          wx.setStorageSync('currentUser', res.data[0])
+          resolve(100)
+        } else {
+          resolve(100)
+          wx.navigateTo({
+            url: `/pages/login/login?id=${id}&communityId=${communityId}&type=idleItem`
+          })
+        }
+      })
+    })
   },
 
   // 获取好物详情
@@ -244,7 +281,7 @@ Page({
   /**
    * 用户点击右上角转发
    */
-   onShareAppMessage() {
+  onShareAppMessage() {
     this.setData({ show: false })
     let { idleInfo } = this.data
     let title = `${idleInfo.name}（¥${idleInfo.price}）`
@@ -255,7 +292,7 @@ Page({
   /**
    * 页面卸载
    */
-   onUnload() {
+  onUnload() {
     wx.removeStorageSync('newIdleItem')
   }
 })

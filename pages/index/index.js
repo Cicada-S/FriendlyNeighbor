@@ -15,9 +15,10 @@ Page({
   },
 
   /**
-   * 页面显示
+   * 页面加载
    */
-  async onShow() {
+  async onLoad(options) {
+    console.log('options', options)
 
     this.setData({
       pageIndex: 1,
@@ -25,40 +26,51 @@ Page({
       reachBottom: false
     })
 
-    if(!wx.getStorageSync('currentUser')){
-      console.info('获取用户数据，缓存本地')
-
+    // 判断用户是否登录
+    if(wx.getStorageSync('currentUser')) {
+      // 获取行程信息
+      this.getPostList()
+    } else {
       // 获取用户信息
-      await this.getUserInfo()
-
+      await this.getUserInfo(options.communityId)
       // 获取用户社区信息
       await this.getUserCommunity()
     }
-
-    if(wx.getStorageSync('currentUser')){
-      // 获取行程信息
-      this.getPostList()
-    }
-  
   },
 
+  /**
+   * 页面显示
+   */
+  /* async onShow() {
+    // 判断用户是否登录
+    if(wx.getStorageSync('currentUser')) {
+      // 获取行程信息
+      this.getPostList()
+    } else {
+      // 获取用户信息
+      await this.getUserInfo()
+      // 获取用户社区信息
+      await this.getUserCommunity()
+    }
+  }, */
+
+  // 获取用户社区信息
   getUserCommunity(){
     return new Promise((resolve, reject) => {
     let currentUser = wx.getStorageSync('currentUser')
       db.collection('UserCommunity').where({'_openid': currentUser._openid, 'status': 0}).get()
       .then(res => {
-        if(res.data.length >= 1) {
+        if(res.data.length === 1) {
           currentUser.userCommunity = res.data[0]
           wx.setStorageSync('currentUser', currentUser)
         }
-        resolve(100);
+        resolve(100)
       })
-
-    });
+    })
   },
 
   // 判断用户是否登录过
-  getUserInfo() {
+  getUserInfo(communityId) {
     return new Promise((resolve, reject) => {
       user.get().then(res => {
         if(res.data.length === 1) {
@@ -67,11 +79,11 @@ Page({
         } else {
           resolve(100);
           wx.navigateTo({
-            url: '/pages/login/login'
+            url: '/pages/login/login?communityId=' + communityId
           })
         }
       })
-    });
+    })
   },
 
   // 搜索
