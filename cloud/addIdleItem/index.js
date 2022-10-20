@@ -7,11 +7,31 @@ const db = cloud.database()
 exports.main = async (event, context) => {
   const { IdleItem, IdleItemSpecification, IdleItemVideoImage } = event
 
+  console.log('IdleItem',IdleItem)
+  console.log('IdleItemSpecification',IdleItemSpecification)
+
   // 给数据添加上发布者id和创建时间
   IdleItem._openid = cloud.getWXContext().OPENID
   IdleItem.createTime = new Date()
 
+  // 安全检测内容
+  let text = IdleItem.name + IdleItem.remark
+  IdleItemSpecification.forEach(item => text += (item.name + item.value))
+
   try {
+    // 内容安全监测
+    const msgSecCheckRes = await cloud.callFunction({
+      name: 'msgSecCheck',
+      data: { text }
+    })
+    if (msgSecCheckRes.result.errcode != 0) {
+      return {
+        code: 1,
+        error: '文字內容违规',
+        success: false
+      }
+    }
+
     // 添加闲置物品
     let result = await db.collection('IdleItem').add({data: IdleItem})
 

@@ -28,6 +28,13 @@ Page({
     detailsList: [], // 详情图的数据
   },
 
+  /**
+   * 页面加载
+   */
+  onLoad() {
+    this.setData({phone: wx.getStorageSync('phone')})
+  },
+
   // 切换取货方式
   onRadioChange(event) {
     this.setData({ radio: event.detail })
@@ -129,6 +136,7 @@ Page({
       await this.upCloud(detailsList, 'details')
 
       const { nick_name, avatar_url, userCommunity } = wx.getStorageSync('currentUser')
+      form.remark = remark
       form.nickName = nick_name
       form.avatarUrl = avatar_url
       form.communityId = userCommunity.communityId
@@ -152,6 +160,10 @@ Page({
       // 发布成功
       if(result.code === 0) {
         console.log('result', result)
+        console.log(this.data.phone)
+
+        wx.setStorageSync('phone', this.data.phone)
+
         wx.hideLoading()
         // 清空upCloudImage
         upCloudImage = { first: [], details: [] }
