@@ -21,8 +21,6 @@ Page({
   onShow() {
     // 获取申请表
     this.getUserCommunity()
-    // 获取成员
-    // this.getMemberList()
   },
 
   // 获取申请表
@@ -39,14 +37,13 @@ Page({
 
   // 处理申请表数据
   async handleData(data, type) {
-
     // 2. 遍历获取到的数据 判断数据的status
     if(data.length) for (let item of data) {
       if(!item.status) {
         // 2.1 如果 status === 0 则根据 communityId 获取社区表
         if(type[0] === 'communityInfo') {
-          let { data } = await Community.where({_id: item.communityId}).get()
-          this.setData({ [type[0]]: data[0] })
+          let { data } = await Community.doc(item.communityId).get()
+          this.setData({ [type[0]]: data })
           return
         }
         this.setData({ [type[0]]: data[0] })
@@ -60,9 +57,8 @@ Page({
 
   // 获取成员
   getMemberList() {
-    console.log(this.data.adminInfo._openid)
     UserCommunity.where({
-      communityId: wx.getStorageSync('myCommunity').communityId,
+      communityId: wx.getStorageSync('currentUser').userCommunity.communityId,
       _openid: _.neq(this.data.adminInfo._openid)
     }).orderBy('createTime', 'desc').get()
     .then(res => {
@@ -71,11 +67,8 @@ Page({
       res.data.forEach(item => {
         item.status ? applyMember.push(item) : memberList.push(item)
       })
-
-      this.setData({
-        memberList,
-        applyMember
-      })
+      
+      this.setData({ memberList, applyMember })
     })
   },
 

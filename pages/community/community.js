@@ -7,6 +7,7 @@ import { areaList } from '@vant/area-data'
 const db = wx.cloud.database()
 const Community = db.collection('Community')
 const UserCommunity = db.collection('UserCommunity')
+const CommunityManager = db.collection('CommunityManager')
 const CommunityOfInterest = db.collection('CommunityOfInterest')
 
 Page({
@@ -25,7 +26,7 @@ Page({
    * 页面加载
    */
   onLoad(options) {
-    console.log('options.type',options.type)
+    console.log(options.type)
     if(options.type) this.setData({ isChoice: true })
   },
 
@@ -52,15 +53,15 @@ Page({
 
     // 获取小区
     Community.where(data).get().then(res => {
-      // 如果为选择小区 则不渲染所在的小区
+      // 如果为选择小区状态 则不渲染所在的小区
       let data = res.data
       if(this.data.isChoice) {
-        let communityId = wx.getStorageSync('myCommunity').communityId
+        let communityId = wx.getStorageSync('currentUser').userCommunity.communityId
         data = res.data.filter(item => {
           if(item._id !== communityId) return item
         })
       }
-
+      // 更新data
       this.setData({ communityList: data })
     })
   },
@@ -143,27 +144,35 @@ Page({
       content: '确定加入该小区吗？',
       async success (res) {
         if (res.confirm) {
-          // 创建申请表
-          await UserCommunity.add({data: {
+          // 删除所在的小区关系表 (如果开启管理员模式 需要将这两行代码删除)
+          await UserCommunity.where({ _openid: userInfo._openid }).remove()
+          // 删除社区管理员数据表 (如果开启管理员模式 在管理员审核通过的时候再删除该表)
+          await CommunityManager.where({ _openid: userInfo._openid }).remove()
+
+          // 创建新的小区关系表
+          const result = await UserCommunity.add({data: {
             nickName: userInfo.nick_name,
             avatarUrl: userInfo.avatar_url,
             communityId: id,
             communityName: dataset.name,
             reasonsForApplying: '',
-            status: 1,
+            // status: 1,
+            status: 0,
             createTime: new Date()
           }})
           wx.navigateBack({ delta: 1 })
 
-          //删除关注中的这个小区
-          await db.collection('CommunityOfInterest').where({
+          // 删除关注中的这个小区
+          await CommunityOfInterest.where({
             _openid: userInfo._openid,
             communityId: id
           }).remove()
           
-          //获取个人信息和更新
-          
-        
+          // 获取个人信息和更新
+          const currentUser = wx.getStorageSync('currentUser')
+          const { data } = await UserCommunity.doc(result._id).get()
+          currentUser.userCommunity = data
+          wx.setStorageSync('currentUser', currentUser)
         }
       }
     })

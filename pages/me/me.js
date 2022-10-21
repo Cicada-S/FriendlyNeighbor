@@ -37,7 +37,9 @@ Page({
       // 判断是否已经加入小区
       if(!item.status) {
         this.setData({community: item})
-        wx.setStorageSync('myCommunity', item)
+        const currentUser = wx.getStorageSync('currentUser')
+        currentUser.userCommunity = item
+        wx.setStorageSync('currentUser', currentUser)
       }
     })
   },
