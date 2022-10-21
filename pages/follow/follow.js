@@ -48,9 +48,14 @@ Page({
           let newCommunityList = communityList.filter(item => item._id !== _id)
           // 数据是否为空
           if(!newCommunityList.length) this.setData({isEmpty: true})
-
+          
           // 更新data
           this.setData({communityList: newCommunityList})
+          
+          // 更新本地
+          const currentUser = wx.getStorageSync('currentUser')
+          currentUser.communityOfInterest = newCommunityList
+          wx.setStorageSync('currentUser', currentUser)
         })
       }
     })

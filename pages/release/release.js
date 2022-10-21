@@ -121,7 +121,7 @@ Page({
       if(this.isEmpty(item)) {
         emoty = false
         return wx.showToast({
-          title: '所有选项都是必填项！',
+          title: '除了备注，其它都是必填!',
           icon: 'none',
           duration: 2000
         })

@@ -44,26 +44,15 @@ Page({
     // 获取关注的小区
     const followRes = await CommunityOfInterest.where({_openid}).get()
 
-
-    console.log('community', community)
-    console.log('followRes', followRes)
-
     // 将已关注的小区去除
     const communityList = community.data.filter(citem => {
       return !followRes.data.some(fitem => citem._id === fitem.communityId)
     })
 
-    // 添加状态
-    let newCommunityList = communityList.map(item => {
-      item.isFollow = false
-      return item
-    })
-
-    console.log('newCommunityList', newCommunityList)
-
+    // 关闭load
     wx.hideLoading()
-
-    this.setData({ communityList: newCommunityList })
+    // 更新data
+    this.setData({ communityList })
   },
 
   // 选择地区
@@ -130,12 +119,20 @@ Page({
         }})
 
         let { communityList } = this.data
+        const currentUser = wx.getStorageSync('currentUser')
+        const communityOfInterest = currentUser.communityOfInterest || []
         // 遍历将关注的小区状态改成true
         communityList.forEach(item => {
-          if(item._id === _id) item.isFollow = true
+          if(item._id === _id) {
+            communityOfInterest.push(item)
+            item.isFollow = true
+          }
         })
         // 更新data
         this.setData({ communityList })
+        // 更新本地
+        currentUser.communityOfInterest = communityOfInterest
+        wx.setStorageSync('currentUser', currentUser)
       }
     })
   },
@@ -148,6 +145,13 @@ Page({
 
     // 删除数据表
     CommunityOfInterest.where({communityId: id}).remove()
+
+    // 更新本地
+    const currentUser = wx.getStorageSync('currentUser')
+    const newFollowList = currentUser.communityOfInterest.filter(item => item._id !== id)
+    currentUser.communityOfInterest = newFollowList
+    wx.setStorageSync('currentUser', currentUser)
+    
     // 找出该条数据将其 isFollow 改成 false
     communityList.forEach(item => {
       if(item._id === id) item.isFollow = false
