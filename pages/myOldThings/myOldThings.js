@@ -63,15 +63,27 @@ Page({
             })
             // 数据是否为空
             if(!newListData.length) this.setData({isEmpty: true})
-
+            // 更新data
             this.setData({ listData: newListData })
           })
-          // 删除图片
-          IdleItemVideoImage.where({ IdleItemId:event.target.id }).remove()
-          // 删除规格
+          // 删除规格数据表
           IdleItemSpecification.where({ IdleItemId:event.target.id }).remove()
+          // 删除云存储的图片
+          this.deleteFile(event.target.id)
         }
       }
+    })
+  },
+
+  // 删除云存储的图片
+  async deleteFile(id) {
+    const { data } = await IdleItemVideoImage.where({ IdleItemId: id }).get()
+    const fileList = data.map(item => item.path)
+    // 删除图片
+    wx.cloud.deleteFile({ fileList })
+    .then(() => {
+      // 删除图片数据表
+      IdleItemVideoImage.where({ IdleItemId: id }).remove()
     })
   },
 

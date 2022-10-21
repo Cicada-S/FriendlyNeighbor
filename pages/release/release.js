@@ -204,7 +204,7 @@ Page({
     // 遍历上传图片
     imageList.forEach((item, index) => {
       // 文件夹和文件名
-      const cloudPath = pathOfDate() + uuid() + item.url.match(/.[^.]+$/)[0]
+      const cloudPath = 'IdleItemVideoImage/' + pathOfDate() + uuid() + item.url.match(/.[^.]+$/)[0]
       // 上传图片
       let process = wx.cloud.uploadFile({
         cloudPath,

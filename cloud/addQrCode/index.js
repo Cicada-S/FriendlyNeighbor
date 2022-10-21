@@ -30,7 +30,7 @@ exports.main = async (event, context) => {
   
     // 将生成的小程序码存储到云空间
     const birthday = new Date()
-    const cloudPath = `${birthday.getFullYear()}/${birthday.getMonth()+1}/${birthday.getDate()}/${Date.now()}.png`
+    const cloudPath = `Community/${birthday.getFullYear()}/${birthday.getMonth()+1}/${birthday.getDate()}/${Date.now()}.png`
     const upload = await cloud.uploadFile({
       cloudPath, // 小程序码的文件名
       fileContent: result.buffer // 要上传文件资源的路径
